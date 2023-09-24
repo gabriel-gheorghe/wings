@@ -10,6 +10,10 @@ license-file = "LICENSE"
 keywords = ["gamedev", "ui", "bevy"]
 categories = ["gui", "game-development", "accessibility"]
 
+exclude = [
+    ".idea/*",
+]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
