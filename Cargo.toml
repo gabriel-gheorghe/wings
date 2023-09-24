@@ -5,7 +5,6 @@ edition = "2021"
 description = "A new way to build User Interfaces on top of BevyUI."
 readme = "README.md"
 repository = "https://github.com/thirdq/wings_ui/"
-license = "Apache-2.0"
 license-file = "LICENSE"
 keywords = ["gamedev", "ui", "bevy"]
 categories = ["gui", "game-development", "accessibility"]
