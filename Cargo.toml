@@ -2,6 +2,13 @@
 name = "wings_ui"
 version = "0.0.1"
 edition = "2021"
+description = "A new way to build User Interfaces on top of BevyUI."
+readme = "README.md"
+repository = "https://github.com/thirdq/wings_ui/"
+license = "Apache-2.0"
+license-file = "LICENSE"
+keywords = ["gamedev", "ui", "bevy"]
+categories = ["gui", "game-development", "accessibility"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
