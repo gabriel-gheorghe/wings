@@ -12,9 +12,9 @@ pub struct UiButtonProps {
 impl Default for UiButtonProps {
     fn default() -> Self {
         Self {
-            width: Val::Px(100.0),
-            height: Val::Px(100.0),
-            color: Color::BEIGE,
+            width: Val::Px(210.0),
+            height: Val::Px(90.0),
+            color: Color::TEAL,
             is_collapsed: false,
         }
     }
@@ -37,11 +37,16 @@ impl UiButton {
         Self {
             child: ButtonBundle {
                 style: Style {
-                    width: props.width,
-                    height: props.height,
+                    width: if props.is_collapsed { Val::Px(0.0) } else { props.width },
+                    height: if props.is_collapsed { Val::Px(0.0) } else { props.height },
+                    justify_content: JustifyContent::Center,
+                    align_items: AlignItems::Center,
+                    border: UiRect::all(Val::Px(5.0)),
                     ..default()
                 },
                 background_color: BackgroundColor::from(props.color),
+                border_color: BorderColor(Color::BLACK),
+                visibility: if props.is_collapsed { Visibility::Hidden } else { Visibility::Inherited },
                 ..default()
             },
             visibility: UiVisibility {

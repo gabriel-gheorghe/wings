@@ -37,11 +37,12 @@ impl UiContainer {
         Self {
             child: NodeBundle {
                 style: Style {
-                    width: props.width,
-                    height: props.height,
+                    width: if props.is_collapsed { Val::Px(0.0) } else { props.width },
+                    height: if props.is_collapsed { Val::Px(0.0) } else { props.height },
                     ..default()
                 },
                 background_color: BackgroundColor::from(props.color),
+                visibility: if props.is_collapsed { Visibility::Hidden } else { Visibility::Inherited },
                 ..default()
             },
             visibility: UiVisibility {
