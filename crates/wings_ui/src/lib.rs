@@ -9,13 +9,14 @@ pub mod prelude {
     pub use crate::queries::visibility::UiVisibilityQuery;
 
     pub use crate::widgets::alignment::UiCenter;
-    pub use crate::widgets::container::{UiContainerProps, UiContainer};
-    pub use crate::widgets::direction::{UiRow, UiColumn};
+    pub use crate::widgets::button::{UiButton, UiButtonProps};
+    pub use crate::widgets::container::{UiContainer, UiContainerProps};
+    pub use crate::widgets::direction::{UiColumn, UiRow};
     pub use crate::widgets::divider::{
-        UiHorizontalDividerProps, UiHorizontalDivider,
-        UiVerticalDividerProps, UiVerticalDivider,
+        UiHorizontalDivider, UiHorizontalDividerProps,
+        UiVerticalDivider, UiVerticalDividerProps,
     };
-    pub use crate::widgets::screen::{UiScreenProps, UiScreen};
+    pub use crate::widgets::screen::{UiScreen, UiScreenProps};
 
     pub use crate::plugin::WingsUiPlugin;
 
