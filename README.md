@@ -28,7 +28,7 @@ fn startup(mut commands: Commands) {
         color: Color::RED,
         is_collapsed: false,
     };
-    
+
     commands.spawn(UiScreen::from(UiScreenProps{
         centered: true,
         ..default()
@@ -36,16 +36,16 @@ fn startup(mut commands: Commands) {
         parent.spawn(UiRow::default()).with_children(|parent| {
             parent.spawn(UiContainer::from(first_container_props));
             parent.spawn((UiTagCollapsible, UiHorizontalDivider::from_width(Val::Px(50.0))));
-            parent.spawn((UiTagCollapsible, MyPanelTag, UiContainer::default()));
+            parent.spawn((UiTagCollapsible, ColorTag, UiContainer::default()));
             parent.spawn((UiTagCollapsible, UiHorizontalDivider::from_width(Val::Px(50.0))));
-            parent.spawn((UiTagCollapsible, MyPanelTag, UiContainer::default()));
+            parent.spawn((UiTagCollapsible, ColorTag, UiContainer::default()));
         });
     });
 }
 
 fn change_color(
     keyboard_input: Res<Input<KeyCode>>,
-    mut color_query: UiColorQuery<MyPanelTag>,
+    mut color_query: UiColorQuery<ColorTag>,
     mut visibility_query: UiVisibilityQuery<UiTagCollapsible>,
 ) {
     if keyboard_input.just_pressed(KeyCode::Space) {
@@ -58,5 +58,4 @@ fn change_color(
         visibility_query.inherit();
     }
 }
-
 ```
