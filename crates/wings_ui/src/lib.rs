@@ -1,7 +1,6 @@
 pub mod plugin;
 pub mod queries;
 pub mod tags;
-pub mod utils;
 pub mod visibility;
 pub mod widgets;
 
@@ -17,4 +16,10 @@ pub mod prelude {
         UiVerticalDividerProps, UiVerticalDivider,
     };
     pub use crate::widgets::screen::{UiScreenProps, UiScreen};
+
+    pub use crate::plugin::WingsUiPlugin;
+
+    pub use crate::tags::UiTagCollapsible;
+
+    pub use crate::visibility::UiVisibility;
 }
