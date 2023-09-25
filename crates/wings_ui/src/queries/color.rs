@@ -1,6 +1,6 @@
 use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
-use crate::utils::get_random_color;
+use wings_utils::color::get_random_color;
 
 #[derive(SystemParam)]
 pub struct UiColorQuery<'w, 's, T: Component> (

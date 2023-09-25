@@ -1,0 +1,11 @@
+[package]
+name = "wings_wisdom"
+version = "0.1.0-dev"
+edition = "2021"
+description = "Provides artificial intelligence and machine or deep learning functionality."
+repository = "https://github.com/thirdq/wings/"
+license-file = "LICENSE"
+keywords = ["wings"]
+
+[dependencies]
+wings_utils = { path = "../wings_utils", version = "0.1.0-dev" }
