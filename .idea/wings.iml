@@ -2,7 +2,25 @@
 <module type="EMPTY_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_activity/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_charm/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_cosmic/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_creation/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_effect/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_fiber/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_geography/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_motion/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_paint/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_pulse/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_smash/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_ui/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_utils/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_vehicle/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_weather/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/wings_wisdom/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/crates/wings_ui/target" />
+      <excludeFolder url="file://$MODULE_DIR$/crates/wings_utils/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

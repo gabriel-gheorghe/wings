@@ -8,29 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26adacb0-1ba7-4565-be9b-1bed81ef295b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crates/wings_ui/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crates/wings_ui/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crates/wings_ui/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/wings_ui.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugin.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugin.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/color.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/mod.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/visibility.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tags.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visibility.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/alignment.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/container.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/direction.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/divider.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/mod.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/screen.rs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +75,7 @@
       <updated>1695595896271</updated>
       <workItem from="1695595897312" duration="1629000" />
       <workItem from="1695597534976" duration="179000" />
+      <workItem from="1695597720797" duration="1508000" />
     </task>
     <servers />
   </component>
