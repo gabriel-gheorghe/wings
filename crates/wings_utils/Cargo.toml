@@ -8,5 +8,5 @@ license-file = "LICENSE"
 keywords = ["wings"]
 
 [dependencies]
-bevy = "0.11.2"
+bevy = "0.11.3"
 rand = "0.8.5"

@@ -1,12 +1,14 @@
 use bevy::prelude::*;
-use crate::visibility::UiVisibility;
+use crate::components::UiVisibility;
+use crate::prelude::UiContainer;
+use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiContainerProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
-    pub is_collapsed: bool,
+    pub visibility: UiVisibility,
 }
 
 impl Default for UiContainerProps {
@@ -15,41 +17,81 @@ impl Default for UiContainerProps {
             width: Val::Px(100.0),
             height: Val::Px(100.0),
             color: Color::BEIGE,
-            is_collapsed: false,
+            ..default()
         }
     }
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiContainer {
+pub struct UiContainerBundle {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
+    internal_tag: UiContainer,
 }
 
-impl Default for UiContainer {
+impl Default for UiContainerBundle {
     fn default() -> Self {
-        UiContainer::from(UiContainerProps::default())
+        UiContainerBundle::from(UiContainerProps::default())
     }
 }
 
-impl UiContainer {
+impl UiContainerBundle {
     pub fn from(props: UiContainerProps) -> Self {
         Self {
             child: NodeBundle {
                 style: Style {
-                    width: if props.is_collapsed { Val::Px(0.0) } else { props.width },
-                    height: if props.is_collapsed { Val::Px(0.0) } else { props.height },
+                    display: get_computed_display(&props.visibility),
+                    width: props.width,
+                    height: props.height,
                     ..default()
                 },
                 background_color: BackgroundColor::from(props.color),
-                visibility: if props.is_collapsed { Visibility::Hidden } else { Visibility::Inherited },
+                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
-            visibility: UiVisibility {
-                cached_width: props.width,
-                cached_height: props.height,
-                is_collapsed: props.is_collapsed,
-            },
+            visibility: props.visibility,
+            ..default()
         }
+    }
+
+    pub fn from_visibility(visibility: UiVisibility) -> Self {
+        Self::from(UiContainerProps { visibility, ..default() })
+    }
+
+    pub fn from_size(width: Val, height: Val) -> Self {
+        Self::from(UiContainerProps {
+            width,
+            height,
+            ..default()
+        })
+    }
+
+    pub fn from_size_splat(val: Val) -> Self {
+        Self::from(UiContainerProps {
+            width: val,
+            height: val,
+            ..default()
+        })
+    }
+
+    pub fn from_width(width: Val) -> Self {
+        Self::from(UiContainerProps {
+            width,
+            ..default()
+        })
+    }
+
+    pub fn from_height(height: Val) -> Self {
+        Self::from(UiContainerProps {
+            height,
+            ..default()
+        })
+    }
+
+    pub fn from_color(color: Color) -> Self {
+        Self::from(UiContainerProps {
+            color,
+            ..default()
+        })
     }
 }

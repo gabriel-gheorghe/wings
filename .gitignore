@@ -14,3 +14,5 @@ Cargo.lock
 *.pdb
 
 .idea
+crates/wings_ui/.idea
+crates/wings_utils/.idea

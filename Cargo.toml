@@ -11,7 +11,7 @@ categories = ["game-engines", "gui", "game-development", "accessibility", "rende
 exclude = [".idea/", ".github/"]
 
 [dependencies]
-bevy = "0.11.2"
+bevy = "0.11.3"
 
 # Provides input mapping and actions functionality
 wings_activity = { path = "crates/wings_activity", version = "0.1.0-dev" }

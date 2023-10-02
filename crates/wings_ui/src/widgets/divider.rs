@@ -1,22 +1,23 @@
 use bevy::prelude::*;
-use crate::visibility::UiVisibility;
+use crate::components::UiVisibility;
+use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiHorizontalDividerProps {
     pub width: Val,
-    pub is_collapsed: bool,
+    pub visibility: UiVisibility,
 }
 
 impl Default for UiHorizontalDividerProps {
     fn default() -> Self {
         Self {
             width: Val::Px(100.0),
-            is_collapsed: false,
+            ..default()
         }
     }
 }
 
-#[derive(Bundle)]
+#[derive(Bundle, Clone, Debug, Default)]
 pub struct UiHorizontalDivider {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
@@ -27,13 +28,19 @@ impl UiHorizontalDivider {
         Self {
             child: NodeBundle {
                 style: Style {
+                    display: get_computed_display(&props.visibility),
                     width: props.width,
                     ..default()
                 },
+                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
-            visibility: UiVisibility::from_width_and_collapsed(props.width, props.is_collapsed),
+            visibility: props.visibility,
         }
+    }
+
+    pub fn from_visibility(visibility: UiVisibility) -> Self {
+        Self::from(UiHorizontalDividerProps { visibility, ..default() })
     }
 
     pub fn from_width(width: Val) -> Self {
@@ -45,7 +52,7 @@ impl UiHorizontalDivider {
                 },
                 ..default()
             },
-            visibility: UiVisibility::from_width(width),
+            ..default()
         }
     }
 }
@@ -53,19 +60,19 @@ impl UiHorizontalDivider {
 #[derive(Copy, Clone, Debug)]
 pub struct UiVerticalDividerProps {
     pub height: Val,
-    pub is_collapsed: bool,
+    pub visibility: UiVisibility,
 }
 
 impl Default for UiVerticalDividerProps {
     fn default() -> Self {
         Self {
             height: Val::Px(100.0),
-            is_collapsed: false,
+            ..default()
         }
     }
 }
 
-#[derive(Bundle)]
+#[derive(Bundle, Clone, Debug, Default)]
 pub struct UiVerticalDivider {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
@@ -76,13 +83,19 @@ impl UiVerticalDivider {
         Self {
             child: NodeBundle {
                 style: Style {
+                    display: get_computed_display(&props.visibility),
                     height: props.height,
                     ..default()
                 },
+                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
-            visibility: UiVisibility::from_height_and_collapsed(props.height, props.is_collapsed),
+            visibility: props.visibility,
         }
+    }
+
+    pub fn from_visibility(visibility: UiVisibility) -> Self {
+        Self::from(UiVerticalDividerProps { visibility, ..default() })
     }
 
     pub fn from_height(height: Val) -> Self {
@@ -94,7 +107,7 @@ impl UiVerticalDivider {
                 },
                 ..default()
             },
-            visibility: UiVisibility::from_height(height),
+            ..default()
         }
     }
 }

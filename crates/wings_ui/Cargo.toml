@@ -9,4 +9,4 @@ keywords = ["wings"]
 
 [dependencies]
 wings_utils = { path = "../wings_utils", version = "0.1.0-dev" }
-bevy = "0.11.2"
+bevy = "0.11.3"

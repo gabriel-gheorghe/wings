@@ -1,48 +1,86 @@
 use bevy::prelude::*;
-use crate::visibility::UiVisibility;
+use crate::components::{UiColumn, UiRow, UiVisibility};
+use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
+use crate::utils::{get_computed_display, get_computed_visibility};
 
-#[derive(Bundle)]
-pub struct UiColumn {
-    pub child: NodeBundle,
+#[derive(Copy, Clone, Debug, Default)]
+pub struct UiColumnProps {
+    pub main_axis_size: MainAxisSize,
+    pub main_axis_alignment: MainAxisAlignment,
+    pub cross_axis_alignment: CrossAxisAlignment,
     pub visibility: UiVisibility,
 }
 
-impl Default for UiColumn {
+#[derive(Bundle, Clone, Debug)]
+pub struct UiColumnBundle {
+    pub child: NodeBundle,
+    pub visibility: UiVisibility,
+    internal_tag: UiColumn,
+}
+
+impl Default for UiColumnBundle {
     fn default() -> Self {
+        UiColumnBundle::from(UiColumnProps::default())
+    }
+}
+
+impl UiColumnBundle {
+    fn from(props: UiColumnProps) -> Self {
         Self {
             child: NodeBundle {
                 style: Style {
+                    display: get_computed_display(&props.visibility),
                     flex_direction: FlexDirection::Column,
                     justify_content: JustifyContent::Center,
                     align_items: AlignItems::Center,
                     ..default()
                 },
+                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
-            visibility: UiVisibility::default(),
+            visibility: props.visibility,
+            ..default()
         }
     }
 }
 
-#[derive(Bundle)]
-pub struct UiRow {
-    pub child: NodeBundle,
+#[derive(Copy, Clone, Debug, Default)]
+pub struct UiRowProps {
+    pub main_axis_size: MainAxisSize,
+    pub main_axis_alignment: MainAxisAlignment,
+    pub cross_axis_alignment: CrossAxisAlignment,
     pub visibility: UiVisibility,
 }
 
-impl Default for UiRow {
+#[derive(Bundle, Clone, Debug)]
+pub struct UiRowBundle {
+    pub child: NodeBundle,
+    pub visibility: UiVisibility,
+    internal_tag: UiRow,
+}
+
+impl Default for UiRowBundle {
     fn default() -> Self {
+        UiRowBundle::from(UiRowProps::default())
+    }
+}
+
+impl UiRowBundle {
+    pub fn from(props: UiRowProps) -> Self {
         Self {
             child: NodeBundle {
                 style: Style {
+                    display: get_computed_display(&props.visibility),
                     flex_direction: FlexDirection::Row,
                     justify_content: JustifyContent::Center,
                     align_items: AlignItems::Center,
                     ..default()
                 },
+                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
-            visibility: UiVisibility::default(),
+            visibility: props.visibility,
+            ..default()
         }
     }
 }
