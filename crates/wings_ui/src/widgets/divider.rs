@@ -12,17 +12,26 @@ pub struct UiHorizontalDividerProps {
 impl Default for UiHorizontalDividerProps {
     fn default() -> Self {
         Self {
-            width: Val::Px(100.0),
+            width: Val::Px(3.),
             visibility: UiVisibility::default(),
         }
     }
 }
 
-#[derive(Bundle, Clone, Debug, Default)]
+#[derive(Bundle, Clone, Debug)]
 pub struct UiHorizontalDividerBundle {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
     internal_tag: UiHorizontalDivider,
+}
+
+impl Default for UiHorizontalDividerBundle {
+    fn default() -> Self {
+        UiHorizontalDividerBundle::from(UiHorizontalDividerProps {
+            width: Val::Px(3.),
+            visibility: UiVisibility::default(),
+        })
+    }
 }
 
 impl UiHorizontalDividerBundle {
@@ -32,8 +41,10 @@ impl UiHorizontalDividerBundle {
                 style: Style {
                     display: get_computed_display(&props.visibility),
                     width: props.width,
+                    height: Val::Percent(100.),
                     ..default()
                 },
+                background_color: BackgroundColor::from(Color::BLACK),
                 visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
@@ -51,8 +62,10 @@ impl UiHorizontalDividerBundle {
             child: NodeBundle {
                 style: Style {
                     width,
+                    height: Val::Percent(100.),
                     ..default()
                 },
+                background_color: BackgroundColor::from(Color::BLACK),
                 ..default()
             },
             ..default()
@@ -69,17 +82,26 @@ pub struct UiVerticalDividerProps {
 impl Default for UiVerticalDividerProps {
     fn default() -> Self {
         Self {
-            height: Val::Px(100.0),
+            height: Val::Px(3.),
             visibility: UiVisibility::default(),
         }
     }
 }
 
-#[derive(Bundle, Clone, Debug, Default)]
+#[derive(Bundle, Clone, Debug)]
 pub struct UiVerticalDividerBundle {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
     internal_tag: UiVerticalDivider,
+}
+
+impl Default for UiVerticalDividerBundle {
+    fn default() -> Self {
+        UiVerticalDividerBundle::from(UiVerticalDividerProps {
+            height: Val::Px(3.),
+            visibility: UiVisibility::default(),
+        })
+    }
 }
 
 impl UiVerticalDividerBundle {
@@ -88,9 +110,11 @@ impl UiVerticalDividerBundle {
             child: NodeBundle {
                 style: Style {
                     display: get_computed_display(&props.visibility),
+                    width: Val::Percent(100.),
                     height: props.height,
                     ..default()
                 },
+                background_color: BackgroundColor::from(Color::BLACK),
                 visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
@@ -107,9 +131,11 @@ impl UiVerticalDividerBundle {
         Self {
             child: NodeBundle {
                 style: Style {
+                    width: Val::Percent(100.),
                     height,
                     ..default()
                 },
+                background_color: BackgroundColor::from(Color::BLACK),
                 ..default()
             },
             ..default()
