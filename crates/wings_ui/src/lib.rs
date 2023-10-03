@@ -10,7 +10,7 @@ pub mod widgets;
 pub mod prelude {
     pub use crate::widgets::{
         UiButton, UiCenter, UiColumn, UiConstrainedHeight, UiConstrainedWidth, UiContainer,
-        UiHorizontalDivider, UiRow, UiScaffold, UiVerticalDivider, UiVisibility,
+        UiHorizontalDivider, UiRow, UiScaffold, UiVerticalDivider, UiVisibility, UiWidgetBundle,
     };
 
     pub use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
@@ -38,4 +38,5 @@ pub mod prelude {
         UiVerticalDividerBundle, UiVerticalDividerProps,
     };
     pub use crate::widgets::scaffold::{UiScaffoldBundle, UiScaffoldProps};
+    pub use crate::widgets::sized_box::{UiSizedBoxBundle, UiSizedBoxProps};
 }
