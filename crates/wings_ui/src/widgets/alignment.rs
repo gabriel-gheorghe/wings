@@ -1,14 +1,15 @@
 use bevy::prelude::*;
-use crate::components::UiVisibility;
+use crate::components::{UiCenter, UiVisibility};
 use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiCenter {
+pub struct UiCenterBundle {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
+    internal_tag: UiCenter,
 }
 
-impl Default for UiCenter {
+impl Default for UiCenterBundle {
     fn default() -> Self {
         Self {
             child: NodeBundle {
@@ -20,11 +21,12 @@ impl Default for UiCenter {
                 ..default()
             },
             visibility: UiVisibility::default(),
+            internal_tag: UiCenter::default(),
         }
     }
 }
 
-impl UiCenter {
+impl UiCenterBundle {
     pub fn from_visibility(visibility: UiVisibility) -> Self {
         Self {
             child: NodeBundle {
@@ -38,6 +40,7 @@ impl UiCenter {
                 ..default()
             },
             visibility,
+            internal_tag: UiCenter::default(),
         }
     }
 }

@@ -33,12 +33,12 @@ fn startup(mut commands: Commands) {
         centered: true,
         ..default()
     })).with_children(|parent| {
-        parent.spawn(UiRow::default()).with_children(|parent| {
+        parent.spawn(UiRowBundle::default()).with_children(|parent| {
             parent.spawn(UiContainerBundle::from(first_container_props));
-            parent.spawn((UiTagCollapsible, UiHorizontalDivider::from_width(Val::Px(50.0))));
-            parent.spawn((UiTagCollapsible, ColorTag, UiContainer::default()));
-            parent.spawn((UiTagCollapsible, UiHorizontalDivider::from_width(Val::Px(50.0))));
-            parent.spawn((UiTagCollapsible, ColorTag, UiContainer::default()));
+            parent.spawn((UiTagCollapsible, UiHorizontalDividerBundle::from_width(Val::Px(50.0))));
+            parent.spawn((UiTagCollapsible, ColorTag, UiContainerBundle::default()));
+            parent.spawn((UiTagCollapsible, UiHorizontalDividerBundle::from_width(Val::Px(50.0))));
+            parent.spawn((UiTagCollapsible, ColorTag, UiContainerBundle::default()));
         });
     });
 }

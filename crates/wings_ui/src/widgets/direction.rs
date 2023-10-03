@@ -39,8 +39,12 @@ impl UiColumnBundle {
                 ..default()
             },
             visibility: props.visibility,
-            ..default()
+            internal_tag: UiColumn::default(),
         }
+    }
+
+    pub fn from_visibility(visibility: UiVisibility) -> Self {
+        Self::from(UiColumnProps { visibility, ..default() })
     }
 }
 
@@ -80,7 +84,11 @@ impl UiRowBundle {
                 ..default()
             },
             visibility: props.visibility,
-            ..default()
+            internal_tag: UiRow::default(),
         }
+    }
+
+    pub fn from_visibility(visibility: UiVisibility) -> Self {
+        Self::from(UiRowProps { visibility, ..default() })
     }
 }

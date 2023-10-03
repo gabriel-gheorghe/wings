@@ -20,7 +20,7 @@ impl Default for UiButtonProps {
             color: Color::TEAL,
             border: UiRect::all(Val::Px(5.0)),
             border_color: Color::BLACK,
-            ..default()
+            visibility: UiVisibility::default(),
         }
     }
 }
@@ -57,7 +57,7 @@ impl UiButtonBundle {
                 ..default()
             },
             visibility: props.visibility,
-            ..default()
+            internal_tag: UiButton::default(),
         }
     }
 

@@ -17,7 +17,7 @@ impl Default for UiContainerProps {
             width: Val::Px(100.0),
             height: Val::Px(100.0),
             color: Color::BEIGE,
-            ..default()
+            visibility: UiVisibility::default(),
         }
     }
 }
@@ -50,7 +50,7 @@ impl UiContainerBundle {
                 ..default()
             },
             visibility: props.visibility,
-            ..default()
+            internal_tag: UiContainer::default(),
         }
     }
 

@@ -19,7 +19,7 @@ impl Default for UiScreenProps {
             height: Val::Percent(100.0),
             color: get_transparent_color(),
             centered: false,
-            ..default()
+            visibility: UiVisibility::default(),
         }
     }
 }
@@ -62,7 +62,7 @@ impl UiScreenBundle {
                 ..default()
             },
             visibility: props.visibility,
-            ..default()
+            internal_tag: UiScreen::default(),
         }
     }
 

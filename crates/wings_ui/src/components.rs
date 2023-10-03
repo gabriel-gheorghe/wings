@@ -10,6 +10,9 @@ pub enum UiVisibility {
 }
 
 #[derive(Component, Clone, Debug, Default)]
+pub struct UiCenter;
+
+#[derive(Component, Clone, Debug, Default)]
 pub struct UiButton;
 
 #[derive(Component, Clone, Debug, Default)]
@@ -20,6 +23,12 @@ pub struct UiColumn;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiRow;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiHorizontalDivider;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiVerticalDivider;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiScreen;
