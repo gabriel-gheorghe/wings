@@ -1,7 +1,9 @@
 use bevy::prelude::*;
 use crate::widgets::{UiColumn, UiRow, UiVisibility};
 use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
-use crate::utils::{get_computed_display, get_computed_visibility};
+use crate::utils::{
+    get_computed_display, get_computed_visibility, to_align, to_justify, to_main_size,
+};
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiColumnProps {
@@ -26,33 +28,14 @@ impl Default for UiColumnBundle {
 
 impl UiColumnBundle {
     pub fn from(props: UiColumnProps) -> Self {
-        let height = match props.main_axis_size {
-            MainAxisSize::Min => Val::Auto,
-            MainAxisSize::Max => Val::Percent(100.),
-        };
-
-        let justify_content = match props.main_axis_alignment {
-            MainAxisAlignment::Start => JustifyContent::FlexStart,
-            MainAxisAlignment::End => JustifyContent::FlexEnd,
-            MainAxisAlignment::Center => JustifyContent::Center,
-            _ => JustifyContent::Start,
-        };
-
-        let align_items = match props.cross_axis_alignment {
-            CrossAxisAlignment::Start => AlignItems::FlexStart,
-            CrossAxisAlignment::End => AlignItems::FlexEnd,
-            CrossAxisAlignment::Center => AlignItems::Center,
-            _ => AlignItems::Start,
-        };
-
         Self {
             child: NodeBundle {
                 style: Style {
-                    height,
+                    height: to_main_size(props.main_axis_size),
                     display: get_computed_display(&props.visibility),
                     flex_direction: FlexDirection::Column,
-                    justify_content,
-                    align_items,
+                    justify_content: to_justify(props.main_axis_alignment),
+                    align_items: to_align(props.cross_axis_alignment),
                     ..default()
                 },
                 visibility: get_computed_visibility(&props.visibility),
@@ -102,33 +85,14 @@ impl Default for UiRowBundle {
 
 impl UiRowBundle {
     pub fn from(props: UiRowProps) -> Self {
-        let width = match props.main_axis_size {
-            MainAxisSize::Min => Val::Auto,
-            MainAxisSize::Max => Val::Percent(100.),
-        };
-
-        let justify_content = match props.main_axis_alignment {
-            MainAxisAlignment::Start => JustifyContent::FlexStart,
-            MainAxisAlignment::End => JustifyContent::FlexEnd,
-            MainAxisAlignment::Center => JustifyContent::Center,
-            _ => JustifyContent::Start,
-        };
-
-        let align_items = match props.cross_axis_alignment {
-            CrossAxisAlignment::Start => AlignItems::FlexStart,
-            CrossAxisAlignment::End => AlignItems::FlexEnd,
-            CrossAxisAlignment::Center => AlignItems::Center,
-            _ => AlignItems::Start,
-        };
-
         Self {
             child: NodeBundle {
                 style: Style {
-                    width,
+                    width: to_main_size(props.main_axis_size),
                     display: get_computed_display(&props.visibility),
                     flex_direction: FlexDirection::Row,
-                    justify_content,
-                    align_items,
+                    justify_content: to_justify(props.main_axis_alignment),
+                    align_items: to_align(props.cross_axis_alignment),
                     ..default()
                 },
                 visibility: get_computed_visibility(&props.visibility),
