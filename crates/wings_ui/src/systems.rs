@@ -6,8 +6,8 @@ use crate::widgets::UiButton;
 pub(crate) fn compute_constraint_heights(
     mut event: EventWriter<ApplyConstraintHeight>,
     mut constrained_height_q: Query<(Entity, With<UiConstrainedHeight>)>,
-    mut style_q: Query<&Style>,
-    mut children_q: Query<&Children>,
+    style_q: Query<&Style>,
+    children_q: Query<&Children>,
 ) {
     for (target, _) in constrained_height_q.iter_mut() {
         let mut max_height = 0.;
@@ -42,8 +42,8 @@ pub(crate) fn apply_constraint_height(
 pub(crate) fn compute_constraint_widths(
     mut event: EventWriter<ApplyConstraintWidth>,
     mut constrained_width_q: Query<(Entity, With<UiConstrainedWidth>)>,
-    mut style_q: Query<&Style>,
-    mut children_q: Query<&Children>,
+    style_q: Query<&Style>,
+    children_q: Query<&Children>,
 ) {
     for (target, _) in constrained_width_q.iter_mut() {
         let mut max_width = 0.;
