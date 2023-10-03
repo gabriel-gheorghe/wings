@@ -1,6 +1,6 @@
 pub mod common_tags;
 pub mod enums;
-pub(crate) mod events;
+pub mod events;
 pub mod plugin;
 pub mod queries;
 pub(crate) mod systems;
@@ -14,6 +14,11 @@ pub mod prelude {
     };
 
     pub use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
+
+    pub use crate::events::{
+        UiPointerClick, UiPointerDoubleClick, UiPointerEnter, UiPointerExit,
+        UiPointerMove, UiPointerOver, UiPointerPress, UiPointerRelease,
+    };
 
     pub use crate::plugin::WingsUiPlugin;
 

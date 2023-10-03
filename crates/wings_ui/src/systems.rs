@@ -1,6 +1,7 @@
 use bevy::prelude::*;
-use crate::events::{ApplyConstraintHeight, ApplyConstraintWidth};
+use crate::events::{ApplyConstraintHeight, ApplyConstraintWidth, UiPointerClick, UiPointerEnter, UiPointerExit};
 use crate::prelude::{UiConstrainedHeight, UiConstrainedWidth};
+use crate::widgets::UiButton;
 
 pub(crate) fn compute_constraint_heights(
     mut event: EventWriter<ApplyConstraintHeight>,
@@ -71,5 +72,26 @@ pub(crate) fn apply_constraint_width(
     for e in event.iter() {
         let mut row = row_q.get_component_mut::<Style>(e.0).unwrap();
         row.width = Val::Px(e.1);
+    }
+}
+
+pub(crate) fn buttons_interactions(
+    mut button_q: Query<(Entity, &Interaction, With<UiButton>)>,
+    mut ev_pointer_click: EventWriter<UiPointerClick>,
+    mut ev_pointer_enter: EventWriter<UiPointerEnter>,
+    mut ev_pointer_exit: EventWriter<UiPointerExit>,
+) {
+    for (target, interaction, _) in &mut button_q {
+        match *interaction {
+            Interaction::Pressed => {
+                ev_pointer_click.send(UiPointerClick { target });
+            }
+            Interaction::Hovered => {
+                ev_pointer_enter.send(UiPointerEnter { target });
+            }
+            Interaction::None => {
+                ev_pointer_exit.send(UiPointerExit { target });
+            }
+        }
     }
 }
