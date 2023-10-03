@@ -1,7 +1,48 @@
 # Wings UI
 A new way to build User Interfaces on top of BevyUI.
+This design is inspired from Flutter.
 
-#### Example
+#### <u>Row Example</u>
+
+<p>
+  <img src="./images/row_example.png" width="400" title="hover text">
+</p>
+
+```rust
+use bevy::prelude::*;
+use wings::prelude::*;
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_plugins(WingsPlugin)
+        .add_systems(Startup, startup)
+        .run();
+}
+
+fn startup(mut commands: Commands) {
+    commands.spawn(Camera2dBundle::default());
+
+    commands.spawn(
+        UiScaffoldBundle::from(UiScaffoldProps::default()),
+    ).with_children(|parent| {
+        parent.spawn(
+            UiRowBundle::from(UiRowProps {
+                main_axis_size: MainAxisSize::Max,
+                main_axis_alignment: MainAxisAlignment::End,
+                cross_axis_alignment: CrossAxisAlignment::Center,
+                ..default()
+            }),
+        ).with_children(|parent| {
+            parent.spawn(UiContainerBundle::from_color(Color::RED));
+            parent.spawn(UiContainerBundle::from_color(Color::GREEN));
+            parent.spawn(UiContainerBundle::from_color(Color::BLUE));
+        });
+    });
+}
+```
+
+#### <u>Queries Example</u>
 
 ```rust
 use bevy::prelude::*;
@@ -29,16 +70,43 @@ fn startup(mut commands: Commands) {
         ..default()
     };
 
-    commands.spawn(UiScaffoldBundle::from(UiScaffoldProps {
-        centered: true,
-        ..default()
-    })).with_children(|parent| {
-        parent.spawn(UiRowBundle::default()).with_children(|parent| {
-            parent.spawn(UiContainerBundle::from(first_container_props));
-            parent.spawn((UiTagCollapsible, UiHorizontalDividerBundle::from_width(Val::Px(50.0))));
-            parent.spawn((UiTagCollapsible, ColorTag, UiContainerBundle::default()));
-            parent.spawn((UiTagCollapsible, UiHorizontalDividerBundle::from_width(Val::Px(50.0))));
-            parent.spawn((UiTagCollapsible, ColorTag, UiContainerBundle::default()));
+    commands.spawn(
+        UiScaffoldBundle::default(),
+    ).with_children(|parent| {
+        parent.spawn(
+            UiCenterBundle::default(),
+        ).with_children(|parent| {
+            parent.spawn(
+                UiRowBundle::default(),
+            ).with_children(|parent| {
+                parent.spawn(UiContainerBundle::from(first_container_props));
+                parent.spawn(
+                    (
+                        UiTagCollapsible,
+                        UiHorizontalDividerBundle::from_width(Val::Px(50.0)),
+                    ),
+                );
+                parent.spawn(
+                    (
+                        UiTagCollapsible,
+                        ColorTag,
+                        UiContainerBundle::default(),
+                    ),
+                );
+                parent.spawn(
+                    (
+                        UiTagCollapsible,
+                        UiHorizontalDividerBundle::from_width(Val::Px(50.0)),
+                    ),
+                );
+                parent.spawn(
+                    (
+                        UiTagCollapsible,
+                        ColorTag,
+                        UiContainerBundle::default(),
+                    ),
+                );
+            });
         });
     });
 }

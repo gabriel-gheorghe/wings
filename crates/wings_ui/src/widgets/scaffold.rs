@@ -8,7 +8,6 @@ pub struct UiScaffoldProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
-    pub centered: bool,
     pub visibility: UiVisibility,
 }
 
@@ -18,7 +17,6 @@ impl Default for UiScaffoldProps {
             width: Val::Percent(100.0),
             height: Val::Percent(100.0),
             color: get_transparent_color(),
-            centered: false,
             visibility: UiVisibility::default(),
         }
     }
@@ -45,16 +43,6 @@ impl UiScaffoldBundle {
                     display: get_computed_display(&props.visibility),
                     width: props.width,
                     height: props.height,
-                    justify_content: if props.centered {
-                        JustifyContent::Center
-                    } else {
-                        JustifyContent::FlexStart
-                    },
-                    align_items: if props.centered {
-                        AlignItems::Center
-                    } else {
-                        AlignItems::FlexStart
-                    },
                     ..default()
                 },
                 background_color: BackgroundColor::from(props.color),
