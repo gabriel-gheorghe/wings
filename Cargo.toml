@@ -34,6 +34,9 @@ wings_fiber = { path = "crates/wings_fiber", version = "0.1.0-dev" }
 # Provides geography like landscape, water and planets functionality
 wings_geography = { path = "crates/wings_geography", version = "0.1.0-dev" }
 
+# Provides atmospheric phenomena, rain, snow and dust functionality
+wings_meteorology = { path = "crates/wings_meteorology", version = "0.1.0-dev" }
+
 # Provides story telling and cinema creation functionality
 wings_motion = { path = "crates/wings_motion", version = "0.1.0-dev" }
 
@@ -54,9 +57,6 @@ wings_utils = { path = "crates/wings_utils", version = "0.1.0-dev" }
 
 # Provides vehicle physics including cars, bicycles, boats and planes functionality
 wings_vehicle = { path = "crates/wings_vehicle", version = "0.1.0-dev" }
-
-# Provides rain, snow and dust functionality
-wings_weather = { path = "crates/wings_weather", version = "0.1.0-dev" }
 
 # Provides artificial intelligence and machine or deep learning functionality
 wings_wisdom = { path = "crates/wings_wisdom", version = "0.1.0-dev" }
