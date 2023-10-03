@@ -23,6 +23,7 @@ pub mod prelude {
     pub use crate::plugin::WingsUiPlugin;
 
     pub use crate::queries::color::UiColorQuery;
+    pub use crate::queries::size::UiSizeQuery;
     pub use crate::queries::visibility::UiVisibilityQuery;
 
     pub use crate::common_tags::UiTagCollapsible;
