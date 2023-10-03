@@ -25,14 +25,34 @@ impl Default for UiColumnBundle {
 }
 
 impl UiColumnBundle {
-    fn from(props: UiColumnProps) -> Self {
+    pub fn from(props: UiColumnProps) -> Self {
+        let height = match props.main_axis_size {
+            MainAxisSize::Min => Val::Auto,
+            MainAxisSize::Max => Val::Percent(100.),
+        };
+
+        let justify_content = match props.main_axis_alignment {
+            MainAxisAlignment::Start => JustifyContent::FlexStart,
+            MainAxisAlignment::End => JustifyContent::FlexEnd,
+            MainAxisAlignment::Center => JustifyContent::Center,
+            _ => JustifyContent::Start,
+        };
+
+        let align_items = match props.cross_axis_alignment {
+            CrossAxisAlignment::Start => AlignItems::FlexStart,
+            CrossAxisAlignment::End => AlignItems::FlexEnd,
+            CrossAxisAlignment::Center => AlignItems::Center,
+            _ => AlignItems::Start,
+        };
+
         Self {
             child: NodeBundle {
                 style: Style {
+                    height,
                     display: get_computed_display(&props.visibility),
                     flex_direction: FlexDirection::Column,
-                    justify_content: JustifyContent::Center,
-                    align_items: AlignItems::Center,
+                    justify_content,
+                    align_items,
                     ..default()
                 },
                 visibility: get_computed_visibility(&props.visibility),
@@ -45,6 +65,17 @@ impl UiColumnBundle {
 
     pub fn from_visibility(visibility: UiVisibility) -> Self {
         Self::from(UiColumnProps { visibility, ..default() })
+    }
+
+    pub fn from_main_axis(
+        main_axis_size: MainAxisSize,
+        main_axis_alignment: MainAxisAlignment,
+    ) -> Self {
+        Self::from(UiColumnProps { main_axis_size, main_axis_alignment, ..default() })
+    }
+
+    pub fn from_cross_axis(cross_axis_alignment: CrossAxisAlignment) -> Self {
+        Self::from(UiColumnProps { cross_axis_alignment, ..default() })
     }
 }
 

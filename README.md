@@ -2,6 +2,50 @@
 A new way to build User Interfaces on top of BevyUI.
 This design is inspired from Flutter.
 
+#### <u>Column Example</u>
+
+<p>
+  <img src="./images/column_example.png" width="400" title="hover text">
+</p>
+
+```rust
+fn build_ui(mut commands: Commands) {
+    commands.spawn(
+        UiScaffoldBundle::from(UiScaffoldProps::default()),
+    ).with_children(|parent| {
+        parent.spawn(UiCenterBundle::default()).with_children(|parent| {
+            parent.spawn(
+                UiColumnBundle::from(UiColumnProps {
+                    main_axis_size: MainAxisSize::Max,
+                    main_axis_alignment: MainAxisAlignment::End,
+                    cross_axis_alignment: CrossAxisAlignment::End,
+                    ..default()
+                }),
+            ).with_children(|parent| {
+                parent.spawn(
+                    UiContainerBundle::from(UiContainerProps {
+                        color: Color::RED,
+                        width: Val::Px(300.),
+                        ..default()}),
+                );
+                parent.spawn(
+                    UiContainerBundle::from(UiContainerProps {
+                        color: Color::GREEN,
+                        width: Val::Px(480.),
+                        ..default()}),
+                );
+                parent.spawn(
+                    UiContainerBundle::from(UiContainerProps {
+                        color: Color::BLUE,
+                        width: Val::Px(200.),
+                        ..default()}),
+                );
+            });
+        });
+    });
+}
+```
+
 #### <u>Row Example</u>
 
 <p>
@@ -9,34 +53,38 @@ This design is inspired from Flutter.
 </p>
 
 ```rust
-use bevy::prelude::*;
-use wings::prelude::*;
-
-fn main() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .add_plugins(WingsPlugin)
-        .add_systems(Startup, startup)
-        .run();
-}
-
-fn startup(mut commands: Commands) {
-    commands.spawn(Camera2dBundle::default());
-
+fn build_ui(mut commands: Commands) {
     commands.spawn(
         UiScaffoldBundle::from(UiScaffoldProps::default()),
     ).with_children(|parent| {
-        parent.spawn(
-            UiRowBundle::from(UiRowProps {
-                main_axis_size: MainAxisSize::Max,
-                main_axis_alignment: MainAxisAlignment::End,
-                cross_axis_alignment: CrossAxisAlignment::Center,
-                ..default()
-            }),
-        ).with_children(|parent| {
-            parent.spawn(UiContainerBundle::from_color(Color::RED));
-            parent.spawn(UiContainerBundle::from_color(Color::GREEN));
-            parent.spawn(UiContainerBundle::from_color(Color::BLUE));
+        parent.spawn(UiCenterBundle::default()).with_children(|parent| {
+            parent.spawn(
+                UiRowBundle::from(UiRowProps {
+                    main_axis_size: MainAxisSize::Max,
+                    main_axis_alignment: MainAxisAlignment::End,
+                    cross_axis_alignment: CrossAxisAlignment::End,
+                    ..default()
+                }),
+            ).with_children(|parent| {
+                parent.spawn(
+                    UiContainerBundle::from(UiContainerProps {
+                        color: Color::RED,
+                        height: Val::Px(300.),
+                        ..default()}),
+                );
+                parent.spawn(
+                    UiContainerBundle::from(UiContainerProps {
+                        color: Color::GREEN,
+                        height: Val::Px(480.),
+                        ..default()}),
+                );
+                parent.spawn(
+                    UiContainerBundle::from(UiContainerProps {
+                        color: Color::BLUE,
+                        height: Val::Px(200.),
+                        ..default()}),
+                );
+            });
         });
     });
 }
