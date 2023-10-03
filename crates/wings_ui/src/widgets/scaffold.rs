@@ -1,10 +1,10 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
-use crate::components::{UiScreen, UiVisibility};
+use crate::widgets::{UiScaffold, UiVisibility};
 use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Copy, Clone, Debug)]
-pub struct UiScreenProps {
+pub struct UiScaffoldProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
@@ -12,7 +12,7 @@ pub struct UiScreenProps {
     pub visibility: UiVisibility,
 }
 
-impl Default for UiScreenProps {
+impl Default for UiScaffoldProps {
     fn default() -> Self {
         Self {
             width: Val::Percent(100.0),
@@ -25,20 +25,20 @@ impl Default for UiScreenProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiScreenBundle {
+pub struct UiScaffoldBundle {
     pub child: NodeBundle,
     pub visibility: UiVisibility,
-    internal_tag: UiScreen,
+    internal_tag: UiScaffold,
 }
 
-impl Default for UiScreenBundle {
+impl Default for UiScaffoldBundle {
     fn default() -> Self {
-        UiScreenBundle::from(UiScreenProps::default())
+        Self::from(UiScaffoldProps::default())
     }
 }
 
-impl UiScreenBundle {
-    pub fn from(props: UiScreenProps) -> Self {
+impl UiScaffoldBundle {
+    pub fn from(props: UiScaffoldProps) -> Self {
         Self {
             child: NodeBundle {
                 style: Style {
@@ -62,16 +62,16 @@ impl UiScreenBundle {
                 ..default()
             },
             visibility: props.visibility,
-            internal_tag: UiScreen::default(),
+            internal_tag: UiScaffold::default(),
         }
     }
 
     pub fn from_visibility(visibility: UiVisibility) -> Self {
-        Self::from(UiScreenProps { visibility, ..default() })
+        Self::from(UiScaffoldProps { visibility, ..default() })
     }
 
     pub fn from_size(width: Val, height: Val) -> Self {
-        Self::from(UiScreenProps {
+        Self::from(UiScaffoldProps {
             width,
             height,
             ..default()
@@ -79,7 +79,7 @@ impl UiScreenBundle {
     }
 
     pub fn from_size_splat(val: Val) -> Self {
-        Self::from(UiScreenProps {
+        Self::from(UiScaffoldProps {
             width: val,
             height: val,
             ..default()
@@ -87,21 +87,21 @@ impl UiScreenBundle {
     }
 
     pub fn from_width(width: Val) -> Self {
-        Self::from(UiScreenProps {
+        Self::from(UiScaffoldProps {
             width,
             ..default()
         })
     }
 
     pub fn from_height(height: Val) -> Self {
-        Self::from(UiScreenProps {
+        Self::from(UiScaffoldProps {
             height,
             ..default()
         })
     }
 
     pub fn from_color(color: Color) -> Self {
-        Self::from(UiScreenProps {
+        Self::from(UiScaffoldProps {
             color,
             ..default()
         })

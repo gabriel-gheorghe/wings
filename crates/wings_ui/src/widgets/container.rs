@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::components::UiVisibility;
+use crate::widgets::UiVisibility;
 use crate::prelude::UiContainer;
 use crate::utils::{get_computed_display, get_computed_visibility};
 

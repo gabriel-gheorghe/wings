@@ -1,6 +1,6 @@
 use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
-use crate::components::UiVisibility;
+use crate::widgets::UiVisibility;
 use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(SystemParam)]

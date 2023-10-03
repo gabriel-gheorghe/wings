@@ -1,4 +1,3 @@
-pub mod components;
 pub mod enums;
 pub mod plugin;
 pub mod queries;
@@ -7,8 +6,8 @@ pub mod utils;
 pub mod widgets;
 
 pub mod prelude {
-    pub use crate::components::{
-        UiButton, UiCenter, UiColumn, UiContainer, UiHorizontalDivider, UiRow, UiScreen,
+    pub use crate::widgets::{
+        UiButton, UiCenter, UiColumn, UiContainer, UiHorizontalDivider, UiRow, UiScaffold,
         UiVerticalDivider, UiVisibility,
     };
 
@@ -29,5 +28,5 @@ pub mod prelude {
         UiHorizontalDividerBundle, UiHorizontalDividerProps,
         UiVerticalDividerBundle, UiVerticalDividerProps,
     };
-    pub use crate::widgets::screen::{UiScreenBundle, UiScreenProps};
+    pub use crate::widgets::scaffold::{UiScaffoldBundle, UiScaffoldProps};
 }

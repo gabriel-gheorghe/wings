@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::components::{UiColumn, UiRow, UiVisibility};
+use crate::widgets::{UiColumn, UiRow, UiVisibility};
 use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
 use crate::utils::{get_computed_display, get_computed_visibility};
 

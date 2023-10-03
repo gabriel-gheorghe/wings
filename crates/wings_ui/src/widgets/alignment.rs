@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::components::{UiCenter, UiVisibility};
+use crate::widgets::{UiCenter, UiVisibility};
 use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Bundle, Clone, Debug)]

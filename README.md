@@ -29,7 +29,7 @@ fn startup(mut commands: Commands) {
         ..default()
     };
 
-    commands.spawn(UiScreenBundle::from(UiScreenProps {
+    commands.spawn(UiScaffoldBundle::from(UiScaffoldProps {
         centered: true,
         ..default()
     })).with_children(|parent| {
