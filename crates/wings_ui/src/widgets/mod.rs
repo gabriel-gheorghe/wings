@@ -2,6 +2,7 @@ use bevy::prelude::*;
 
 pub mod alignment;
 pub mod button;
+pub mod constrained;
 pub mod container;
 pub mod direction;
 pub mod divider;
@@ -18,6 +19,12 @@ pub enum UiVisibility {
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiCenter;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiConstrainedHeight;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiConstrainedWidth;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiButton;
