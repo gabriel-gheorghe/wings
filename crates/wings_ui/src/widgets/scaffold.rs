@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
+use crate::prelude::UiWidgetBundle;
 use crate::widgets::{UiScaffold, UiVisibility};
 use crate::utils::{get_computed_display, get_computed_visibility};
 
@@ -24,7 +25,8 @@ impl Default for UiScaffoldProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiScaffoldBundle {
-    pub child: NodeBundle,
+    pub child: UiWidgetBundle,
+    pub background_color: BackgroundColor,
     pub visibility: UiVisibility,
     internal_tag: UiScaffold,
 }
@@ -38,17 +40,17 @@ impl Default for UiScaffoldBundle {
 impl UiScaffoldBundle {
     pub fn from(props: UiScaffoldProps) -> Self {
         Self {
-            child: NodeBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     display: get_computed_display(&props.visibility),
                     width: props.width,
                     height: props.height,
                     ..default()
                 },
-                background_color: BackgroundColor::from(props.color),
                 visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
+            background_color: BackgroundColor::from(props.color),
             visibility: props.visibility,
             internal_tag: UiScaffold::default(),
         }

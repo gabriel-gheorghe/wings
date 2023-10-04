@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use crate::widgets::UiVisibility;
-use crate::prelude::UiContainer;
+use crate::prelude::{UiContainer, UiWidgetBundle};
 use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Copy, Clone, Debug)]
@@ -24,7 +24,8 @@ impl Default for UiContainerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiContainerBundle {
-    pub child: NodeBundle,
+    pub child: UiWidgetBundle,
+    pub background_color: BackgroundColor,
     pub visibility: UiVisibility,
     internal_tag: UiContainer,
 }
@@ -38,17 +39,17 @@ impl Default for UiContainerBundle {
 impl UiContainerBundle {
     pub fn from(props: UiContainerProps) -> Self {
         Self {
-            child: NodeBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     display: get_computed_display(&props.visibility),
                     width: props.width,
                     height: props.height,
                     ..default()
                 },
-                background_color: BackgroundColor::from(props.color),
                 visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
+            background_color: BackgroundColor::from(props.color),
             visibility: props.visibility,
             internal_tag: UiContainer::default(),
         }

@@ -1,22 +1,26 @@
 use bevy::prelude::*;
+use wings_utils::color::get_transparent_color;
+use crate::prelude::UiWidgetBundle;
 use crate::widgets::{UiConstrainedHeight, UiConstrainedWidth};
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedHeightBundle {
-    pub child: NodeBundle,
+    pub child: UiWidgetBundle,
+    pub debug_color: BackgroundColor,
     internal_tag: UiConstrainedHeight,
 }
 
 impl Default for UiConstrainedHeightBundle {
     fn default() -> Self {
         Self {
-            child: NodeBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     ..default()
                 },
                 ..default()
             },
+            debug_color: BackgroundColor::from(get_transparent_color()),
             internal_tag: UiConstrainedHeight::default(),
         }
     }
@@ -25,27 +29,29 @@ impl Default for UiConstrainedHeightBundle {
 impl UiConstrainedHeightBundle {
     pub fn with_debug_color(color: Color) -> Self {
         let mut res = Self::default();
-        res.child.background_color = BackgroundColor::from(color);
+        res.debug_color = BackgroundColor::from(color);
         res
     }
 }
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedWidthBundle {
-    pub child: NodeBundle,
+    pub child: UiWidgetBundle,
+    pub debug_color: BackgroundColor,
     internal_tag: UiConstrainedWidth,
 }
 
 impl Default for UiConstrainedWidthBundle {
     fn default() -> Self {
         Self {
-            child: NodeBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     height: Val::Percent(100.),
                     ..default()
                 },
                 ..default()
             },
+            debug_color: BackgroundColor::from(get_transparent_color()),
             internal_tag: UiConstrainedWidth::default(),
         }
     }
@@ -54,7 +60,7 @@ impl Default for UiConstrainedWidthBundle {
 impl UiConstrainedWidthBundle {
     pub fn with_debug_color(color: Color) -> Self {
         let mut res = Self::default();
-        res.child.background_color = BackgroundColor::from(color);
+        res.debug_color = BackgroundColor::from(color);
         res
     }
 }

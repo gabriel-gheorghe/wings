@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::widgets::{UiButton, UiVisibility};
+use crate::widgets::{UiButton, UiVisibility, UiWidgetBundle};
 use crate::utils::{get_computed_display, get_computed_visibility};
 
 #[derive(Copy, Clone, Debug)]
@@ -27,7 +27,12 @@ impl Default for UiButtonProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiButtonBundle {
-    pub child: ButtonBundle,
+    pub child: UiWidgetBundle,
+    pub button: Button,
+    pub interaction: Interaction,
+    pub background_color: BackgroundColor,
+    pub border_color: BorderColor,
+    pub image: UiImage,
     pub visibility: UiVisibility,
     internal_tag: UiButton,
 }
@@ -41,7 +46,7 @@ impl Default for UiButtonBundle {
 impl UiButtonBundle {
     pub fn from(props: UiButtonProps) -> Self {
         Self {
-            child: ButtonBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     display: get_computed_display(&props.visibility),
                     width: props.width,
@@ -51,11 +56,14 @@ impl UiButtonBundle {
                     border: props.border,
                     ..default()
                 },
-                background_color: BackgroundColor::from(props.color),
-                border_color: BorderColor(props.border_color),
                 visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
+            button: Default::default(),
+            interaction: Default::default(),
+            background_color: BackgroundColor::from(props.color),
+            border_color: BorderColor(props.border_color),
+            image: Default::default(),
             visibility: props.visibility,
             internal_tag: UiButton::default(),
         }

@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use crate::widgets::{UiColumn, UiRow, UiVisibility};
 use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
+use crate::prelude::UiWidgetBundle;
 use crate::utils::{
     get_computed_display, get_computed_visibility, to_align, to_justify, to_main_size,
 };
@@ -15,7 +16,7 @@ pub struct UiColumnProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiColumnBundle {
-    pub child: NodeBundle,
+    pub child: UiWidgetBundle,
     pub visibility: UiVisibility,
     internal_tag: UiColumn,
 }
@@ -29,7 +30,7 @@ impl Default for UiColumnBundle {
 impl UiColumnBundle {
     pub fn from(props: UiColumnProps) -> Self {
         Self {
-            child: NodeBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     height: to_main_size(props.main_axis_size),
                     display: get_computed_display(&props.visibility),
@@ -72,7 +73,7 @@ pub struct UiRowProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiRowBundle {
-    pub child: NodeBundle,
+    pub child: UiWidgetBundle,
     pub visibility: UiVisibility,
     internal_tag: UiRow,
 }
@@ -86,7 +87,7 @@ impl Default for UiRowBundle {
 impl UiRowBundle {
     pub fn from(props: UiRowProps) -> Self {
         Self {
-            child: NodeBundle {
+            child: UiWidgetBundle {
                 style: Style {
                     width: to_main_size(props.main_axis_size),
                     display: get_computed_display(&props.visibility),
