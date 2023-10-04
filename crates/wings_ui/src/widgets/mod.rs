@@ -32,36 +32,3 @@ impl Default for UiWidgetBundle {
         }
     }
 }
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiCenter;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiConstrainedHeight;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiConstrainedWidth;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiButton;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiContainer;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiColumn;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiRow;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiHorizontalDivider;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiVerticalDivider;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiScaffold;
-
-#[derive(Component, Clone, Debug, Default)]
-pub struct UiSizedBox;

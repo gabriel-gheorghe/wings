@@ -1,7 +1,9 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
-use crate::prelude::UiWidgetBundle;
-use crate::widgets::{UiConstrainedHeight, UiConstrainedWidth};
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiConstrainedHeight;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedHeightBundle {
@@ -33,6 +35,9 @@ impl UiConstrainedHeightBundle {
         res
     }
 }
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiConstrainedWidth;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedWidthBundle {

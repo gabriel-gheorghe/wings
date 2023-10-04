@@ -1,6 +1,8 @@
 use bevy::prelude::*;
-use crate::prelude::UiWidgetBundle;
-use crate::widgets::UiCenter;
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiCenter;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiCenterBundle {

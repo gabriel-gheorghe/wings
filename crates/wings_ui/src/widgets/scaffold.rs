@@ -1,7 +1,9 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
-use crate::prelude::UiWidgetBundle;
-use crate::widgets::UiScaffold;
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiScaffold;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiScaffoldProps {

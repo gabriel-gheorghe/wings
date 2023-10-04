@@ -1,5 +1,8 @@
 use bevy::prelude::*;
-use crate::widgets::{UiButton, UiWidgetBundle};
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiButton;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiButtonProps {

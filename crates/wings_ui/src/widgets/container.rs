@@ -1,5 +1,8 @@
 use bevy::prelude::*;
-use crate::prelude::{UiContainer, UiWidgetBundle};
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiContainer;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiContainerProps {

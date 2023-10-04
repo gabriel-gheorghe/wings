@@ -1,5 +1,8 @@
 use bevy::prelude::*;
-use crate::widgets::{UiSizedBox, UiWidgetBundle};
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiSizedBox;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiSizedBoxProps {

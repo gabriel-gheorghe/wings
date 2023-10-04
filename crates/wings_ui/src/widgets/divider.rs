@@ -1,6 +1,8 @@
 use bevy::prelude::*;
 use crate::widgets::UiWidgetBundle;
-use crate::prelude::{UiHorizontalDivider, UiVerticalDivider};
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiHorizontalDivider;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiHorizontalDividerProps {
@@ -61,6 +63,9 @@ impl UiHorizontalDividerBundle {
         }
     }
 }
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiVerticalDivider;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiVerticalDividerProps {

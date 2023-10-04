@@ -7,10 +7,7 @@ pub(crate) mod systems;
 pub mod widgets;
 
 pub mod prelude {
-    pub use crate::widgets::{
-        UiButton, UiCenter, UiColumn, UiConstrainedHeight, UiConstrainedWidth, UiContainer,
-        UiHorizontalDivider, UiRow, UiScaffold, UiVerticalDivider, UiWidgetBundle,
-    };
+    pub use crate::widgets::UiWidgetBundle;
 
     pub use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
 
@@ -27,16 +24,21 @@ pub mod prelude {
 
     pub use crate::common_tags::UiTagCollapsible;
 
-    pub use crate::widgets::alignment::UiCenterBundle;
-    pub use crate::widgets::button::{UiButtonBundle, UiButtonProps};
-    pub use crate::widgets::constrained::{UiConstrainedHeightBundle, UiConstrainedWidthBundle};
-    pub use crate::widgets::container::{UiContainerBundle, UiContainerProps};
-    pub use crate::widgets::direction::{UiColumnBundle, UiColumnProps, UiRowBundle, UiRowProps};
-    pub use crate::widgets::divider::{
-        UiHorizontalDividerBundle, UiHorizontalDividerProps,
-        UiVerticalDividerBundle, UiVerticalDividerProps,
+    pub use crate::widgets::alignment::{UiCenter, UiCenterBundle};
+    pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};
+    pub use crate::widgets::constrained::{
+        UiConstrainedHeight, UiConstrainedHeightBundle,
+        UiConstrainedWidth, UiConstrainedWidthBundle,
     };
-    pub use crate::widgets::scaffold::{UiScaffoldBundle, UiScaffoldProps};
+    pub use crate::widgets::container::{UiContainer, UiContainerBundle, UiContainerProps};
+    pub use crate::widgets::direction::{
+        UiColumn, UiColumnBundle, UiColumnProps, UiRow, UiRowBundle, UiRowProps,
+    };
+    pub use crate::widgets::divider::{
+        UiHorizontalDivider, UiHorizontalDividerBundle, UiHorizontalDividerProps,
+        UiVerticalDivider, UiVerticalDividerBundle, UiVerticalDividerProps,
+    };
+    pub use crate::widgets::scaffold::{UiScaffold, UiScaffoldBundle, UiScaffoldProps};
     pub use crate::widgets::sized_box::{UiSizedBoxBundle, UiSizedBoxProps};
     pub use crate::widgets::visibility::{
         UiLayoutVisibility, UiLayoutVisibilityBundle, UiVisibility, UiVisibilityBundle,

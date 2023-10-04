@@ -1,7 +1,8 @@
 use bevy::prelude::*;
-use crate::events::{ApplyConstraintHeight, ApplyConstraintWidth, UiPointerClick, UiPointerEnter, UiPointerExit};
-use crate::prelude::{UiConstrainedHeight, UiConstrainedWidth};
-use crate::widgets::UiButton;
+use crate::events::{
+    ApplyConstraintHeight, ApplyConstraintWidth, UiPointerClick, UiPointerEnter, UiPointerExit,
+};
+use crate::prelude::{UiButton, UiConstrainedHeight, UiConstrainedWidth};
 
 pub(crate) fn compute_constraint_heights(
     mut event: EventWriter<ApplyConstraintHeight>,

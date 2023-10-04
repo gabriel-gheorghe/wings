@@ -1,7 +1,9 @@
 use bevy::prelude::*;
 use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
-use crate::prelude::UiWidgetBundle;
-use crate::widgets::{UiColumn, UiRow};
+use crate::widgets::UiWidgetBundle;
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiColumn;
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiColumnProps {
@@ -50,6 +52,9 @@ impl UiColumnBundle {
         Self::from(UiColumnProps { cross_axis_alignment, ..default() })
     }
 }
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiRow;
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiRowProps {
