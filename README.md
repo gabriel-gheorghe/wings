@@ -2,6 +2,28 @@
 A new way to build User Interfaces on top of BevyUI.
 This design is inspired from Flutter.
 
+### Built-in Widgets
+1. Scaffold
+2. Container
+3. SizedBox
+4. Center
+5. Button
+6. Column
+7. Row
+8. ConstrainedWidth
+9. ConstrainedHeight
+10. HorizontalDivider
+11. VerticalDivider
+12. Visibility
+13. LayoutVisibility
+
+### Built-in Queries
+
+1. Color
+2. Size
+3. Visibility
+4. LayoutVisibility
+
 #### <u>Column Example</u>
 
 <p>
@@ -128,32 +150,27 @@ fn startup(mut commands: Commands) {
                 UiRowBundle::default(),
             ).with_children(|parent| {
                 parent.spawn(UiContainerBundle::from(first_container_props));
-                parent.spawn(
-                    (
-                        UiTagCollapsible,
-                        UiHorizontalDividerBundle::from_width(Val::Px(50.0)),
-                    ),
-                );
-                parent.spawn(
-                    (
-                        UiTagCollapsible,
-                        ColorTag,
-                        UiContainerBundle::default(),
-                    ),
-                );
-                parent.spawn(
-                    (
-                        UiTagCollapsible,
-                        UiHorizontalDividerBundle::from_width(Val::Px(50.0)),
-                    ),
-                );
-                parent.spawn(
-                    (
-                        UiTagCollapsible,
-                        ColorTag,
-                        UiContainerBundle::default(),
-                    ),
-                );
+                parent.spawn((
+                    UiTagCollapsible,
+                    UiVisibilityBundle::default(),
+                )).with_children(|parent| {
+                    parent.spawn(UiRowBundle::default()).with_children(|parent| {
+                        parent.spawn(UiSizedBoxBundle::from_width(Val::Px(50.0)));
+                        parent.spawn(
+                            (
+                                ColorTag,
+                                UiContainerBundle::default(),
+                            ),
+                        );
+                        parent.spawn(UiSizedBoxBundle::from_width(Val::Px(50.0)));
+                        parent.spawn(
+                            (
+                                ColorTag,
+                                UiContainerBundle::default(),
+                            ),
+                        );
+                    });
+                });
             });
         });
     });
@@ -169,9 +186,9 @@ fn change_color(
     }
 
     if keyboard_input.just_pressed(KeyCode::Z) {
-        visibility_query.set(UiVisibility::Collapsed);
+        visibility_query.set(false);
     } else if keyboard_input.just_pressed(KeyCode::X) {
-        visibility_query.set(UiVisibility::Inherited);
+        visibility_query.set(true);
     }
 }
 ```
