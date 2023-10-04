@@ -1,6 +1,5 @@
 use bevy::prelude::*;
-use crate::widgets::{UiSizedBox, UiVisibility, UiWidgetBundle};
-use crate::utils::{get_computed_display, get_computed_visibility};
+use crate::widgets::{UiSizedBox, UiWidgetBundle};
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiSizedBoxProps {

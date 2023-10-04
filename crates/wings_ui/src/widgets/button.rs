@@ -1,6 +1,5 @@
 use bevy::prelude::*;
-use crate::widgets::{UiButton, UiVisibility, UiWidgetBundle};
-use crate::utils::{get_computed_display, get_computed_visibility};
+use crate::widgets::{UiButton, UiWidgetBundle};
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiButtonProps {
@@ -9,7 +8,6 @@ pub struct UiButtonProps {
     pub color: Color,
     pub border: UiRect,
     pub border_color: Color,
-    pub visibility: UiVisibility,
 }
 
 impl Default for UiButtonProps {
@@ -20,7 +18,6 @@ impl Default for UiButtonProps {
             color: Color::TEAL,
             border: UiRect::all(Val::Px(5.0)),
             border_color: Color::BLACK,
-            visibility: UiVisibility::default(),
         }
     }
 }
@@ -33,7 +30,6 @@ pub struct UiButtonBundle {
     pub background_color: BackgroundColor,
     pub border_color: BorderColor,
     pub image: UiImage,
-    pub visibility: UiVisibility,
     internal_tag: UiButton,
 }
 
@@ -48,7 +44,6 @@ impl UiButtonBundle {
         Self {
             child: UiWidgetBundle {
                 style: Style {
-                    display: get_computed_display(&props.visibility),
                     width: props.width,
                     height: props.height,
                     justify_content: JustifyContent::Center,
@@ -56,7 +51,6 @@ impl UiButtonBundle {
                     border: props.border,
                     ..default()
                 },
-                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
             button: Default::default(),
@@ -64,13 +58,8 @@ impl UiButtonBundle {
             background_color: BackgroundColor::from(props.color),
             border_color: BorderColor(props.border_color),
             image: Default::default(),
-            visibility: props.visibility,
             internal_tag: UiButton::default(),
         }
-    }
-
-    pub fn from_visibility(visibility: UiVisibility) -> Self {
-        Self::from(UiButtonProps { visibility, ..default() })
     }
 
     pub fn from_size(width: Val, height: Val) -> Self {

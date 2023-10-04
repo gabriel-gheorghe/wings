@@ -1,15 +1,13 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
 use crate::prelude::UiWidgetBundle;
-use crate::widgets::{UiScaffold, UiVisibility};
-use crate::utils::{get_computed_display, get_computed_visibility};
+use crate::widgets::UiScaffold;
 
 #[derive(Copy, Clone, Debug)]
 pub struct UiScaffoldProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
-    pub visibility: UiVisibility,
 }
 
 impl Default for UiScaffoldProps {
@@ -18,7 +16,6 @@ impl Default for UiScaffoldProps {
             width: Val::Percent(100.0),
             height: Val::Percent(100.0),
             color: get_transparent_color(),
-            visibility: UiVisibility::default(),
         }
     }
 }
@@ -27,7 +24,6 @@ impl Default for UiScaffoldProps {
 pub struct UiScaffoldBundle {
     pub child: UiWidgetBundle,
     pub background_color: BackgroundColor,
-    pub visibility: UiVisibility,
     internal_tag: UiScaffold,
 }
 
@@ -42,22 +38,15 @@ impl UiScaffoldBundle {
         Self {
             child: UiWidgetBundle {
                 style: Style {
-                    display: get_computed_display(&props.visibility),
                     width: props.width,
                     height: props.height,
                     ..default()
                 },
-                visibility: get_computed_visibility(&props.visibility),
                 ..default()
             },
             background_color: BackgroundColor::from(props.color),
-            visibility: props.visibility,
             internal_tag: UiScaffold::default(),
         }
-    }
-
-    pub fn from_visibility(visibility: UiVisibility) -> Self {
-        Self::from(UiScaffoldProps { visibility, ..default() })
     }
 
     pub fn from_size(width: Val, height: Val) -> Self {

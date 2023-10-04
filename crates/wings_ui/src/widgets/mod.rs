@@ -8,6 +8,7 @@ pub mod direction;
 pub mod divider;
 pub mod scaffold;
 pub mod sized_box;
+pub mod visibility;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiWidgetBundle {
@@ -30,15 +31,6 @@ impl Default for UiWidgetBundle {
             computed_visibility: Default::default(),
         }
     }
-}
-
-#[derive(Component, Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
-pub enum UiVisibility {
-    #[default]
-    Inherited,
-    Visible,
-    Hidden,
-    Collapsed,
 }
 
 #[derive(Component, Clone, Debug, Default)]

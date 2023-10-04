@@ -1,12 +1,10 @@
 use bevy::prelude::*;
 use crate::prelude::UiWidgetBundle;
-use crate::widgets::{UiCenter, UiVisibility};
-use crate::utils::{get_computed_display, get_computed_visibility};
+use crate::widgets::UiCenter;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiCenterBundle {
     pub child: UiWidgetBundle,
-    pub visibility: UiVisibility,
     internal_tag: UiCenter,
 }
 
@@ -23,26 +21,6 @@ impl Default for UiCenterBundle {
                 },
                 ..default()
             },
-            visibility: UiVisibility::default(),
-            internal_tag: UiCenter::default(),
-        }
-    }
-}
-
-impl UiCenterBundle {
-    pub fn from_visibility(visibility: UiVisibility) -> Self {
-        Self {
-            child: UiWidgetBundle {
-                style: Style {
-                    display: get_computed_display(&visibility),
-                    justify_content: JustifyContent::Center,
-                    align_items: AlignItems::Center,
-                    ..default()
-                },
-                visibility: get_computed_visibility(&visibility),
-                ..default()
-            },
-            visibility,
             internal_tag: UiCenter::default(),
         }
     }
