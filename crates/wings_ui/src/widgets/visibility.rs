@@ -10,6 +10,12 @@ pub struct UiVisibilityBundle {
     pub visibility: UiVisibility,
 }
 
+impl Default for UiVisibilityBundle {
+    fn default() -> Self {
+        UiVisibilityBundle::from(true)
+    }
+}
+
 impl UiVisibilityBundle {
     pub fn from(visible: bool) -> Self {
         Self {
@@ -38,6 +44,12 @@ pub enum UiLayoutVisibility {
 pub struct UiLayoutVisibilityBundle {
     pub child: UiWidgetBundle,
     pub visibility: UiLayoutVisibility,
+}
+
+impl Default for UiLayoutVisibilityBundle {
+    fn default() -> Self {
+        UiLayoutVisibilityBundle::from(UiLayoutVisibility::Inherited)
+    }
 }
 
 impl UiLayoutVisibilityBundle {
