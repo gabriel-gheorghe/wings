@@ -50,23 +50,58 @@ fn build_ui(mut commands: Commands) {
                     UiContainerBundle::from(UiContainerProps {
                         color: Color::RED,
                         width: Val::Px(300.),
-                        ..default()}),
+                        ..default()
+                    }),
                 );
                 parent.spawn(
                     UiContainerBundle::from(UiContainerProps {
                         color: Color::GREEN,
                         width: Val::Px(480.),
-                        ..default()}),
+                        ..default()
+                    }),
                 );
                 parent.spawn(
                     UiContainerBundle::from(UiContainerProps {
                         color: Color::BLUE,
                         width: Val::Px(200.),
-                        ..default()}),
+                        ..default()
+                    }),
                 );
             });
         });
     });
+}
+```
+
+<i>Desired design</i>
+
+```rust
+fn startup(mut commands: Commands) {
+    build_ui! {
+        const Scaffold {
+            child: Center {
+                child: Column {
+                    main_axis_size: MainAxisSize::Max,
+                    main_axis_alignment: MainAxisAlignment::End,
+                    cross_axis_alignment: CrossAxisAlignment::End,
+                    children: [
+                        Container {
+                            color: Color::RED,
+                            width: Val::Px(300.),
+                        },
+                        Container {
+                            color: Color::GREEN,
+                            width: Val::Px(480.),
+                        },
+                        Container {
+                            color: Color::BLUE,
+                            width: Val::Px(200.),
+                        },
+                    ]
+                }
+            }
+        }
+    }
 }
 ```
 
@@ -114,6 +149,38 @@ fn build_ui(mut commands: Commands) {
 }
 ```
 
+<i>Desired design</i>
+
+```rust
+fn startup(mut commands: Commands) {
+    build_ui! {
+        const Scaffold {
+            child: Center {
+                child: Row {
+                    main_axis_size: MainAxisSize::Max,
+                    main_axis_alignment: MainAxisAlignment::End,
+                    cross_axis_alignment: CrossAxisAlignment::End,
+                    children: [
+                        Container {
+                            color: Color::RED,
+                            width: Val::Px(300.),
+                        },
+                        Container {
+                            color: Color::GREEN,
+                            width: Val::Px(480.),
+                        },
+                        Container {
+                            color: Color::BLUE,
+                            width: Val::Px(200.),
+                        },
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+
 <p>
   <img src="./images/padding_example.png" width="400" title="hover text">
 </p>
@@ -142,10 +209,11 @@ fn startup(mut commands: Commands) {
 ```rust
 fn startup(mut commands: Commands) {
     build_ui! {
-        Scaffold {
+        const Scaffold {
             child: Container {
                 color: Color::BLUE,
-                size: Size::all(Val::Px(500.)),
+                width: Val::Px(500.),
+                height: Val::Px(500.),
                 child: {
                     Padding {
                         padding: EdgeInsets::all(Val::Px(80.)),
@@ -237,6 +305,42 @@ fn change_color(
         visibility_query.set(false);
     } else if keyboard_input.just_pressed(KeyCode::X) {
         visibility_query.set(true);
+    }
+}
+```
+
+<i>Desired design</i>
+
+```rust
+build_ui! {
+    const first_container = Container {
+        width: Val::Px(50.0),
+        height: Val::Px(50.0),
+        color: Color::RED,
+    }
+    
+    Scaffold {
+        child: Center {
+            child: Row {
+                children: [
+                    first_container,
+                    child: Visibility {
+                        child: Row {
+                            children: [
+                                const SizedBox {
+                                    width: Val::Px(50.),
+                                },
+                                Container use ColorTag,
+                                const SizedBox {
+                                    width: Val::Px(50.),
+                                },
+                                Container use ColorTag,
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
     }
 }
 ```
