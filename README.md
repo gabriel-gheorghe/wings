@@ -77,7 +77,7 @@ fn build_ui(mut commands: Commands) {
 
 ```rust
 fn startup(mut commands: Commands) {
-    build_ui! {
+    widget_tree!(&mut commands,
         const Scaffold {
             child: Center {
                 child: Column {
@@ -101,7 +101,7 @@ fn startup(mut commands: Commands) {
                 }
             }
         }
-    }
+    );
 }
 ```
 
@@ -153,7 +153,7 @@ fn build_ui(mut commands: Commands) {
 
 ```rust
 fn startup(mut commands: Commands) {
-    build_ui! {
+    widget_tree!(&mut commands,
         const Scaffold {
             child: Center {
                 child: Row {
@@ -177,7 +177,7 @@ fn startup(mut commands: Commands) {
                 }
             }
         }
-    }
+    );
 }
 ```
 
@@ -195,7 +195,7 @@ fn startup(mut commands: Commands) {
             UiContainerBundle::from_color_squared(Color::BLUE, Val::Px(500.)),
         ).with_children(|parent| {
             parent.spawn(
-                UiPaddingBundle::from(UiEdgeInsets::all(Val::Px(80.))),
+                UiPaddingBundle::from_edge(UiEdgeInsets::all(Val::Px(80.))),
             ).with_children(|parent| {
                 parent.spawn(UiContainerBundle::from_color_relative(Color::YELLOW));
             });
@@ -208,7 +208,7 @@ fn startup(mut commands: Commands) {
 
 ```rust
 fn startup(mut commands: Commands) {
-    build_ui! {
+    widget_tree!(&mut commands,
         const Scaffold {
             child: Container {
                 color: Color::BLUE,
@@ -224,7 +224,7 @@ fn startup(mut commands: Commands) {
                 }
             }
         }
-    }
+    );
 }
 ```
 
@@ -312,12 +312,12 @@ fn change_color(
 <i>Desired design</i>
 
 ```rust
-build_ui! {
+widget_tree!(&mut commands,
     const first_container = Container {
         width: Val::Px(50.0),
         height: Val::Px(50.0),
         color: Color::RED,
-    }
+    };
     
     Scaffold {
         child: Center {
@@ -342,5 +342,5 @@ build_ui! {
             }
         }
     }
-}
+);
 ```

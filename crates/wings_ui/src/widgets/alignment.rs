@@ -5,6 +5,11 @@ use crate::widgets::UiWidgetBundle;
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiAlign(UiAlignment);
 
+#[derive(Copy, Clone, Debug, Default)]
+pub struct UiAlignProps {
+    pub alignment: UiAlignment,
+}
+
 #[derive(Bundle, Clone, Debug)]
 pub struct UiAlignBundle {
     pub child: UiWidgetBundle,
@@ -13,23 +18,23 @@ pub struct UiAlignBundle {
 
 impl Default for UiAlignBundle {
     fn default() -> Self {
-        UiAlignBundle::from(UiAlignment::TOP_LEFT)
+        UiAlignBundle::from(UiAlignProps::default())
     }
 }
 
 impl UiAlignBundle {
-    pub fn from(props: UiAlignment) -> Self {
-        let justify_content = if props.x < 0. {
+    pub fn from(props: UiAlignProps) -> Self {
+        let justify_content = if props.alignment.x < 0. {
             JustifyContent::Start
-        } else if props.x == 0. {
+        } else if props.alignment.x == 0. {
             JustifyContent::Center
         } else {
             JustifyContent::End
         };
 
-        let align_items = if props.y < 0. {
+        let align_items = if props.alignment.y < 0. {
             AlignItems::Start
-        } else if props.y == 0. {
+        } else if props.alignment.y == 0. {
             AlignItems::Center
         } else {
             AlignItems::End
@@ -61,15 +66,23 @@ impl UiAlignBundle {
                 },
                 ..default()
             },
-            align: UiAlign(props),
+            align: UiAlign(props.alignment),
         }
     }
+
+    pub fn from_alignment(alignment: UiAlignment) -> Self {
+        Self::from(UiAlignProps { alignment })
+    }
 }
+
+#[derive(Component, Clone, Debug, Default)]
+pub struct UiCenter;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiCenterBundle {
     pub child: UiWidgetBundle,
-    internal_tag: UiAlign,
+    internal_tag_0: UiAlign,
+    internal_tag_1: UiCenter,
 }
 
 impl Default for UiCenterBundle {
@@ -85,7 +98,8 @@ impl Default for UiCenterBundle {
                 },
                 ..default()
             },
-            internal_tag: UiAlign::default(),
+            internal_tag_0: UiAlign::default(),
+            internal_tag_1: UiCenter::default(),
         }
     }
 }

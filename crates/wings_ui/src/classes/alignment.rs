@@ -1,7 +1,13 @@
-#[derive(Copy, Clone, Debug, Default)]
+#[derive(Copy, Clone, Debug)]
 pub struct UiAlignment {
     pub x: f32,
     pub y: f32,
+}
+
+impl Default for UiAlignment {
+    fn default() -> Self {
+        UiAlignment::TOP_LEFT
+    }
 }
 
 impl UiAlignment {

@@ -32,7 +32,7 @@ pub mod prelude {
 
     pub use crate::widgets::UiWidgetBundle;
 
-    pub use crate::widgets::alignment::{UiAlign, UiAlignBundle, UiCenterBundle};
+    pub use crate::widgets::alignment::{UiAlign, UiAlignBundle, UiAlignProps, UiCenterBundle};
     pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};
     pub use crate::widgets::constrained::{
         UiConstrainedHeight, UiConstrainedHeightBundle,
@@ -46,7 +46,7 @@ pub mod prelude {
         UiHorizontalDivider, UiHorizontalDividerBundle, UiHorizontalDividerProps,
         UiVerticalDivider, UiVerticalDividerBundle, UiVerticalDividerProps,
     };
-    pub use crate::widgets::padding::{UiPadding, UiPaddingBundle};
+    pub use crate::widgets::padding::{UiPadding, UiPaddingBundle, UiPaddingProps};
     pub use crate::widgets::scaffold::{UiScaffold, UiScaffoldBundle, UiScaffoldProps};
     pub use crate::widgets::sized_box::{UiSizedBoxBundle, UiSizedBoxProps};
     pub use crate::widgets::visibility::{

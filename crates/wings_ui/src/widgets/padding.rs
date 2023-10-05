@@ -5,6 +5,11 @@ use crate::widgets::UiWidgetBundle;
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiPadding(pub UiEdgeInsets);
 
+#[derive(Copy, Clone, Debug, Default)]
+pub struct UiPaddingProps {
+    pub padding: UiEdgeInsets,
+}
+
 #[derive(Bundle, Clone, Debug)]
 pub struct UiPaddingBundle {
     pub child: UiWidgetBundle,
@@ -13,28 +18,32 @@ pub struct UiPaddingBundle {
 
 impl Default for UiPaddingBundle {
     fn default() -> Self {
-        UiPaddingBundle::from(UiEdgeInsets::default())
+        UiPaddingBundle::from(UiPaddingProps::default())
     }
 }
 
 impl UiPaddingBundle {
-    pub fn from(props: UiEdgeInsets) -> Self {
+    pub fn from(props: UiPaddingProps) -> Self {
         Self {
             child: UiWidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height: Val::Percent(100.),
                     padding: UiRect::new(
-                        props.left,
-                        props.right,
-                        props.top,
-                        props.bottom,
+                        props.padding.left,
+                        props.padding.right,
+                        props.padding.top,
+                        props.padding.bottom,
                     ),
                     ..default()
                 },
                 ..default()
             },
-            padding: UiPadding(props),
+            padding: UiPadding(props.padding),
         }
+    }
+
+    pub fn from_edge(padding: UiEdgeInsets) -> Self {
+        Self::from(UiPaddingProps { padding })
     }
 }
