@@ -9,7 +9,7 @@ pub mod widgets;
 pub mod prelude {
     pub use crate::widgets::UiWidgetBundle;
 
-    pub use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
+    pub use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
 
     pub use crate::events::{
         UiPointerClick, UiPointerDoubleClick, UiPointerEnter, UiPointerExit,
@@ -24,7 +24,7 @@ pub mod prelude {
 
     pub use crate::common_tags::UiTagCollapsible;
 
-    pub use crate::widgets::alignment::{UiCenter, UiCenterBundle};
+    pub use crate::widgets::alignment::{UiAlign, UiAlignProps, UiAlignBundle, UiCenterBundle};
     pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};
     pub use crate::widgets::constrained::{
         UiConstrainedHeight, UiConstrainedHeightBundle,

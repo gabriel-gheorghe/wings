@@ -6,16 +6,17 @@ This design is inspired from Flutter.
 1. Scaffold
 2. Container
 3. SizedBox
-4. Center
-5. Button
-6. Column
-7. Row
-8. ConstrainedWidth
-9. ConstrainedHeight
-10. HorizontalDivider
-11. VerticalDivider
-12. Visibility
-13. LayoutVisibility
+4. Align
+5. Center
+6. Button
+7. Column
+8. Row
+9. ConstrainedWidth
+10. ConstrainedHeight
+11. HorizontalDivider
+12. 12.VerticalDivider
+13. Visibility
+14. LayoutVisibility
 
 ### Built-in Queries
 

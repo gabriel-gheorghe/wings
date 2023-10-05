@@ -1,12 +1,12 @@
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
-pub enum MainAxisSize {
+pub enum UiMainAxisSize {
     #[default]
     Min,
     Max,
 }
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
-pub enum MainAxisAlignment {
+pub enum UiMainAxisAlignment {
     #[default]
     Start,
     End,
@@ -17,7 +17,7 @@ pub enum MainAxisAlignment {
 }
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
-pub enum CrossAxisAlignment {
+pub enum UiCrossAxisAlignment {
     #[default]
     Start,
     End,
