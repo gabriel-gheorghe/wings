@@ -267,7 +267,7 @@ fn startup(mut commands: Commands) {
             ).with_children(|parent| {
                 parent.spawn(UiContainerBundle::from(first_container_props));
                 parent.spawn((
-                    UiTagCollapsible,
+                    UiCollapsible,
                     UiVisibilityBundle::default(),
                 )).with_children(|parent| {
                     parent.spawn(UiRowBundle::default()).with_children(|parent| {
@@ -295,7 +295,7 @@ fn startup(mut commands: Commands) {
 fn change_color(
     keyboard_input: Res<Input<KeyCode>>,
     mut color_query: UiColorQuery<ColorTag>,
-    mut visibility_query: UiVisibilityQuery<UiTagCollapsible>,
+    mut visibility_query: UiVisibilityQuery<UiCollapsible>,
 ) {
     if keyboard_input.just_pressed(KeyCode::Space) {
         color_query.set_random();
@@ -324,7 +324,7 @@ build_ui! {
             child: Row {
                 children: [
                     first_container,
-                    child: Visibility {
+                    child: Visibility use Collapsible {
                         child: Row {
                             children: [
                                 const SizedBox {

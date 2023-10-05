@@ -28,7 +28,7 @@ pub mod prelude {
     pub use crate::queries::size::UiSizeQuery;
     pub use crate::queries::visibility::{UiLayoutVisibilityQuery, UiVisibilityQuery};
 
-    pub use crate::common_tags::UiTagCollapsible;
+    pub use crate::common_tags::UiCollapsible;
 
     pub use crate::widgets::UiWidgetBundle;
 
