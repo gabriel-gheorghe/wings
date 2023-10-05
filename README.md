@@ -14,9 +14,10 @@ This design is inspired from Flutter.
 9. ConstrainedWidth
 10. ConstrainedHeight
 11. HorizontalDivider
-12. 12.VerticalDivider
+12. VerticalDivider
 13. Visibility
 14. LayoutVisibility
+15. Padding
 
 ### Built-in Queries
 
@@ -107,6 +108,31 @@ fn build_ui(mut commands: Commands) {
                         height: Val::Px(200.),
                         ..default()}),
                 );
+            });
+        });
+    });
+}
+```
+
+<p>
+  <img src="./images/padding_example.png" width="400" title="hover text">
+</p>
+
+#### <u>Padding Example</u>
+```rust
+fn startup(mut commands: Commands) {
+    commands.spawn(Camera2dBundle::default());
+
+    commands.spawn(
+        UiScaffoldBundle::default(),
+    ).with_children(|parent| {
+        parent.spawn(
+            UiContainerBundle::from_color_squared(Color::BLUE, Val::Px(500.)),
+        ).with_children(|parent| {
+            parent.spawn(
+                UiPaddingBundle::from(UiEdgeInsets::all(Val::Px(80.))),
+            ).with_children(|parent| {
+                parent.spawn(UiContainerBundle::from_color_relative(Color::YELLOW));
             });
         });
     });

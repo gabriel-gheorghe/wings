@@ -58,10 +58,18 @@ impl UiContainerBundle {
         })
     }
 
-    pub fn from_size_splat(val: Val) -> Self {
+    pub fn from_size_splat(size: Val) -> Self {
         Self::from(UiContainerProps {
-            width: val,
-            height: val,
+            width: size,
+            height: size,
+            ..default()
+        })
+    }
+
+    pub fn from_relative_size() -> Self {
+        Self::from(UiContainerProps {
+            width: Val::Percent(100.),
+            height: Val::Percent(100.),
             ..default()
         })
     }
@@ -83,6 +91,33 @@ impl UiContainerBundle {
     pub fn from_color(color: Color) -> Self {
         Self::from(UiContainerProps {
             color,
+            ..default()
+        })
+    }
+
+    pub fn from_color_sized(color: Color, width: Val, height: Val) -> Self {
+        Self::from(UiContainerProps {
+            color,
+            width,
+            height,
+            ..default()
+        })
+    }
+
+    pub fn from_color_squared(color: Color, size: Val) -> Self {
+        Self::from(UiContainerProps {
+            color,
+            width: size,
+            height: size,
+            ..default()
+        })
+    }
+
+    pub fn from_color_relative(color: Color) -> Self {
+        Self::from(UiContainerProps {
+            color,
+            width: Val::Percent(100.),
+            height: Val::Percent(100.),
             ..default()
         })
     }

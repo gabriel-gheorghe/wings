@@ -6,6 +6,7 @@ pub mod constrained;
 pub mod container;
 pub mod direction;
 pub mod divider;
+pub mod padding;
 pub mod scaffold;
 pub mod sized_box;
 pub mod visibility;

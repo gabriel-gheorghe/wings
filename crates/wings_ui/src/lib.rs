@@ -1,3 +1,4 @@
+pub mod classes;
 pub mod common_tags;
 pub mod enums;
 pub mod events;
@@ -6,8 +7,12 @@ pub mod queries;
 pub(crate) mod systems;
 pub mod widgets;
 
+pub mod platform {
+    pub use crate::classes::platform_classes::UiViewPadding;
+}
+
 pub mod prelude {
-    pub use crate::widgets::UiWidgetBundle;
+    pub use crate::classes::edge_insets::UiEdgeInsets;
 
     pub use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
 
@@ -24,6 +29,8 @@ pub mod prelude {
 
     pub use crate::common_tags::UiTagCollapsible;
 
+    pub use crate::widgets::UiWidgetBundle;
+
     pub use crate::widgets::alignment::{UiAlign, UiAlignProps, UiAlignBundle, UiCenterBundle};
     pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};
     pub use crate::widgets::constrained::{
@@ -38,6 +45,7 @@ pub mod prelude {
         UiHorizontalDivider, UiHorizontalDividerBundle, UiHorizontalDividerProps,
         UiVerticalDivider, UiVerticalDividerBundle, UiVerticalDividerProps,
     };
+    pub use crate::widgets::padding::{UiPadding, UiPaddingBundle};
     pub use crate::widgets::scaffold::{UiScaffold, UiScaffoldBundle, UiScaffoldProps};
     pub use crate::widgets::sized_box::{UiSizedBoxBundle, UiSizedBoxProps};
     pub use crate::widgets::visibility::{

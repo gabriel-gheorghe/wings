@@ -16,7 +16,7 @@ impl Default for UiScaffoldProps {
     fn default() -> Self {
         Self {
             width: Val::Percent(100.0),
-            height: Val::Percent(100.0),
+            height: Val::Auto,
             color: get_transparent_color(),
         }
     }

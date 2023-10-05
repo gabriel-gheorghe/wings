@@ -4,7 +4,7 @@ use crate::widgets::UiWidgetBundle;
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiAlign(pub f32, pub f32);
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, Default)]
 pub struct UiAlignProps {
     pub x: f32,
     pub y: f32,
