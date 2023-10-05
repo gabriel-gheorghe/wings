@@ -121,8 +121,6 @@ fn build_ui(mut commands: Commands) {
 #### <u>Padding Example</u>
 ```rust
 fn startup(mut commands: Commands) {
-    commands.spawn(Camera2dBundle::default());
-
     commands.spawn(
         UiScaffoldBundle::default(),
     ).with_children(|parent| {
@@ -136,6 +134,29 @@ fn startup(mut commands: Commands) {
             });
         });
     });
+}
+```
+
+<i>Desired design</i>
+
+```rust
+fn startup(mut commands: Commands) {
+    build_ui! {
+        Scaffold {
+            child: Container {
+                color: Color::BLUE,
+                size: Size::all(Val::Px(500.)),
+                child: {
+                    Padding {
+                        padding: EdgeInsets::all(Val::Px(80.)),
+                        child: Container {
+                            color: Color::YELLOW,
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 ```
 
