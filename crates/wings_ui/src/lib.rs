@@ -12,6 +12,7 @@ pub mod platform {
 }
 
 pub mod prelude {
+    pub use crate::classes::alignment::UiAlignment;
     pub use crate::classes::edge_insets::UiEdgeInsets;
 
     pub use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
@@ -31,7 +32,7 @@ pub mod prelude {
 
     pub use crate::widgets::UiWidgetBundle;
 
-    pub use crate::widgets::alignment::{UiAlign, UiAlignProps, UiAlignBundle, UiCenterBundle};
+    pub use crate::widgets::alignment::{UiAlign, UiAlignBundle, UiCenterBundle};
     pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};
     pub use crate::widgets::constrained::{
         UiConstrainedHeight, UiConstrainedHeightBundle,

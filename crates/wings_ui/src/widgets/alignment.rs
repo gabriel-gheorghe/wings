@@ -1,28 +1,9 @@
 use bevy::prelude::*;
+use crate::classes::alignment::UiAlignment;
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiAlign(pub f32, pub f32);
-
-#[derive(Copy, Clone, Debug, Default)]
-pub struct UiAlignProps {
-    pub x: f32,
-    pub y: f32,
-}
-
-impl UiAlignProps {
-    pub const TOP_LEFT: UiAlignProps = UiAlignProps { x: -1. , y: -1. };
-    pub const TOP_CENTER: UiAlignProps = UiAlignProps { x: 0. , y: -1. };
-    pub const TOP_RIGHT: UiAlignProps = UiAlignProps { x: 1. , y: -1. };
-
-    pub const CENTER_LEFT: UiAlignProps = UiAlignProps { x: -1. , y: 0. };
-    pub const CENTER: UiAlignProps = UiAlignProps { x: 0. , y: 0. };
-    pub const CENTER_RIGHT: UiAlignProps = UiAlignProps { x: 1. , y: 0. };
-
-    pub const BOTTOM_LEFT: UiAlignProps = UiAlignProps { x: -1. , y: 1. };
-    pub const BOTTOM_CENTER: UiAlignProps = UiAlignProps { x: 0. , y: 1. };
-    pub const BOTTOM_RIGHT: UiAlignProps = UiAlignProps { x: 1. , y: 1. };
-}
+pub struct UiAlign(UiAlignment);
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiAlignBundle {
@@ -32,12 +13,12 @@ pub struct UiAlignBundle {
 
 impl Default for UiAlignBundle {
     fn default() -> Self {
-        UiAlignBundle::from(UiAlignProps::TOP_LEFT)
+        UiAlignBundle::from(UiAlignment::TOP_LEFT)
     }
 }
 
 impl UiAlignBundle {
-    pub fn from(props: UiAlignProps) -> Self {
+    pub fn from(props: UiAlignment) -> Self {
         let justify_content = if props.x < 0. {
             JustifyContent::Start
         } else if props.x == 0. {
@@ -80,7 +61,7 @@ impl UiAlignBundle {
                 },
                 ..default()
             },
-            align: UiAlign(props.x, props.y),
+            align: UiAlign(props),
         }
     }
 }
