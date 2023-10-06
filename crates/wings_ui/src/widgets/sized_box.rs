@@ -11,6 +11,7 @@ pub struct UiSizedBoxProps {
 }
 
 impl Default for UiSizedBoxProps {
+    #[inline]
     fn default() -> Self {
         Self {
             width: Val::Px(100.0),
@@ -26,12 +27,14 @@ pub struct UiSizedBoxBundle {
 }
 
 impl Default for UiSizedBoxBundle {
+    #[inline]
     fn default() -> Self {
         UiSizedBoxBundle::from(UiSizedBoxProps::default())
     }
 }
 
 impl UiSizedBoxBundle {
+    #[inline]
     pub fn from(props: UiSizedBoxProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -46,6 +49,7 @@ impl UiSizedBoxBundle {
         }
     }
 
+    #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
         Self::from(UiSizedBoxProps {
             width,
@@ -54,6 +58,7 @@ impl UiSizedBoxBundle {
         })
     }
 
+    #[inline]
     pub fn from_size_splat(val: Val) -> Self {
         Self::from(UiSizedBoxProps {
             width: val,
@@ -62,6 +67,7 @@ impl UiSizedBoxBundle {
         })
     }
 
+    #[inline]
     pub fn from_width(width: Val) -> Self {
         Self::from(UiSizedBoxProps {
             width,
@@ -69,6 +75,7 @@ impl UiSizedBoxBundle {
         })
     }
 
+    #[inline]
     pub fn from_height(height: Val) -> Self {
         Self::from(UiSizedBoxProps {
             height,

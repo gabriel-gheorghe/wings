@@ -10,6 +10,7 @@ pub struct UiHorizontalDividerProps {
 }
 
 impl Default for UiHorizontalDividerProps {
+    #[inline]
     fn default() -> Self {
         Self {
             width: Val::Px(3.),
@@ -25,6 +26,7 @@ pub struct UiHorizontalDividerBundle {
 }
 
 impl Default for UiHorizontalDividerBundle {
+    #[inline]
     fn default() -> Self {
         UiHorizontalDividerBundle::from(UiHorizontalDividerProps {
             width: Val::Px(3.),
@@ -33,6 +35,7 @@ impl Default for UiHorizontalDividerBundle {
 }
 
 impl UiHorizontalDividerBundle {
+    #[inline]
     pub fn from(props: UiHorizontalDividerProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -48,6 +51,7 @@ impl UiHorizontalDividerBundle {
         }
     }
 
+    #[inline]
     pub fn from_width(width: Val) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -73,6 +77,7 @@ pub struct UiVerticalDividerProps {
 }
 
 impl Default for UiVerticalDividerProps {
+    #[inline]
     fn default() -> Self {
         Self {
             height: Val::Px(3.),
@@ -88,6 +93,7 @@ pub struct UiVerticalDividerBundle {
 }
 
 impl Default for UiVerticalDividerBundle {
+    #[inline]
     fn default() -> Self {
         UiVerticalDividerBundle::from(UiVerticalDividerProps {
             height: Val::Px(3.),
@@ -96,6 +102,7 @@ impl Default for UiVerticalDividerBundle {
 }
 
 impl UiVerticalDividerBundle {
+    #[inline]
     pub fn from(props: UiVerticalDividerProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -111,6 +118,7 @@ impl UiVerticalDividerBundle {
         }
     }
 
+    #[inline]
     pub fn from_height(height: Val) -> Self {
         Self {
             child: UiWidgetBundle {

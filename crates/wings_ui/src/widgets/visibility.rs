@@ -11,12 +11,14 @@ pub struct UiVisibilityBundle {
 }
 
 impl Default for UiVisibilityBundle {
+    #[inline]
     fn default() -> Self {
         UiVisibilityBundle::from(true)
     }
 }
 
 impl UiVisibilityBundle {
+    #[inline]
     pub fn from(visible: bool) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -47,12 +49,14 @@ pub struct UiLayoutVisibilityBundle {
 }
 
 impl Default for UiLayoutVisibilityBundle {
+    #[inline]
     fn default() -> Self {
         UiLayoutVisibilityBundle::from(UiLayoutVisibility::Inherited)
     }
 }
 
 impl UiLayoutVisibilityBundle {
+    #[inline]
     pub fn from(visibility: UiLayoutVisibility) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -68,6 +72,7 @@ impl UiLayoutVisibilityBundle {
     }
 }
 
+#[inline]
 pub(crate) fn get_computed_display(visibility: &UiLayoutVisibility) -> Display {
     match visibility {
         UiLayoutVisibility::Collapsed => Display::None,
@@ -75,6 +80,7 @@ pub(crate) fn get_computed_display(visibility: &UiLayoutVisibility) -> Display {
     }
 }
 
+#[inline]
 pub(crate) fn get_computed_visibility(visibility: &UiLayoutVisibility) -> Visibility {
     match visibility {
         UiLayoutVisibility::Visible => Visibility::Visible,

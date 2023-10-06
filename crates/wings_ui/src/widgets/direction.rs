@@ -19,12 +19,14 @@ pub struct UiColumnBundle {
 }
 
 impl Default for UiColumnBundle {
+    #[inline]
     fn default() -> Self {
         UiColumnBundle::from(UiColumnProps::default())
     }
 }
 
 impl UiColumnBundle {
+    #[inline]
     pub fn from(props: UiColumnProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -41,6 +43,7 @@ impl UiColumnBundle {
         }
     }
 
+    #[inline]
     pub fn from_main_axis(
         main_axis_size: UiMainAxisSize,
         main_axis_alignment: UiMainAxisAlignment,
@@ -48,6 +51,7 @@ impl UiColumnBundle {
         Self::from(UiColumnProps { main_axis_size, main_axis_alignment, ..default() })
     }
 
+    #[inline]
     pub fn from_cross_axis(cross_axis_alignment: UiCrossAxisAlignment) -> Self {
         Self::from(UiColumnProps { cross_axis_alignment, ..default() })
     }
@@ -70,12 +74,14 @@ pub struct UiRowBundle {
 }
 
 impl Default for UiRowBundle {
+    #[inline]
     fn default() -> Self {
         UiRowBundle::from(UiRowProps::default())
     }
 }
 
 impl UiRowBundle {
+    #[inline]
     pub fn from(props: UiRowProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -92,6 +98,7 @@ impl UiRowBundle {
         }
     }
 
+    #[inline]
     pub fn from_main_axis(
         main_axis_size: UiMainAxisSize,
         main_axis_alignment: UiMainAxisAlignment,
@@ -99,11 +106,13 @@ impl UiRowBundle {
         Self::from(UiRowProps { main_axis_size, main_axis_alignment, ..default() })
     }
 
+    #[inline]
     pub fn from_cross_axis(cross_axis_alignment: UiCrossAxisAlignment) -> Self {
         Self::from(UiRowProps { cross_axis_alignment, ..default() })
     }
 }
 
+#[inline]
 pub(crate) fn to_main_size(value: UiMainAxisSize) -> Val {
     match value {
         UiMainAxisSize::Min => Val::Auto,
@@ -111,6 +120,7 @@ pub(crate) fn to_main_size(value: UiMainAxisSize) -> Val {
     }
 }
 
+#[inline]
 pub(crate) fn to_justify(value: UiMainAxisAlignment) -> JustifyContent {
     match value {
         UiMainAxisAlignment::Start => JustifyContent::FlexStart,
@@ -122,6 +132,7 @@ pub(crate) fn to_justify(value: UiMainAxisAlignment) -> JustifyContent {
     }
 }
 
+#[inline]
 pub(crate) fn to_align(value: UiCrossAxisAlignment) -> AlignItems {
     match value {
         UiCrossAxisAlignment::Start => AlignItems::FlexStart,

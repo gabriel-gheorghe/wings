@@ -13,6 +13,7 @@ pub struct UiScaffoldProps {
 }
 
 impl Default for UiScaffoldProps {
+    #[inline]
     fn default() -> Self {
         Self {
             width: Val::Percent(100.0),
@@ -30,12 +31,14 @@ pub struct UiScaffoldBundle {
 }
 
 impl Default for UiScaffoldBundle {
+    #[inline]
     fn default() -> Self {
         Self::from(UiScaffoldProps::default())
     }
 }
 
 impl UiScaffoldBundle {
+    #[inline]
     pub fn from(props: UiScaffoldProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -51,6 +54,7 @@ impl UiScaffoldBundle {
         }
     }
 
+    #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
         Self::from(UiScaffoldProps {
             width,
@@ -59,6 +63,7 @@ impl UiScaffoldBundle {
         })
     }
 
+    #[inline]
     pub fn from_size_splat(val: Val) -> Self {
         Self::from(UiScaffoldProps {
             width: val,
@@ -67,6 +72,7 @@ impl UiScaffoldBundle {
         })
     }
 
+    #[inline]
     pub fn from_width(width: Val) -> Self {
         Self::from(UiScaffoldProps {
             width,
@@ -74,6 +80,7 @@ impl UiScaffoldBundle {
         })
     }
 
+    #[inline]
     pub fn from_height(height: Val) -> Self {
         Self::from(UiScaffoldProps {
             height,
@@ -81,6 +88,7 @@ impl UiScaffoldBundle {
         })
     }
 
+    #[inline]
     pub fn from_color(color: Color) -> Self {
         Self::from(UiScaffoldProps {
             color,

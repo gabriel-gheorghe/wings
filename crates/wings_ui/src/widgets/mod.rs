@@ -22,6 +22,7 @@ pub struct UiWidgetBundle {
 }
 
 impl Default for UiWidgetBundle {
+    #[inline]
     fn default() -> Self {
         UiWidgetBundle {
             node: Default::default(),

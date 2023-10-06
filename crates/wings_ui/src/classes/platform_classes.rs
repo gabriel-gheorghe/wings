@@ -7,6 +7,7 @@ pub struct UiViewPadding {
 }
 
 impl UiViewPadding {
+    #[inline]
     pub fn zero() -> Self {
         Self::default()
     }

@@ -10,10 +10,12 @@ pub struct UiEdgeInsets {
 }
 
 impl UiEdgeInsets {
+    #[inline]
     pub fn zero() -> Self {
         Self::default()
     }
 
+    #[inline]
     pub fn only_left(value: Val) -> Self {
         Self {
             left: value,
@@ -21,6 +23,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn only_top(value: Val) -> Self {
         Self {
             top: value,
@@ -28,6 +31,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn only_right(value: Val) -> Self {
         Self {
             right: value,
@@ -35,6 +39,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn only_bottom(value: Val) -> Self {
         Self {
             bottom: value,
@@ -42,6 +47,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn all(value: Val) -> Self {
         Self {
             left: value,
@@ -51,6 +57,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn from_ltrb(left: Val, top: Val, right: Val, bottom: Val) -> Self {
         Self {
             left,
@@ -60,6 +67,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn symmetric_vh(vertical: Val, horizontal: Val) -> Self {
         Self {
             left: horizontal,
@@ -69,6 +77,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn symmetric_vertical(value: Val) -> Self {
         Self {
             top: value,
@@ -77,6 +86,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn symmetric_horizontal(value: Val) -> Self {
         Self {
             left: value,
@@ -85,6 +95,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_tl(top: Val, left: Val) -> Self {
         Self {
             top,
@@ -93,6 +104,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_tr(top: Val, right: Val) -> Self {
         Self {
             top,
@@ -101,6 +113,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_bl(bottom: Val, left: Val) -> Self {
         Self {
             bottom,
@@ -109,6 +122,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_br(bottom: Val, right: Val) -> Self {
         Self {
             bottom,
@@ -117,6 +131,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_tl_all(value: Val) -> Self {
         Self {
             top: value,
@@ -125,6 +140,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_tr_all(value: Val) -> Self {
         Self {
             top: value,
@@ -133,6 +149,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_bl_all(value: Val) -> Self {
         Self {
             bottom: value,
@@ -141,6 +158,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn corner_br_all(value: Val) -> Self {
         Self {
             bottom: value,
@@ -149,6 +167,7 @@ impl UiEdgeInsets {
         }
     }
 
+    #[inline]
     pub fn from_view_padding(padding: UiViewPadding, pixel_ratio: f32) -> Self {
         Self {
             left: Val::Px(padding.left / pixel_ratio),

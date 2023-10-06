@@ -17,12 +17,14 @@ pub struct UiPaddingBundle {
 }
 
 impl Default for UiPaddingBundle {
+    #[inline]
     fn default() -> Self {
         UiPaddingBundle::from(UiPaddingProps::default())
     }
 }
 
 impl UiPaddingBundle {
+    #[inline]
     pub fn from(props: UiPaddingProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -43,6 +45,7 @@ impl UiPaddingBundle {
         }
     }
 
+    #[inline]
     pub fn from_edge(padding: UiEdgeInsets) -> Self {
         Self::from(UiPaddingProps { padding })
     }

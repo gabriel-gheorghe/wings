@@ -5,6 +5,7 @@ pub struct UiAlignment {
 }
 
 impl Default for UiAlignment {
+    #[inline]
     fn default() -> Self {
         UiAlignment::TOP_LEFT
     }

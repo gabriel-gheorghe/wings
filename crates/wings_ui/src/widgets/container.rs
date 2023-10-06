@@ -12,6 +12,7 @@ pub struct UiContainerProps {
 }
 
 impl Default for UiContainerProps {
+    #[inline]
     fn default() -> Self {
         Self {
             width: Val::Px(100.0),
@@ -29,12 +30,14 @@ pub struct UiContainerBundle {
 }
 
 impl Default for UiContainerBundle {
+    #[inline]
     fn default() -> Self {
         UiContainerBundle::from(UiContainerProps::default())
     }
 }
 
 impl UiContainerBundle {
+    #[inline]
     pub fn from(props: UiContainerProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -50,6 +53,7 @@ impl UiContainerBundle {
         }
     }
 
+    #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
         Self::from(UiContainerProps {
             width,
@@ -58,6 +62,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_size_splat(size: Val) -> Self {
         Self::from(UiContainerProps {
             width: size,
@@ -66,6 +71,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_relative_size() -> Self {
         Self::from(UiContainerProps {
             width: Val::Percent(100.),
@@ -74,6 +80,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_width(width: Val) -> Self {
         Self::from(UiContainerProps {
             width,
@@ -81,6 +88,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_height(height: Val) -> Self {
         Self::from(UiContainerProps {
             height,
@@ -88,6 +96,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_color(color: Color) -> Self {
         Self::from(UiContainerProps {
             color,
@@ -95,6 +104,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_color_sized(color: Color, width: Val, height: Val) -> Self {
         Self::from(UiContainerProps {
             color,
@@ -104,6 +114,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_color_squared(color: Color, size: Val) -> Self {
         Self::from(UiContainerProps {
             color,
@@ -113,6 +124,7 @@ impl UiContainerBundle {
         })
     }
 
+    #[inline]
     pub fn from_color_relative(color: Color) -> Self {
         Self::from(UiContainerProps {
             color,

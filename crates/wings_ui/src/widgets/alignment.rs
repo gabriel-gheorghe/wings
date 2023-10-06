@@ -17,12 +17,14 @@ pub struct UiAlignBundle {
 }
 
 impl Default for UiAlignBundle {
+    #[inline]
     fn default() -> Self {
         UiAlignBundle::from(UiAlignProps::default())
     }
 }
 
 impl UiAlignBundle {
+    #[inline]
     pub fn from(props: UiAlignProps) -> Self {
         let justify_content = if props.alignment.x < 0. {
             JustifyContent::Start
@@ -70,6 +72,7 @@ impl UiAlignBundle {
         }
     }
 
+    #[inline]
     pub fn from_alignment(alignment: UiAlignment) -> Self {
         Self::from(UiAlignProps { alignment })
     }
@@ -86,6 +89,7 @@ pub struct UiCenterBundle {
 }
 
 impl Default for UiCenterBundle {
+    #[inline]
     fn default() -> Self {
         Self {
             child: UiWidgetBundle {

@@ -13,6 +13,7 @@ pub struct UiConstrainedHeightBundle {
 }
 
 impl Default for UiConstrainedHeightBundle {
+    #[inline]
     fn default() -> Self {
         Self {
             child: UiWidgetBundle {
@@ -29,6 +30,7 @@ impl Default for UiConstrainedHeightBundle {
 }
 
 impl UiConstrainedHeightBundle {
+    #[inline]
     pub fn with_debug_color(color: Color) -> Self {
         let mut res = Self::default();
         res.debug_color = BackgroundColor::from(color);
@@ -47,6 +49,7 @@ pub struct UiConstrainedWidthBundle {
 }
 
 impl Default for UiConstrainedWidthBundle {
+    #[inline]
     fn default() -> Self {
         Self {
             child: UiWidgetBundle {
@@ -63,6 +66,7 @@ impl Default for UiConstrainedWidthBundle {
 }
 
 impl UiConstrainedWidthBundle {
+    #[inline]
     pub fn with_debug_color(color: Color) -> Self {
         let mut res = Self::default();
         res.debug_color = BackgroundColor::from(color);

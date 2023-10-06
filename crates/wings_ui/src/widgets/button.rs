@@ -14,6 +14,7 @@ pub struct UiButtonProps {
 }
 
 impl Default for UiButtonProps {
+    #[inline]
     fn default() -> Self {
         Self {
             width: Val::Px(270.0),
@@ -37,12 +38,14 @@ pub struct UiButtonBundle {
 }
 
 impl Default for UiButtonBundle {
+    #[inline]
     fn default() -> Self {
         UiButtonBundle::from(UiButtonProps::default())
     }
 }
 
 impl UiButtonBundle {
+    #[inline]
     pub fn from(props: UiButtonProps) -> Self {
         Self {
             child: UiWidgetBundle {
@@ -65,6 +68,7 @@ impl UiButtonBundle {
         }
     }
 
+    #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
         Self::from(UiButtonProps {
             width,
@@ -73,6 +77,7 @@ impl UiButtonBundle {
         })
     }
 
+    #[inline]
     pub fn from_size_splat(val: Val) -> Self {
         Self::from(UiButtonProps {
             width: val,
@@ -81,6 +86,7 @@ impl UiButtonBundle {
         })
     }
 
+    #[inline]
     pub fn from_width(width: Val) -> Self {
         Self::from(UiButtonProps {
             width,
@@ -88,6 +94,7 @@ impl UiButtonBundle {
         })
     }
 
+    #[inline]
     pub fn from_height(height: Val) -> Self {
         Self::from(UiButtonProps {
             height,
@@ -95,6 +102,7 @@ impl UiButtonBundle {
         })
     }
 
+    #[inline]
     pub fn from_color(color: Color) -> Self {
         Self::from(UiButtonProps {
             color,
