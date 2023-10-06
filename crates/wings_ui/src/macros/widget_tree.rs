@@ -21,7 +21,7 @@ macro_rules! define_ui_types {
         type Padding = UiPaddingBundle;
 
         // CLASSES
-        type ViewPadding = UiViewPadding;
+        type ViewPadding = wings::platform::UiViewPadding;
         type EdgeInsets = UiEdgeInsets;
         type Alignment = UiAlignment;
 

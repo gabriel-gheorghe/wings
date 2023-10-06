@@ -1,5 +1,9 @@
 pub mod plugin;
 
+pub mod platform {
+    pub use wings_ui::platform::*;
+}
+
 pub mod prelude {
     pub use crate::plugin::WingsPlugin;
 
