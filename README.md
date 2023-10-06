@@ -26,6 +26,10 @@ This design is inspired from Flutter.
 3. Visibility
 4. LayoutVisibility
 
+### Known limitations
+1. Widget Tree is not scalable. Consider moving to proc macros.
+2. Currently, you cannot create your own widgets.
+
 #### <u>Padding Example</u>
 
 <p>
