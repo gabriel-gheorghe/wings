@@ -35,13 +35,13 @@ This design is inspired from Flutter.
 ```rust
 widget_tree!(&mut commands,
     Scaffold {
-        -> Container {
+        :Container {
             color: Color::BLUE,
             width: Val::Px(500.),
             height: Val::Px(500.),
-            -> Padding {
+            :Padding {
                 padding: EdgeInsets::all(Val::Px(80.)),
-                -> Container {
+                :Container {
                     color: Color::YELLOW,
                     width: Val::Percent(100.),
                     height: Val::Percent(100.),
@@ -61,12 +61,12 @@ widget_tree!(&mut commands,
 ```rust
 widget_tree!(&mut commands,
     Scaffold {
-        -> Center {
-            -> Column {
+        :Center {
+            :Column {
                 main_axis_size: MainAxisSize::Max,
                 main_axis_alignment: MainAxisAlignment::End,
                 cross_axis_alignment: CrossAxisAlignment::End,
-                -> [
+                :[
                     Container {
                         color: Color::RED,
                         width: Val::Px(300.),
@@ -95,12 +95,12 @@ widget_tree!(&mut commands,
 ```rust
 widget_tree!(&mut commands,
     Scaffold {
-        -> Center {
-            -> Row {
+        :Center {
+            :Row {
                 main_axis_size: MainAxisSize::Max,
                 main_axis_alignment: MainAxisAlignment::End,
                 cross_axis_alignment: CrossAxisAlignment::End,
-                -> [
+                :[
                     Container {
                         color: Color::RED,
                         height: Val::Px(300.),
@@ -205,25 +205,27 @@ fn change_color(
 
 ```rust
 widget_tree!(&mut commands,
-    const first_container = Container {
-        width: Val::Px(50.0),
-        height: Val::Px(50.0),
-        color: Color::RED,
-    };
+    in {
+        let first_container = Container {
+            width: Val::Px(50.0),
+            height: Val::Px(50.0),
+            color: Color::RED,
+        };
+    }
     
     Scaffold {
-        child: Center {
-            child: Row {
-                children: [
+        :Center {
+            :Row {
+                :[
                     first_container,
-                    child: Visibility use Collapsible {
-                        child: Row {
-                            children: [
-                                const SizedBox {
+                    :Visibility use Collapsible {
+                        :Row {
+                            :[
+                                SizedBox {
                                     width: Val::Px(50.),
                                 },
                                 Container use ColorTag,
-                                const SizedBox {
+                                SizedBox {
                                     width: Val::Px(50.),
                                 },
                                 Container use ColorTag,

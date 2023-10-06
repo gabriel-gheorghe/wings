@@ -52,11 +52,11 @@ macro_rules! widget_tree {
             }),
         ));
     };
-    // CMDS, IDENT { -> IDENT } ,?
+    // CMDS, IDENT { :IDENT } ,?
     (
         $commands:expr,
         $t:ident {
-            -> $child_t:ident
+            :$child_t:ident
         } $(,)?
     ) => {
         define_ui_types!();
@@ -67,12 +67,12 @@ macro_rules! widget_tree {
              widget_tree!(parent, $child_t);
         });
     };
-    // CMDS, IDENT { |IDENT: EXPR,|* -> IDENT } ,?
+    // CMDS, IDENT { |IDENT: EXPR,|* :IDENT } ,?
     (
         $commands:expr,
         $t:ident {
             $($field_name:ident: $field_expr:expr,)*
-            -> $child_t:ident
+            :$child_t:ident
         } $(,)?
     ) => {
         define_ui_types!();
@@ -89,11 +89,11 @@ macro_rules! widget_tree {
              widget_tree!(parent, $child_t);
         });
     };
-    // CMDS, IDENT { -> IDENT BODY } ,?
+    // CMDS, IDENT { :IDENT BODY } ,?
     (
         $commands:expr,
         $t:ident {
-            -> $child_t:ident $body:tt
+            :$child_t:ident $body:tt
         } $(,)?
     ) => {
         define_ui_types!();
@@ -104,12 +104,12 @@ macro_rules! widget_tree {
              widget_tree!(parent, $child_t $body);
         });
     };
-    // CMDS, IDENT { |IDENT: EXPR,|* -> IDENT BODY } ,?
+    // CMDS, IDENT { |IDENT: EXPR,|* :IDENT BODY } ,?
     (
         $commands:expr,
         $t:ident {
             $($field_name:ident: $field_expr:expr,)*
-            -> $child_t:ident $body:tt
+            :$child_t:ident $body:tt
         } $(,)?
     ) => {
         define_ui_types!();
@@ -126,12 +126,12 @@ macro_rules! widget_tree {
              widget_tree!(parent, $child_t $body);
         });
     };
-    // CMDS, IDENT { |IDENT: EXPR,|* -> [ |IDENT BODY,|* ] } ,?
+    // CMDS, IDENT { |IDENT: EXPR,|* :[ |IDENT BODY,|* ] } ,?
     (
         $commands:expr,
         $t:ident {
             $($field_name:ident: $field_expr:expr,)*
-            -> [ $($child_t:ident $body:tt,)* ]
+            :[ $($child_t:ident $body:tt,)* ]
         } $(,)?
     ) => {
         define_ui_types!();
