@@ -250,15 +250,15 @@ fn update_color_bad(mut query: Query<(&mut BackgroundColor, With<UiContainer>)>)
     }
 }
 
-// This is the most ergonomic way
-fn update_color_good(mut query: UiColorQuery<UiContainer>) {
-    query.set_random_with_alpha();
-}
-
-// You can do this if you want more control over entities
-fn update_color_also_good(mut query: UiColorQuery<UiContainer>) {
+// You can do this if you want more control over entities, but still not recommended
+fn update_color_also_bad(mut query: UiColorQuery<UiContainer>) {
     query.get_mut().for_each_mut(|(_, mut c_color, _)| {
         c_color.0 = get_random_color_with_alpha();
     });
+}
+
+// This is the most ergonomic way
+fn update_color_good(mut query: UiColorQuery<UiContainer>) {
+    query.set_random_with_alpha();
 }
 ```
