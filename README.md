@@ -226,7 +226,7 @@ widget_tree!(&mut commands,
                                         width: Val::Px(50.),
                                     },
                                     Container use ColorTag,
-                                }
+                                },
                             ]
                         }
                     }
