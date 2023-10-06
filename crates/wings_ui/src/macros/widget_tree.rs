@@ -163,7 +163,61 @@ macro_rules! widget_tree {
                 ..default()
             }),
         )).with_children(|parent| {
-             $({widget_tree!(parent, $child_t $body);})*;
+             $({
+                 widget_tree!(parent, $child_t $body);
+             })*;
+        });
+    };
+    // CMDS, IDENT { |IDENT: EXPR,|* :[ for _ in 0..n { |IDENT BODY,|* } ] } ,?
+    (
+        $commands:expr,
+        $t:ident {
+            $($field_name:ident: $field_expr:expr,)*
+            :[ for _ in $start:literal..$n:literal { $($child_t:ident $body:tt,)* }, ]
+        } $(,)?
+    ) => {
+        define_ui_types!();
+
+        use paste::paste;
+        type Props = paste!([<Ui $t Props>]);
+
+        $commands.spawn((
+            $t::from(Props {
+                $($field_name: $field_expr,)*
+                ..default()
+            }),
+        )).with_children(|parent| {
+            for i in $start..$n {
+                $({
+                    widget_tree!(parent, $child_t $body);
+                })*;
+            }
+        });
+    };
+    // CMDS, IDENT { |IDENT: EXPR,|* :[ for _ in 0..=n { |IDENT BODY,|* } ] } ,?
+    (
+        $commands:expr,
+        $t:ident {
+            $($field_name:ident: $field_expr:expr,)*
+            :[ for _ in $start:literal..=$n:literal { $($child_t:ident $body:tt,)* }, ]
+        } $(,)?
+    ) => {
+        define_ui_types!();
+
+        use paste::paste;
+        type Props = paste!([<Ui $t Props>]);
+
+        $commands.spawn((
+            $t::from(Props {
+                $($field_name: $field_expr,)*
+                ..default()
+            }),
+        )).with_children(|parent| {
+            for i in $start..=$n {
+                $({
+                    widget_tree!(parent, $child_t $body);
+                })*;
+            }
         });
     };
 }
