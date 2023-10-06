@@ -2,6 +2,7 @@ pub mod classes;
 pub mod common_tags;
 pub mod enums;
 pub mod events;
+pub mod macros;
 pub mod plugin;
 pub mod queries;
 pub(crate) mod systems;
@@ -15,6 +16,8 @@ pub mod prelude {
     pub use crate::classes::alignment::UiAlignment;
     pub use crate::classes::edge_insets::UiEdgeInsets;
 
+    pub use crate::common_tags::UiCollapsible;
+
     pub use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
 
     pub use crate::events::{
@@ -27,8 +30,6 @@ pub mod prelude {
     pub use crate::queries::color::UiColorQuery;
     pub use crate::queries::size::UiSizeQuery;
     pub use crate::queries::visibility::{UiLayoutVisibilityQuery, UiVisibilityQuery};
-
-    pub use crate::common_tags::UiCollapsible;
 
     pub use crate::widgets::UiWidgetBundle;
 

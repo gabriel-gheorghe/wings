@@ -26,6 +26,32 @@ This design is inspired from Flutter.
 3. Visibility
 4. LayoutVisibility
 
+#### <u>Padding Example</u>
+
+<p>
+  <img src="./images/padding_example.png" width="400" title="hover text">
+</p>
+
+```rust
+widget_tree!(&mut commands,
+    Scaffold {
+        -> Container {
+            color: Color::BLUE,
+            width: Val::Px(500.),
+            height: Val::Px(500.),
+            -> Padding {
+                padding: EdgeInsets::all(Val::Px(80.)),
+                -> Container {
+                    color: Color::YELLOW,
+                    width: Val::Percent(100.),
+                    height: Val::Percent(100.),
+                }
+            }
+        }
+    }
+);
+```
+
 #### <u>Column Example</u>
 
 <p>
@@ -33,76 +59,31 @@ This design is inspired from Flutter.
 </p>
 
 ```rust
-fn build_ui(mut commands: Commands) {
-    commands.spawn(
-        UiScaffoldBundle::from(UiScaffoldProps::default()),
-    ).with_children(|parent| {
-        parent.spawn(UiCenterBundle::default()).with_children(|parent| {
-            parent.spawn(
-                UiColumnBundle::from(UiColumnProps {
-                    main_axis_size: MainAxisSize::Max,
-                    main_axis_alignment: MainAxisAlignment::End,
-                    cross_axis_alignment: CrossAxisAlignment::End,
-                    ..default()
-                }),
-            ).with_children(|parent| {
-                parent.spawn(
-                    UiContainerBundle::from(UiContainerProps {
+widget_tree!(&mut commands,
+    Scaffold {
+        -> Center {
+            -> Column {
+                main_axis_size: MainAxisSize::Max,
+                main_axis_alignment: MainAxisAlignment::End,
+                cross_axis_alignment: CrossAxisAlignment::End,
+                -> [
+                    Container {
                         color: Color::RED,
                         width: Val::Px(300.),
-                        ..default()
-                    }),
-                );
-                parent.spawn(
-                    UiContainerBundle::from(UiContainerProps {
+                    },
+                    Container {
                         color: Color::GREEN,
                         width: Val::Px(480.),
-                        ..default()
-                    }),
-                );
-                parent.spawn(
-                    UiContainerBundle::from(UiContainerProps {
+                    },
+                    Container {
                         color: Color::BLUE,
                         width: Val::Px(200.),
-                        ..default()
-                    }),
-                );
-            });
-        });
-    });
-}
-```
-
-<i>Desired design</i>
-
-```rust
-fn startup(mut commands: Commands) {
-    widget_tree!(&mut commands,
-        const Scaffold {
-            child: Center {
-                child: Column {
-                    main_axis_size: MainAxisSize::Max,
-                    main_axis_alignment: MainAxisAlignment::End,
-                    cross_axis_alignment: CrossAxisAlignment::End,
-                    children: [
-                        Container {
-                            color: Color::RED,
-                            width: Val::Px(300.),
-                        },
-                        Container {
-                            color: Color::GREEN,
-                            width: Val::Px(480.),
-                        },
-                        Container {
-                            color: Color::BLUE,
-                            width: Val::Px(200.),
-                        },
-                    ]
-                }
+                    },
+                ]
             }
         }
-    );
-}
+    }
+);
 ```
 
 #### <u>Row Example</u>
@@ -112,120 +93,31 @@ fn startup(mut commands: Commands) {
 </p>
 
 ```rust
-fn build_ui(mut commands: Commands) {
-    commands.spawn(
-        UiScaffoldBundle::from(UiScaffoldProps::default()),
-    ).with_children(|parent| {
-        parent.spawn(UiCenterBundle::default()).with_children(|parent| {
-            parent.spawn(
-                UiRowBundle::from(UiRowProps {
-                    main_axis_size: MainAxisSize::Max,
-                    main_axis_alignment: MainAxisAlignment::End,
-                    cross_axis_alignment: CrossAxisAlignment::End,
-                    ..default()
-                }),
-            ).with_children(|parent| {
-                parent.spawn(
-                    UiContainerBundle::from(UiContainerProps {
+widget_tree!(&mut commands,
+    Scaffold {
+        -> Center {
+            -> Row {
+                main_axis_size: MainAxisSize::Max,
+                main_axis_alignment: MainAxisAlignment::End,
+                cross_axis_alignment: CrossAxisAlignment::End,
+                -> [
+                    Container {
                         color: Color::RED,
                         height: Val::Px(300.),
-                        ..default()}),
-                );
-                parent.spawn(
-                    UiContainerBundle::from(UiContainerProps {
+                    },
+                    Container {
                         color: Color::GREEN,
                         height: Val::Px(480.),
-                        ..default()}),
-                );
-                parent.spawn(
-                    UiContainerBundle::from(UiContainerProps {
+                    },
+                    Container {
                         color: Color::BLUE,
                         height: Val::Px(200.),
-                        ..default()}),
-                );
-            });
-        });
-    });
-}
-```
-
-<i>Desired design</i>
-
-```rust
-fn startup(mut commands: Commands) {
-    widget_tree!(&mut commands,
-        const Scaffold {
-            child: Center {
-                child: Row {
-                    main_axis_size: MainAxisSize::Max,
-                    main_axis_alignment: MainAxisAlignment::End,
-                    cross_axis_alignment: CrossAxisAlignment::End,
-                    children: [
-                        Container {
-                            color: Color::RED,
-                            width: Val::Px(300.),
-                        },
-                        Container {
-                            color: Color::GREEN,
-                            width: Val::Px(480.),
-                        },
-                        Container {
-                            color: Color::BLUE,
-                            width: Val::Px(200.),
-                        },
-                    ]
-                }
+                    },
+                ]
             }
         }
-    );
-}
-```
-
-<p>
-  <img src="./images/padding_example.png" width="400" title="hover text">
-</p>
-
-#### <u>Padding Example</u>
-```rust
-fn startup(mut commands: Commands) {
-    commands.spawn(
-        UiScaffoldBundle::default(),
-    ).with_children(|parent| {
-        parent.spawn(
-            UiContainerBundle::from_color_squared(Color::BLUE, Val::Px(500.)),
-        ).with_children(|parent| {
-            parent.spawn(
-                UiPaddingBundle::from_edge(UiEdgeInsets::all(Val::Px(80.))),
-            ).with_children(|parent| {
-                parent.spawn(UiContainerBundle::from_color_relative(Color::YELLOW));
-            });
-        });
-    });
-}
-```
-
-<i>Desired design</i>
-
-```rust
-fn startup(mut commands: Commands) {
-    widget_tree!(&mut commands,
-        const Scaffold {
-            child: Container {
-                color: Color::BLUE,
-                width: Val::Px(500.),
-                height: Val::Px(500.),
-                child: {
-                    Padding {
-                        padding: EdgeInsets::all(Val::Px(80.)),
-                        child: Container {
-                            color: Color::YELLOW,
-                        }
-                    }
-                }
-            }
-        }
-    );
-}
+    }
+);
 ```
 
 #### <u>Queries Example</u>
@@ -309,7 +201,7 @@ fn change_color(
 }
 ```
 
-<i>Desired design</i>
+<i>Desired design - Work in Progress</i>
 
 ```rust
 widget_tree!(&mut commands,
