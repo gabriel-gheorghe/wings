@@ -221,14 +221,12 @@ widget_tree!(&mut commands,
                     :Visibility use Collapsible {
                         :Row {
                             :[
-                                SizedBox {
-                                    width: Val::Px(50.),
-                                },
-                                Container use ColorTag,
-                                SizedBox {
-                                    width: Val::Px(50.),
-                                },
-                                Container use ColorTag,
+                                for i in 0..2 {
+                                    SizedBox {
+                                        width: Val::Px(50.),
+                                    },
+                                    Container use ColorTag,
+                                }
                             ]
                         }
                     }
