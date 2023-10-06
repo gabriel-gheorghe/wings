@@ -236,3 +236,29 @@ widget_tree!(&mut commands,
     }
 );
 ```
+
+### Some query tips:
+
+! When working with WingsUI, Do not access BevyUI components directly because of unexpected behaviour !
+Instead use built-in Queries !
+
+```rust
+// This is bad use
+fn update_color_bad(mut query: Query<(&mut BackgroundColor, With<UiContainer>)>) {
+    for (mut bg_color, _) in query.iter_mut() {
+        bg_color.0 = get_random_color_with_alpha();
+    }
+}
+
+// This is the most ergonomic way
+fn update_color_good(mut query: UiColorQuery<UiContainer>) {
+    query.set_random_with_alpha();
+}
+
+// You can do this if you want more control over entities
+fn update_color_also_good(mut query: UiColorQuery<UiContainer>) {
+    query.get_mut().for_each_mut(|(_, mut c_color, _)| {
+        c_color.0 = get_random_color_with_alpha();
+    });
+}
+```
