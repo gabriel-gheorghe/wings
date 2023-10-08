@@ -65,8 +65,8 @@ widget_tree!(
 ```rust
 widget_tree!(
     Scaffold {
-        child :Center {
-            child :Column {
+        child: Center {
+            child: Column {
                 main_axis_size: MainAxisSize::Max
                 main_axis_alignment: MainAxisAlignment::End
                 cross_axis_alignment: CrossAxisAlignment::End
