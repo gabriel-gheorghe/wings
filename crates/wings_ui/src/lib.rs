@@ -18,7 +18,7 @@ pub mod prelude {
     pub use crate::classes::alignment::UiAlignment;
     pub use crate::classes::edge_insets::UiEdgeInsets;
 
-    pub use crate::common_tags::UiCollapsible;
+    pub use crate::common_tags::Collapsible;
 
     pub use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
 

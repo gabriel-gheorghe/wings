@@ -32,9 +32,6 @@ macro_rules! define_ui_types {
 
         // EVENTS
         type PointerClick = UiPointerClick;
-
-        // TAGS
-        type Collapsible = UiCollapsible;
     }
 }
 

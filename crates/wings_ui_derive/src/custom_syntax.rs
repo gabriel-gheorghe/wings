@@ -25,26 +25,32 @@ pub fn ui_builder(input: TokenStream) -> TokenStream {
 }
 
 fn generate_widget(node: UiWidgetNode, spawn_name: &str) -> TokenStream {
-    let UiWidgetNode { widget_type, props, children } = node;
+    let spawn_fn = format_ident!("{}", spawn_name);
+    let UiWidgetNode { widget_type, tags, props, children } = node;
     let full_widget_type = format_ident!("Ui{}Bundle", widget_type.clone().unwrap());
     let mut ctor_codegen = quote! { #full_widget_type::default() };
+    let mut children_codegen = quote! {};
+    let mut tags_codegen = quote! {};
 
-    if let Some(props) = props {
-        if !props.is_empty() {
-            let mut props_content = quote! {};
-            for prop in props {
-                props_content.extend(quote! { #prop, });
-            }
-
-            let props_type = format_ident!("Ui{}Props", widget_type.clone().unwrap());
-
-            ctor_codegen = quote! {
-                #full_widget_type::from(#props_type { #props_content ..default() })
-            };
+    if !tags.is_empty() {
+        for tag in tags {
+            tags_codegen.extend(quote! { #tag, });
         }
     }
 
-    let mut child_codegen = quote! {};
+    if !props.is_empty() {
+        let mut props_codegen = quote! {};
+        for prop in props {
+            props_codegen.extend(quote! { #prop, });
+        }
+
+        let props_type = format_ident!("Ui{}Props", widget_type.clone().unwrap());
+
+        ctor_codegen = quote! {
+            #full_widget_type::from(#props_type { #props_codegen ..default() })
+        };
+    }
+
 
     if !children.is_empty() {
         let mut children_tokens = TokenStream::default();
@@ -52,21 +58,20 @@ fn generate_widget(node: UiWidgetNode, spawn_name: &str) -> TokenStream {
             children_tokens.extend(generate_widget(*child, "parent"));
         }
 
-        child_codegen = quote! {
+        children_codegen = quote! {
             .with_children(|parent| {
                 #children_tokens
             })
         };
     }
 
-    let spawn_fn = format_ident!("{}", spawn_name);
-
     let codegen = quote! {
         #spawn_fn.spawn(
             (
+                #tags_codegen
                 #ctor_codegen,
             ),
-        )#child_codegen;
+        )#children_codegen;
     };
 
     codegen.into()
@@ -87,7 +92,8 @@ impl Parse for UiWidgetBuilder {
             Ok(UiWidgetBuilder {
                 node: Some(UiWidgetNode {
                     widget_type: Some(widget_type),
-                    props: None,
+                    tags: Vec::default(),
+                    props: Vec::default(),
                     children: Vec::default(),
                 }),
             })
@@ -104,7 +110,8 @@ impl Parse for UiWidgetBuilder {
                 return Ok(UiWidgetBuilder {
                     node: Some(UiWidgetNode {
                         widget_type: Some(widget_type),
-                        props: None,
+                        tags: Vec::default(),
+                        props: Vec::default(),
                         children: Vec::default(),
                     }),
                 });
@@ -119,6 +126,7 @@ impl Parse for UiWidgetBuilder {
             Ok(UiWidgetBuilder {
                 node: Some(UiWidgetNode {
                     widget_type: Some(widget_type),
+                    tags: block.tags,
                     props: block.props,
                     children: block.children,
                 }),
@@ -130,7 +138,8 @@ impl Parse for UiWidgetBuilder {
 #[derive(Debug, PartialEq)]
 pub struct UiWidgetNode {
     pub widget_type: Option<Ident>,
-    pub props: Option<Vec<UiWidgetProp>>,
+    pub tags: Vec<Type>,
+    pub props: Vec<UiWidgetProp>,
     pub children: Vec<Box<UiWidgetNode>>,
 }
 
@@ -150,6 +159,7 @@ impl ToTokens for UiWidgetProp {
 
 impl Parse for UiWidgetNode {
     fn parse(input: ParseStream) -> Result<Self> {
+        let mut tags = Vec::new();
         let mut props = Vec::new();
         let mut children = Vec::new();
 
@@ -159,18 +169,21 @@ impl Parse for UiWidgetNode {
             if let Some(name) = name {
                 input.parse::<Token![:]>()?;
 
-                if name == "child" {
-                    let widget_type: Ident = input.parse()?;
+                if name == "tags" {
+                    let array_tag;
+                    let x = bracketed!(array_tag in input);
 
-                    if input.peek(Token![,]) {
-                        input.parse::<Token![,]>()?;
-                        children.push(Box::new(UiWidgetNode {
-                            widget_type: Some(widget_type),
-                            props: None,
-                            children: Vec::default(),
-                        }));
+                    if array_tag.is_empty() {
                         continue;
                     }
+
+                    let array_tag = array_tag.parse_terminated(Type::parse, Token![,]).unwrap();
+                    for element in array_tag {
+                        tags.push(element);
+                    }
+
+                } else if name == "child" {
+                    let widget_type: Ident = input.parse()?;
 
                     let block;
                     let x = braced!(block in input);
@@ -180,17 +193,13 @@ impl Parse for UiWidgetNode {
 
                     children.push(Box::new(UiWidgetNode {
                         widget_type: Some(widget_type),
+                        tags: child_node.tags,
                         props: child_node.props,
                         children: child_node.children,
                     }));
-
-                    if input.peek(Token![,]) {
-                        input.parse::<Token![,]>()?;
-                    }
                 } else if name == "children" {
                     let array_block;
                     let x = bracketed!(array_block in input);
-                    //let block_input: TokenStream = block.parse()?;
 
                     if array_block.is_empty() {
                         continue;
@@ -200,17 +209,6 @@ impl Parse for UiWidgetNode {
                         let child_widget_type: Option<Ident> = array_block.parse()?;
 
                         if let Some(child_widget_type) = child_widget_type {
-                            if array_block.peek(Token![,]) {
-                                array_block.parse::<Token![,]>()?;
-
-                                children.push(Box::new(UiWidgetNode {
-                                    widget_type: Some(child_widget_type),
-                                    props: None,
-                                    children: Vec::default(),
-                                }));
-                                continue;
-                            }
-
                             let block;
                             let x = braced!(block in array_block);
                             let block_input: TokenStream = block.parse()?;
@@ -219,32 +217,16 @@ impl Parse for UiWidgetNode {
 
                             children.push(Box::new(UiWidgetNode {
                                 widget_type: Some(child_widget_type),
+                                tags: child_node.tags,
                                 props: child_node.props,
                                 children: child_node.children,
                             }));
-
-                            if array_block.peek(Token![,]) {
-                                array_block.parse::<Token![,]>()?;
-                            }
                         } else {
                             break;
                         }
                     }
-
-                    /*let child_node = parse2::<UiWidgetNode>(block_input).unwrap();
-                    children.push(Box::new(UiWidgetNode {
-                        widget_type: Some(widget_type),
-                        props: child_node.props,
-                        children: child_node.children,
-                    }));
-
-                    if input.peek(Token![,]) {
-                        input.parse::<Token![,]>()?;
-                    }*/
                 } else {
                     let expr: Expr = input.parse()?;
-                    input.parse::<Token![,]>()?;
-
                     props.push(UiWidgetProp { name, expr });
                 }
             } else {
@@ -254,7 +236,8 @@ impl Parse for UiWidgetNode {
 
         Ok(UiWidgetNode {
             widget_type: None,
-            props: if props.is_empty() { None } else { Some(props) },
+            tags,
+            props,
             children,
         })
     }
