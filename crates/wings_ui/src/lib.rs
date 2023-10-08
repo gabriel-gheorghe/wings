@@ -13,6 +13,8 @@ pub mod platform {
 }
 
 pub mod prelude {
+    pub use crate::{edge_insets, define_ui_types};
+
     pub use crate::classes::alignment::UiAlignment;
     pub use crate::classes::edge_insets::UiEdgeInsets;
 

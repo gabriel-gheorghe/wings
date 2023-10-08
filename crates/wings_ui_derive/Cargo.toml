@@ -1,0 +1,17 @@
+[package]
+name = "wings_ui_derive"
+version = "0.1.0-dev"
+edition = "2021"
+description = ""
+repository = "https://github.com/thirdq/wings/"
+license-file = "LICENSE"
+keywords = ["wings"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "2.0.38", features = ["extra-traits", "full"] }
+quote = "*"
+proc-macro2 = "*"
+wings_ui = { path = "../wings_ui", version = "0.1.0-dev" }
