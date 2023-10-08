@@ -46,12 +46,15 @@ fn generate_widget(node: UiWidgetNode, spawn_name: &str) -> TokenStream {
 
     let mut child_codegen = quote! {};
 
-    if let Some(child) = children {
-        let child_tokens = generate_widget(*child, "parent");
+    if !children.is_empty() {
+        let mut children_tokens = TokenStream::default();
+        for child in children {
+            children_tokens.extend(generate_widget(*child, "parent"));
+        }
 
         child_codegen = quote! {
             .with_children(|parent| {
-                #child_tokens
+                #children_tokens
             })
         };
     }
@@ -85,7 +88,7 @@ impl Parse for UiWidgetBuilder {
                 node: Some(UiWidgetNode {
                     widget_type: Some(widget_type),
                     props: None,
-                    children: None,
+                    children: Vec::default(),
                 }),
             })
         } else {
@@ -102,7 +105,7 @@ impl Parse for UiWidgetBuilder {
                     node: Some(UiWidgetNode {
                         widget_type: Some(widget_type),
                         props: None,
-                        children: None,
+                        children: Vec::default(),
                     }),
                 });
             }
@@ -128,7 +131,7 @@ impl Parse for UiWidgetBuilder {
 pub struct UiWidgetNode {
     pub widget_type: Option<Ident>,
     pub props: Option<Vec<UiWidgetProp>>,
-    pub children: Option<Box<UiWidgetNode>>,
+    pub children: Vec<Box<UiWidgetNode>>,
 }
 
 #[derive(Debug, PartialEq)]
@@ -148,13 +151,12 @@ impl ToTokens for UiWidgetProp {
 impl Parse for UiWidgetNode {
     fn parse(input: ParseStream) -> Result<Self> {
         let mut props = Vec::new();
-        let mut children = None;
+        let mut children = Vec::new();
 
         loop {
             let name: Option<Ident> = input.parse()?;
 
-            if name.is_some() {
-                let name = name.unwrap();
+            if let Some(name) = name {
                 input.parse::<Token![:]>()?;
 
                 if name == "child" {
@@ -162,10 +164,10 @@ impl Parse for UiWidgetNode {
 
                     if input.peek(Token![,]) {
                         input.parse::<Token![,]>()?;
-                        children = Some(Box::new(UiWidgetNode {
+                        children.push(Box::new(UiWidgetNode {
                             widget_type: Some(widget_type),
                             props: None,
-                            children: None,
+                            children: Vec::default(),
                         }));
                         continue;
                     }
@@ -175,7 +177,8 @@ impl Parse for UiWidgetNode {
                     let block_input: TokenStream = block.parse()?;
 
                     let child_node = parse2::<UiWidgetNode>(block_input).unwrap();
-                    children = Some(Box::new(UiWidgetNode {
+
+                    children.push(Box::new(UiWidgetNode {
                         widget_type: Some(widget_type),
                         props: child_node.props,
                         children: child_node.children,
@@ -185,24 +188,51 @@ impl Parse for UiWidgetNode {
                         input.parse::<Token![,]>()?;
                     }
                 } else if name == "children" {
-                    let widget_type: Ident = input.parse()?;
+                    let array_block;
+                    let x = bracketed!(array_block in input);
+                    //let block_input: TokenStream = block.parse()?;
 
-                    if input.peek(Token![,]) {
-                        input.parse::<Token![,]>()?;
-                        children = Some(Box::new(UiWidgetNode {
-                            widget_type: Some(widget_type),
-                            props: None,
-                            children: None,
-                        }));
+                    if array_block.is_empty() {
                         continue;
                     }
 
-                    let block;
-                    let x = braced!(block in input);
-                    let block_input: TokenStream = block.parse()?;
+                    loop {
+                        let child_widget_type: Option<Ident> = array_block.parse()?;
 
-                    let child_node = parse2::<UiWidgetNode>(block_input).unwrap();
-                    children = Some(Box::new(UiWidgetNode {
+                        if let Some(child_widget_type) = child_widget_type {
+                            if array_block.peek(Token![,]) {
+                                array_block.parse::<Token![,]>()?;
+
+                                children.push(Box::new(UiWidgetNode {
+                                    widget_type: Some(child_widget_type),
+                                    props: None,
+                                    children: Vec::default(),
+                                }));
+                                continue;
+                            }
+
+                            let block;
+                            let x = braced!(block in array_block);
+                            let block_input: TokenStream = block.parse()?;
+
+                            let child_node = parse2::<UiWidgetNode>(block_input).unwrap();
+
+                            children.push(Box::new(UiWidgetNode {
+                                widget_type: Some(child_widget_type),
+                                props: child_node.props,
+                                children: child_node.children,
+                            }));
+
+                            if array_block.peek(Token![,]) {
+                                array_block.parse::<Token![,]>()?;
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+
+                    /*let child_node = parse2::<UiWidgetNode>(block_input).unwrap();
+                    children.push(Box::new(UiWidgetNode {
                         widget_type: Some(widget_type),
                         props: child_node.props,
                         children: child_node.children,
@@ -210,7 +240,7 @@ impl Parse for UiWidgetNode {
 
                     if input.peek(Token![,]) {
                         input.parse::<Token![,]>()?;
-                    }
+                    }*/
                 } else {
                     let expr: Expr = input.parse()?;
                     input.parse::<Token![,]>()?;
