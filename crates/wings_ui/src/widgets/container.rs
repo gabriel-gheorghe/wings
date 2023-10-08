@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use crate::prelude::UiEdgeInsets;
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
@@ -9,6 +10,8 @@ pub struct UiContainerProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
+    pub margin: UiEdgeInsets,
+    pub padding: UiEdgeInsets,
 }
 
 impl Default for UiContainerProps {
@@ -18,6 +21,8 @@ impl Default for UiContainerProps {
             width: Val::Px(100.0),
             height: Val::Px(100.0),
             color: Color::BEIGE,
+            margin: UiEdgeInsets::default(),
+            padding: UiEdgeInsets::default(),
         }
     }
 }
@@ -44,6 +49,18 @@ impl UiContainerBundle {
                 style: Style {
                     width: props.width,
                     height: props.height,
+                    margin: UiRect::new(
+                        props.margin.left,
+                        props.margin.right,
+                        props.margin.top,
+                        props.margin.bottom,
+                    ),
+                    padding: UiRect::new(
+                        props.padding.left,
+                        props.padding.right,
+                        props.padding.top,
+                        props.padding.bottom,
+                    ),
                     ..default()
                 },
                 ..default()
@@ -130,6 +147,31 @@ impl UiContainerBundle {
             color,
             width: Val::Percent(100.),
             height: Val::Percent(100.),
+            ..default()
+        })
+    }
+
+    #[inline]
+    pub fn from_margin(margin: UiEdgeInsets) -> Self {
+        Self::from(UiContainerProps {
+            margin,
+            ..default()
+        })
+    }
+
+    #[inline]
+    pub fn from_padding(padding: UiEdgeInsets) -> Self {
+        Self::from(UiContainerProps {
+            padding,
+            ..default()
+        })
+    }
+
+    #[inline]
+    pub fn from_margin_padding(margin: UiEdgeInsets, padding: UiEdgeInsets) -> Self {
+        Self::from(UiContainerProps {
+            margin,
+            padding,
             ..default()
         })
     }

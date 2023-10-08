@@ -151,35 +151,33 @@ fn startup(mut commands: Commands) {
 
     widget_tree! {
         Scaffold {
-            child: Padding {
-                padding: edge_insets_only! {
+            child: Container {
+                color: Color::BLACK
+                width: val![500. px]
+                height: val![500. px]
+                margin: edge_insets_only! {
                     left: val![100. px],
                     top: val![50. px],
                 }
-                child: Container {
-                    color: Color::BLACK
-                    width: val![500. px]
-                    height: val![500. px]
-                    child: Center {
-                        child: Column {
-                            children: [
-                                Container { color: Color::RED }
-                                SizedBox { height: val![10. px] }
-                                Visibility {
-                                    tags: [Collapsible]
-                                    child: Column {
-                                        children: [
-                                            Container {
-                                                tags: [ColorTag]
-                                                color: Color::ORANGE
-                                            }
-                                            SizedBox { height: val![10. px] }
-                                        ]
-                                    }
+                child: Center {
+                    child: Column {
+                        children: [
+                            Container { color: Color::RED }
+                            SizedBox { height: val![10. px] }
+                            Visibility {
+                                tags: [Collapsible]
+                                child: Column {
+                                    children: [
+                                        Container {
+                                            tags: [ColorTag]
+                                            color: Color::ORANGE
+                                        }
+                                        SizedBox { height: val![10. px] }
+                                    ]
                                 }
-                                Container { color: Color::DARK_GREEN }
-                            ]
-                        }
+                            }
+                            Container { color: Color::DARK_GREEN }
+                        ]
                     }
                 }
             }
