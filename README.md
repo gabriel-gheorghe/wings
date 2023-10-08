@@ -37,18 +37,18 @@ This design is inspired from Flutter.
 </p>
 
 ```rust
-widget_tree!(&mut commands,
+widget_tree!(
     Scaffold {
-        :Container {
-            color: Color::BLUE,
-            width: Px(500.),
-            height: Px(500.),
-            :Padding {
-                padding: EdgeInsets::all(Px(80.)),
-                :Container {
-                    color: Color::YELLOW,
-                    width: Percent(100.),
-                    height: Percent(100.),
+        child: Container {
+            color: Color::BLUE
+            width: Px(500.)
+            height: Px(500.)
+            child: Padding {
+                padding: EdgeInsets::all(Px(80.))
+                child: Container {
+                    color: Color::YELLOW
+                    width: Percent(100.)
+                    height: Percent(100.)
                 }
             }
         }
@@ -63,26 +63,26 @@ widget_tree!(&mut commands,
 </p>
 
 ```rust
-widget_tree!(&mut commands,
+widget_tree!(
     Scaffold {
-        :Center {
-            :Column {
-                main_axis_size: MainAxisSize::Max,
-                main_axis_alignment: MainAxisAlignment::End,
-                cross_axis_alignment: CrossAxisAlignment::End,
-                :[
+        child :Center {
+            child :Column {
+                main_axis_size: MainAxisSize::Max
+                main_axis_alignment: MainAxisAlignment::End
+                cross_axis_alignment: CrossAxisAlignment::End
+                children: [
                     Container {
-                        color: Color::RED,
-                        width: Px(300.),
-                    },
+                        color: Color::RED
+                        width: Px(300.)
+                    }
                     Container {
-                        color: Color::GREEN,
-                        width: Px(480.),
-                    },
+                        color: Color::GREEN
+                        width: Px(480.)
+                    }
                     Container {
-                        color: Color::BLUE,
-                        width: Px(200.),
-                    },
+                        color: Color::BLUE
+                        width: Px(200.)
+                    }
                 ]
             }
         }
@@ -97,26 +97,26 @@ widget_tree!(&mut commands,
 </p>
 
 ```rust
-widget_tree!(&mut commands,
+widget_tree!(
     Scaffold {
-        :Center {
-            :Row {
-                main_axis_size: MainAxisSize::Max,
-                main_axis_alignment: MainAxisAlignment::End,
-                cross_axis_alignment: CrossAxisAlignment::End,
-                :[
+        child: Center {
+            child: Row {
+                main_axis_size: MainAxisSize::Max
+                main_axis_alignment: MainAxisAlignment::End
+                cross_axis_alignment: CrossAxisAlignment::End
+                children: [
                     Container {
-                        color: Color::RED,
-                        height: Px(300.),
-                    },
+                        color: Color::RED
+                        height: Px(300.)
+                    }
                     Container {
-                        color: Color::GREEN,
-                        height: Px(480.),
-                    },
+                        color: Color::GREEN
+                        height: Px(480.)
+                    }
                     Container {
-                        color: Color::BLUE,
-                        height: Px(200.),
-                    },
+                        color: Color::BLUE
+                        height: Px(200.)
+                    }
                 ]
             }
         }
