@@ -41,14 +41,14 @@ widget_tree!(
     Scaffold {
         child: Container {
             color: Color::BLUE
-            width: Px(500.)
-            height: Px(500.)
+            width: val![500. px]
+            height: val![500. px]
             child: Padding {
-                padding: EdgeInsets::all(Px(80.))
+                padding: EdgeInsets::all(val![80. px])
                 child: Container {
                     color: Color::YELLOW
-                    width: Percent(100.)
-                    height: Percent(100.)
+                    width: val![100. %]
+                    height: val![100. %]
                 }
             }
         }
@@ -73,15 +73,15 @@ widget_tree!(
                 children: [
                     Container {
                         color: Color::RED
-                        width: Px(300.)
+                        width: val![300. px]
                     }
                     Container {
                         color: Color::GREEN
-                        width: Px(480.)
+                        width: val![480. px]
                     }
                     Container {
                         color: Color::BLUE
-                        width: Px(200.)
+                        width: val![200. px]
                     }
                 ]
             }
@@ -107,15 +107,15 @@ widget_tree!(
                 children: [
                     Container {
                         color: Color::RED
-                        height: Px(300.)
+                        height: val![300. px]
                     }
                     Container {
                         color: Color::GREEN
-                        height: Px(480.)
+                        height: val![480. px]
                     }
                     Container {
                         color: Color::BLUE
-                        height: Px(200.)
+                        height: val![200. px]
                     }
                 ]
             }
@@ -124,11 +124,11 @@ widget_tree!(
 );
 ```
 
+#### <u>Queries Example</u>
+
 <p>
   <img src="./images/query_example.gif" width="400" title="hover text">
 </p>
-
-#### <u>Queries Example</u>
 
 ```rust
 use bevy::prelude::*;
@@ -152,16 +152,19 @@ fn startup(mut commands: Commands) {
     widget_tree! {
         Scaffold {
             child: Padding {
-                padding: edge_insets_only!(left: Px(100.), top: Px(50.))
+                padding: edge_insets_only! {
+                    left: val![100. px],
+                    top: val![50. px],
+                }
                 child: Container {
                     color: Color::BLACK
-                    width: Px(500.)
-                    height: Px(500.)
+                    width: val![500. px]
+                    height: val![500. px]
                     child: Center {
                         child: Column {
                             children: [
                                 Container { color: Color::RED }
-                                SizedBox { height: Px(10.) }
+                                SizedBox { height: val![10. px] }
                                 Visibility {
                                     tags: [Collapsible]
                                     child: Column {
@@ -170,7 +173,7 @@ fn startup(mut commands: Commands) {
                                                 tags: [ColorTag]
                                                 color: Color::ORANGE
                                             }
-                                            SizedBox { height: Px(10.) }
+                                            SizedBox { height: val![10. px] }
                                         ]
                                     }
                                 }
@@ -201,7 +204,7 @@ fn change_color(
 }
 ```
 
-### Some query tips:
+### Some queries tips:
 
 ! When working with WingsUI, Do not access BevyUI components directly because of unexpected behaviour !
 Instead use built-in Queries !

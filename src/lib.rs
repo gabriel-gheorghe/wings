@@ -9,6 +9,6 @@ pub mod prelude {
 
     pub use wings_ui::prelude::*;
     pub use wings_ui_derive::widget_tree;
-    pub use wings_ui::{define_ui_types, edge_insets};
+    pub use wings_ui::{define_ui_types, edge_insets_only, edge_insets_symmetric, val};
     pub use wings_utils::prelude::*;
 }
