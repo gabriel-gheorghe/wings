@@ -41,14 +41,14 @@ widget_tree!(&mut commands,
     Scaffold {
         :Container {
             color: Color::BLUE,
-            width: Val::Px(500.),
-            height: Val::Px(500.),
+            width: Px(500.),
+            height: Px(500.),
             :Padding {
-                padding: EdgeInsets::all(Val::Px(80.)),
+                padding: EdgeInsets::all(Px(80.)),
                 :Container {
                     color: Color::YELLOW,
-                    width: Val::Percent(100.),
-                    height: Val::Percent(100.),
+                    width: Percent(100.),
+                    height: Percent(100.),
                 }
             }
         }
@@ -73,15 +73,15 @@ widget_tree!(&mut commands,
                 :[
                     Container {
                         color: Color::RED,
-                        width: Val::Px(300.),
+                        width: Px(300.),
                     },
                     Container {
                         color: Color::GREEN,
-                        width: Val::Px(480.),
+                        width: Px(480.),
                     },
                     Container {
                         color: Color::BLUE,
-                        width: Val::Px(200.),
+                        width: Px(200.),
                     },
                 ]
             }
@@ -107,15 +107,15 @@ widget_tree!(&mut commands,
                 :[
                     Container {
                         color: Color::RED,
-                        height: Val::Px(300.),
+                        height: Px(300.),
                     },
                     Container {
                         color: Color::GREEN,
-                        height: Val::Px(480.),
+                        height: Px(480.),
                     },
                     Container {
                         color: Color::BLUE,
-                        height: Val::Px(200.),
+                        height: Px(200.),
                     },
                 ]
             }
@@ -152,16 +152,16 @@ fn startup(mut commands: Commands) {
     widget_tree! {
         Scaffold {
             child: Padding {
-                padding: edge_insets_only!(left: Val::Px(100.), top: Val::Px(50.))
+                padding: edge_insets_only!(left: Px(100.), top: Px(50.))
                 child: Container {
                     color: Color::BLACK
-                    width: Val::Px(500.)
-                    height: Val::Px(500.)
+                    width: Px(500.)
+                    height: Px(500.)
                     child: Center {
                         child: Column {
                             children: [
                                 Container { color: Color::RED }
-                                SizedBox { height: Val::Px(10.) }
+                                SizedBox { height: Px(10.) }
                                 Visibility {
                                     tags: [Collapsible]
                                     child: Column {
@@ -170,7 +170,7 @@ fn startup(mut commands: Commands) {
                                                 tags: [ColorTag]
                                                 color: Color::ORANGE
                                             }
-                                            SizedBox { height: Val::Px(10.) }
+                                            SizedBox { height: Px(10.) }
                                         ]
                                     }
                                 }

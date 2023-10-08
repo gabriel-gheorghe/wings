@@ -1,8 +1,14 @@
+use bevy::ui::Val;
 #[allow(unused_macros)]
 
 #[macro_export]
 macro_rules! define_ui_types {
     () => {
+        // COMMON
+        use bevy::ui::Val::Auto;
+        use bevy::ui::Val::Percent;
+        use bevy::ui::Val::Px;
+
         // WIDGETS
         type Scaffold = UiScaffoldBundle;
         type Container = UiContainerBundle;
