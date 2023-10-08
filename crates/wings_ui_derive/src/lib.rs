@@ -5,6 +5,6 @@ use proc_macro::TokenStream;
 mod custom_syntax;
 
 #[proc_macro]
-pub fn ui_builder(input: TokenStream) -> TokenStream {
-    custom_syntax::ui_builder(input.into()).into()
+pub fn widget_tree(input: TokenStream) -> TokenStream {
+    custom_syntax::widget_tree(input.into()).into()
 }

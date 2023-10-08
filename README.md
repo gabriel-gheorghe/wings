@@ -124,6 +124,10 @@ widget_tree!(&mut commands,
 );
 ```
 
+<p>
+  <img src="./images/query_example.gif" width="400" title="hover text">
+</p>
+
 #### <u>Queries Example</u>
 
 ```rust
@@ -145,53 +149,45 @@ pub struct ColorTag;
 fn startup(mut commands: Commands) {
     commands.spawn(Camera2dBundle::default());
 
-    let first_container_props = UiContainerProps {
-        width: Val::Px(50.0),
-        height: Val::Px(50.0),
-        color: Color::RED,
-        ..default()
-    };
-
-    commands.spawn(
-        UiScaffoldBundle::default(),
-    ).with_children(|parent| {
-        parent.spawn(
-            UiCenterBundle::default(),
-        ).with_children(|parent| {
-            parent.spawn(
-                UiRowBundle::default(),
-            ).with_children(|parent| {
-                parent.spawn(UiContainerBundle::from(first_container_props));
-                parent.spawn((
-                    UiCollapsible,
-                    UiVisibilityBundle::default(),
-                )).with_children(|parent| {
-                    parent.spawn(UiRowBundle::default()).with_children(|parent| {
-                        parent.spawn(UiSizedBoxBundle::from_width(Val::Px(50.0)));
-                        parent.spawn(
-                            (
-                                ColorTag,
-                                UiContainerBundle::default(),
-                            ),
-                        );
-                        parent.spawn(UiSizedBoxBundle::from_width(Val::Px(50.0)));
-                        parent.spawn(
-                            (
-                                ColorTag,
-                                UiContainerBundle::default(),
-                            ),
-                        );
-                    });
-                });
-            });
-        });
-    });
+    widget_tree! {
+        Scaffold {
+            child: Padding {
+                padding: edge_insets_only!(left: Val::Px(100.), top: Val::Px(50.))
+                child: Container {
+                    color: Color::BLACK
+                    width: Val::Px(500.)
+                    height: Val::Px(500.)
+                    child: Center {
+                        child: Column {
+                            children: [
+                                Container { color: Color::RED }
+                                SizedBox { height: Val::Px(10.) }
+                                Visibility {
+                                    tags: [Collapsible]
+                                    child: Column {
+                                        children: [
+                                            Container {
+                                                tags: [ColorTag]
+                                                color: Color::ORANGE
+                                            }
+                                            SizedBox { height: Val::Px(10.) }
+                                        ]
+                                    }
+                                }
+                                Container { color: Color::DARK_GREEN }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 fn change_color(
     keyboard_input: Res<Input<KeyCode>>,
     mut color_query: UiColorQuery<ColorTag>,
-    mut visibility_query: UiVisibilityQuery<UiCollapsible>,
+    mut visibility_query: UiVisibilityQuery<Collapsible>,
 ) {
     if keyboard_input.just_pressed(KeyCode::Space) {
         color_query.set_random();
@@ -203,42 +199,6 @@ fn change_color(
         visibility_query.set(true);
     }
 }
-```
-
-<i>Desired design - Work in Progress</i>
-
-```rust
-widget_tree!(&mut commands,
-    in {
-        let first_container = Container {
-            width: Val::Px(50.0),
-            height: Val::Px(50.0),
-            color: Color::RED,
-        };
-    }
-    
-    Scaffold {
-        :Center {
-            :Row {
-                :[
-                    first_container,
-                    :Visibility use Collapsible {
-                        :Row {
-                            :[
-                                for i in 0..2 {
-                                    SizedBox {
-                                        width: Val::Px(50.),
-                                    },
-                                    Container use ColorTag,
-                                },
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
-    }
-);
 ```
 
 ### Some query tips:

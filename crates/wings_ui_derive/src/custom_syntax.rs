@@ -13,7 +13,7 @@ use syn::{parse::{Parse, ParseBuffer, ParseStream}, parse2, punctuated::Punctuat
           Expr, GenericArgument, GenericParam, Generics, Ident, Result, Token, Type, Visibility,
           WhereClause, token, braced, bracketed, parenthesized};
 
-pub fn ui_builder(input: TokenStream) -> TokenStream {
+pub(crate) fn widget_tree(input: TokenStream) -> TokenStream {
     let mut codegen = quote! { define_ui_types!(); };
     let widget = parse2::<UiWidgetBuilder>(input).unwrap();
 
