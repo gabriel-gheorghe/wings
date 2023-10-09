@@ -28,9 +28,13 @@ This design is inspired from Flutter.
 4. LayoutVisibility
 5. Text <i>(text, font_size, color)</i>
 
-### Known limitations
-1. Widget Tree is not scalable. Consider moving to proc macros.
-2. Currently, you cannot create your own widgets.
+### Known limitations / Work in progress
+1. Currently, you cannot create your own widgets
+2. For/If statements inside widget tree are missing
+3. Missing a lot of useful widgets such as ProgressIndicator, CheckBox, RadioButton, ToggleButton, Dropdown, TextEdit, SelectableText, ScrollArea, ListView, AppBar, Icon, Stack, Grid, Wrap and so on..
+4. Animations capability
+5. Alignment values have issues. Consider adding a system to process them
+6. Events are not implemented properly, consider adding GestureDetector and Focus widgets
 
 #### <u>Padding Example</u>
 
