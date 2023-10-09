@@ -2,10 +2,10 @@ use bevy::prelude::*;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiButton;
+pub struct FlatButtonWidget;
 
 #[derive(Copy, Clone, Debug)]
-pub struct UiButtonProps {
+pub struct FlatButtonProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
@@ -13,7 +13,7 @@ pub struct UiButtonProps {
     pub border_color: Color,
 }
 
-impl Default for UiButtonProps {
+impl Default for FlatButtonProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -27,26 +27,26 @@ impl Default for UiButtonProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiButtonBundle {
+pub struct FlatButtonBundle {
     pub child: WidgetBundle,
     pub button: Button,
     pub interaction: Interaction,
     pub background_color: BackgroundColor,
     pub border_color: BorderColor,
     pub image: UiImage,
-    internal_tag: UiButton,
+    internal: FlatButtonWidget,
 }
 
-impl Default for UiButtonBundle {
+impl Default for FlatButtonBundle {
     #[inline]
     fn default() -> Self {
-        UiButtonBundle::from(UiButtonProps::default())
+        FlatButtonBundle::from(FlatButtonProps::default())
     }
 }
 
-impl UiButtonBundle {
+impl FlatButtonBundle {
     #[inline]
-    pub fn from(props: UiButtonProps) -> Self {
+    pub fn from(props: FlatButtonProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -64,13 +64,13 @@ impl UiButtonBundle {
             background_color: BackgroundColor::from(props.color),
             border_color: BorderColor(props.border_color),
             image: Default::default(),
-            internal_tag: UiButton::default(),
+            internal: FlatButtonWidget::default(),
         }
     }
 
     #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
-        Self::from(UiButtonProps {
+        Self::from(FlatButtonProps {
             width,
             height,
             ..default()
@@ -79,7 +79,7 @@ impl UiButtonBundle {
 
     #[inline]
     pub fn from_size_splat(val: Val) -> Self {
-        Self::from(UiButtonProps {
+        Self::from(FlatButtonProps {
             width: val,
             height: val,
             ..default()
@@ -88,7 +88,7 @@ impl UiButtonBundle {
 
     #[inline]
     pub fn from_width(width: Val) -> Self {
-        Self::from(UiButtonProps {
+        Self::from(FlatButtonProps {
             width,
             ..default()
         })
@@ -96,7 +96,7 @@ impl UiButtonBundle {
 
     #[inline]
     pub fn from_height(height: Val) -> Self {
-        Self::from(UiButtonProps {
+        Self::from(FlatButtonProps {
             height,
             ..default()
         })
@@ -104,7 +104,7 @@ impl UiButtonBundle {
 
     #[inline]
     pub fn from_color(color: Color) -> Self {
-        Self::from(UiButtonProps {
+        Self::from(FlatButtonProps {
             color,
             ..default()
         })
@@ -112,7 +112,7 @@ impl UiButtonBundle {
 
     #[inline]
     pub fn from_border(border: UiRect, border_color: Color) -> Self {
-        Self::from(UiButtonProps {
+        Self::from(FlatButtonProps {
             border,
             border_color,
             ..default()

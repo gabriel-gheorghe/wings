@@ -8,7 +8,7 @@ This design is inspired from Flutter.
 3. SizedBox
 4. Align
 5. Center
-6. Button
+6. FlatButton
 7. Column
 8. Row
 9. ConstrainedWidth

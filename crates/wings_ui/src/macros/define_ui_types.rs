@@ -14,7 +14,7 @@ macro_rules! define_ui_types {
         type SizedBox = UiSizedBoxBundle;
         type Align = UiAlignBundle;
         type Center = UiCenterBundle;
-        type Button = UiButtonBundle;
+        type FlatButton = FlatButtonBundle;
         type Column = UiColumnBundle;
         type Row = UiRowBundle;
         type ConstrainedWidth = UiConstrainedWidthBundle;

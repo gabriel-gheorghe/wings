@@ -38,7 +38,7 @@ pub mod prelude {
     pub use crate::widgets::WidgetBundle;
 
     pub use crate::widgets::alignment::{UiAlign, UiAlignBundle, UiAlignProps, UiCenterBundle};
-    pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};
+    pub use crate::widgets::button::{FlatButtonBundle, FlatButtonProps, FlatButtonWidget};
     pub use crate::widgets::constrained::{
         UiConstrainedHeight, UiConstrainedHeightBundle,
         UiConstrainedWidth, UiConstrainedWidthBundle,
