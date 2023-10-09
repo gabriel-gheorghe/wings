@@ -193,13 +193,13 @@ fn change_color(
     mut visibility_query: UiVisibilityQuery<Collapsible>,
 ) {
     if keyboard_input.just_pressed(KeyCode::Space) {
-        color_query.set_random();
+        color_query.set_random_color();
     }
 
     if keyboard_input.just_pressed(KeyCode::Z) {
-        visibility_query.set(false);
+        visibility_query.set_visible(false);
     } else if keyboard_input.just_pressed(KeyCode::X) {
-        visibility_query.set(true);
+        visibility_query.set_visible(true);
     }
 }
 ```
@@ -226,6 +226,6 @@ fn update_color_also_bad(mut query: UiColorQuery<UiContainer>) {
 
 // This is the most ergonomic way
 fn update_color_good(mut query: UiColorQuery<UiContainer>) {
-    query.set_random_with_alpha();
+    query.set_random_color_with_alpha();
 }
 ```
