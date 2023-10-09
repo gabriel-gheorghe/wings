@@ -176,4 +176,14 @@ impl UiEdgeInsets {
             bottom: Val::Px(padding.bottom / pixel_ratio),
         }
     }
+
+    #[inline]
+    pub fn to_ui_rect(&self) -> UiRect {
+        UiRect {
+            left: self.left,
+            top: self.top,
+            right: self.right,
+            bottom: self.bottom,
+        }
+    }
 }

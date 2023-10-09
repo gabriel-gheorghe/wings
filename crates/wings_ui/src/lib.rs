@@ -16,6 +16,7 @@ pub mod prelude {
     pub use crate::{edge_insets_only, edge_insets_symmetric, define_ui_types, val, str};
 
     pub use crate::classes::alignment::UiAlignment;
+    pub use crate::classes::decoration::{BoxDecoration, Border, BorderSide, BorderStyle};
     pub use crate::classes::edge_insets::UiEdgeInsets;
 
     pub use crate::common_tags::Collapsible;

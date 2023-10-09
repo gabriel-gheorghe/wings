@@ -31,12 +31,7 @@ impl UiPaddingBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height: Val::Percent(100.),
-                    padding: UiRect::new(
-                        props.padding.left,
-                        props.padding.right,
-                        props.padding.top,
-                        props.padding.bottom,
-                    ),
+                    padding: props.padding.to_ui_rect(),
                     ..default()
                 },
                 ..default()

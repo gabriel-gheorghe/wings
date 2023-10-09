@@ -1,15 +1,18 @@
 use bevy::prelude::*;
+use wings_utils::color::get_transparent_color;
+use crate::classes::decoration::BoxDecoration;
 use crate::prelude::UiEdgeInsets;
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiContainer;
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Clone, Debug)]
 pub struct UiContainerProps {
     pub width: Val,
     pub height: Val,
-    pub color: Color,
+    pub color: Option<Color>,
+    pub decoration: Option<BoxDecoration>,
     pub margin: UiEdgeInsets,
     pub padding: UiEdgeInsets,
 }
@@ -20,7 +23,8 @@ impl Default for UiContainerProps {
         Self {
             width: Val::Px(100.0),
             height: Val::Px(100.0),
-            color: Color::BEIGE,
+            color: None,
+            decoration: None,
             margin: UiEdgeInsets::default(),
             padding: UiEdgeInsets::default(),
         }
@@ -31,6 +35,8 @@ impl Default for UiContainerProps {
 pub struct UiContainerBundle {
     pub child: UiWidgetBundle,
     pub background_color: BackgroundColor,
+    pub border_color: BorderColor,
+    pub image: UiImage,
     internal_tag: UiContainer,
 }
 
@@ -44,28 +50,41 @@ impl Default for UiContainerBundle {
 impl UiContainerBundle {
     #[inline]
     pub fn from(props: UiContainerProps) -> Self {
+        assert!(props.color.is_none() || props.decoration.is_none(),
+            "Cannot provide both a color and a decoration.
+            To provide both, use the color from the decoration."
+        );
+
         Self {
             child: UiWidgetBundle {
                 style: Style {
                     width: props.width,
                     height: props.height,
-                    margin: UiRect::new(
-                        props.margin.left,
-                        props.margin.right,
-                        props.margin.top,
-                        props.margin.bottom,
-                    ),
-                    padding: UiRect::new(
-                        props.padding.left,
-                        props.padding.right,
-                        props.padding.top,
-                        props.padding.bottom,
-                    ),
+                    margin: props.margin.to_ui_rect(),
+                    padding: props.padding.to_ui_rect(),
+                    border: if props.decoration.is_some() {
+                        props.decoration.clone().unwrap().border.to_ui_rect()
+                    } else {
+                        UiRect::default()
+                    },
                     ..default()
                 },
                 ..default()
             },
-            background_color: BackgroundColor::from(props.color),
+            background_color: BackgroundColor(if props.decoration.is_some() {
+                props.decoration.clone().unwrap().color
+            } else {
+                match props.color {
+                    Some(color) => color,
+                    None => Color::BISQUE,
+                }
+            }),
+            border_color: if props.decoration.is_some() {
+                BorderColor::from(props.decoration.unwrap().border.bottom.color) // todo. all border colors
+            } else {
+                BorderColor::from(get_transparent_color())
+            },
+            image: Default::default(),
             internal_tag: UiContainer::default(),
         }
     }
@@ -116,7 +135,7 @@ impl UiContainerBundle {
     #[inline]
     pub fn from_color(color: Color) -> Self {
         Self::from(UiContainerProps {
-            color,
+            color: Some(color),
             ..default()
         })
     }
@@ -124,7 +143,7 @@ impl UiContainerBundle {
     #[inline]
     pub fn from_color_sized(color: Color, width: Val, height: Val) -> Self {
         Self::from(UiContainerProps {
-            color,
+            color: Some(color),
             width,
             height,
             ..default()
@@ -134,7 +153,7 @@ impl UiContainerBundle {
     #[inline]
     pub fn from_color_squared(color: Color, size: Val) -> Self {
         Self::from(UiContainerProps {
-            color,
+            color: Some(color),
             width: size,
             height: size,
             ..default()
@@ -144,7 +163,7 @@ impl UiContainerBundle {
     #[inline]
     pub fn from_color_relative(color: Color) -> Self {
         Self::from(UiContainerProps {
-            color,
+            color: Some(color),
             width: Val::Percent(100.),
             height: Val::Percent(100.),
             ..default()
@@ -172,6 +191,14 @@ impl UiContainerBundle {
         Self::from(UiContainerProps {
             margin,
             padding,
+            ..default()
+        })
+    }
+
+    #[inline]
+    pub fn from_decoration(decoration: BoxDecoration) -> Self {
+        Self::from(UiContainerProps {
+            decoration: Some(decoration),
             ..default()
         })
     }

@@ -46,13 +46,13 @@ This design is inspired from Flutter.
 widget_tree!(
     Scaffold {
         child: Container {
-            color: Color::BLUE
+            color: Some(Color::BLUE)
             width: val![500. px]
             height: val![500. px]
             child: Padding {
                 padding: EdgeInsets::all(val![80. px])
                 child: Container {
-                    color: Color::YELLOW
+                    color: Some(Color::YELLOW)
                     width: val![100. %]
                     height: val![100. %]
                 }
@@ -78,15 +78,15 @@ widget_tree!(
                 cross_axis_alignment: CrossAxisAlignment::End
                 children: [
                     Container {
-                        color: Color::RED
+                        color: Some(Color::RED)
                         width: val![300. px]
                     }
                     Container {
-                        color: Color::GREEN
+                        color: Some(Color::GREEN)
                         width: val![480. px]
                     }
                     Container {
-                        color: Color::BLUE
+                        color: Some(Color::BLUE)
                         width: val![200. px]
                     }
                 ]
@@ -112,15 +112,15 @@ widget_tree!(
                 cross_axis_alignment: CrossAxisAlignment::End
                 children: [
                     Container {
-                        color: Color::RED
+                        color: Some(Color::RED)
                         height: val![300. px]
                     }
                     Container {
-                        color: Color::GREEN
+                        color: Some(Color::GREEN)
                         height: val![480. px]
                     }
                     Container {
-                        color: Color::BLUE
+                        color: Some(Color::BLUE)
                         height: val![200. px]
                     }
                 ]
@@ -158,7 +158,11 @@ fn startup(mut commands: Commands) {
     widget_tree! {
         Scaffold {
             child: Container {
-                color: Color::BLACK
+                decoration: Some(BoxDecoration {
+                    color: Color::BLACK,
+                    border: Border::all(BorderSide::from_width_color(val![15. px], Color::SILVER)),
+                    ..default()
+                })
                 width: val![500. px]
                 height: val![500. px]
                 margin: edge_insets_only! {
@@ -168,7 +172,7 @@ fn startup(mut commands: Commands) {
                 child: Center {
                     child: Column {
                         children: [
-                            Container { color: Color::RED }
+                            Container { color: Some(Color::RED) }
                             SizedBox { height: val![10. px] }
                             Visibility {
                                 tags: [Collapsible]
@@ -176,13 +180,13 @@ fn startup(mut commands: Commands) {
                                     children: [
                                         Container {
                                             tags: [ColorTag]
-                                            color: Color::ORANGE
+                                            color: Some(Color::ORANGE)
                                         }
                                         SizedBox { height: val![10. px] }
                                     ]
                                 }
                             }
-                            Container { color: Color::DARK_GREEN }
+                            Container { color: Some(Color::DARK_GREEN) }
                         ]
                     }
                 }

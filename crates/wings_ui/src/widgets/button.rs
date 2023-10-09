@@ -109,4 +109,13 @@ impl UiButtonBundle {
             ..default()
         })
     }
+
+    #[inline]
+    pub fn from_border(border: UiRect, border_color: Color) -> Self {
+        Self::from(UiButtonProps {
+            border,
+            border_color,
+            ..default()
+        })
+    }
 }
