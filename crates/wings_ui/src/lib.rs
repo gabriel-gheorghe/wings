@@ -31,6 +31,7 @@ pub mod prelude {
 
     pub use crate::queries::color::UiColorQuery;
     pub use crate::queries::size::UiSizeQuery;
+    pub use crate::queries::text::UiTextQuery;
     pub use crate::queries::visibility::{UiLayoutVisibilityQuery, UiVisibilityQuery};
 
     pub use crate::widgets::UiWidgetBundle;
