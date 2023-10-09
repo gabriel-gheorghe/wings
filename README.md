@@ -22,10 +22,11 @@ This design is inspired from Flutter.
 
 ### Built-in Queries
 
-1. Color
-2. Size
+1. Color <i>(background_color)</i>
+2. Size <i>(width + height)</i>
 3. Visibility
 4. LayoutVisibility
+5. Text <i>(text, font_size, color)</i>
 
 ### Known limitations
 1. Widget Tree is not scalable. Consider moving to proc macros.
