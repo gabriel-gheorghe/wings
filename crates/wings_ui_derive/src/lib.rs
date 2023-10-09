@@ -2,9 +2,9 @@ extern crate proc_macro;
 
 use proc_macro::TokenStream;
 
-mod custom_syntax;
+mod widget_tree;
 
 #[proc_macro]
 pub fn widget_tree(input: TokenStream) -> TokenStream {
-    custom_syntax::widget_tree(input.into()).into()
+    widget_tree::widget_tree(input.into()).into()
 }

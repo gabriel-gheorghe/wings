@@ -2,15 +2,15 @@ use bevy::prelude::*;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiSizedBox;
+pub struct SizedBoxWidget;
 
 #[derive(Copy, Clone, Debug)]
-pub struct UiSizedBoxProps {
+pub struct SizedBoxProps {
     pub width: Val,
     pub height: Val,
 }
 
-impl Default for UiSizedBoxProps {
+impl Default for SizedBoxProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -21,21 +21,21 @@ impl Default for UiSizedBoxProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiSizedBoxBundle {
+pub struct SizedBoxBundle {
     child: WidgetBundle,
-    widget: UiSizedBox,
+    widget: SizedBoxWidget,
 }
 
-impl Default for UiSizedBoxBundle {
+impl Default for SizedBoxBundle {
     #[inline]
     fn default() -> Self {
-        UiSizedBoxBundle::from(UiSizedBoxProps::default())
+        SizedBoxBundle::from(SizedBoxProps::default())
     }
 }
 
-impl UiSizedBoxBundle {
+impl SizedBoxBundle {
     #[inline]
-    pub fn from(props: UiSizedBoxProps) -> Self {
+    pub fn from(props: SizedBoxProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -45,13 +45,13 @@ impl UiSizedBoxBundle {
                 },
                 ..default()
             },
-            widget: UiSizedBox::default(),
+            widget: SizedBoxWidget::default(),
         }
     }
 
     #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
-        Self::from(UiSizedBoxProps {
+        Self::from(SizedBoxProps {
             width,
             height,
             ..default()
@@ -60,7 +60,7 @@ impl UiSizedBoxBundle {
 
     #[inline]
     pub fn from_size_splat(val: Val) -> Self {
-        Self::from(UiSizedBoxProps {
+        Self::from(SizedBoxProps {
             width: val,
             height: val,
             ..default()
@@ -69,7 +69,7 @@ impl UiSizedBoxBundle {
 
     #[inline]
     pub fn from_width(width: Val) -> Self {
-        Self::from(UiSizedBoxProps {
+        Self::from(SizedBoxProps {
             width,
             ..default()
         })
@@ -77,7 +77,7 @@ impl UiSizedBoxBundle {
 
     #[inline]
     pub fn from_height(height: Val) -> Self {
-        Self::from(UiSizedBoxProps {
+        Self::from(SizedBoxProps {
             height,
             ..default()
         })

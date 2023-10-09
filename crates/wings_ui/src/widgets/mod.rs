@@ -9,7 +9,7 @@ pub mod divider;
 pub mod padding;
 pub mod scaffold;
 pub mod sized_box;
-pub mod text;
+pub mod paragraph;
 pub mod visibility;
 
 #[derive(Bundle, Clone, Debug)]

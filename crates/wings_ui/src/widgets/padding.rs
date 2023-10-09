@@ -3,29 +3,29 @@ use crate::classes::edge_insets::EdgeInsets;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiPadding(pub EdgeInsets);
+pub struct PaddingWidget(pub EdgeInsets);
 
 #[derive(Copy, Clone, Debug, Default)]
-pub struct UiPaddingProps {
+pub struct PaddingProps {
     pub padding: EdgeInsets,
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiPaddingBundle {
+pub struct PaddingBundle {
     child: WidgetBundle,
-    widget: UiPadding,
+    widget: PaddingWidget,
 }
 
-impl Default for UiPaddingBundle {
+impl Default for PaddingBundle {
     #[inline]
     fn default() -> Self {
-        UiPaddingBundle::from(UiPaddingProps::default())
+        PaddingBundle::from(PaddingProps::default())
     }
 }
 
-impl UiPaddingBundle {
+impl PaddingBundle {
     #[inline]
-    pub fn from(props: UiPaddingProps) -> Self {
+    pub fn from(props: PaddingProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -36,12 +36,12 @@ impl UiPaddingBundle {
                 },
                 ..default()
             },
-            widget: UiPadding(props.padding),
+            widget: PaddingWidget(props.padding),
         }
     }
 
     #[inline]
     pub fn from_edge(padding: EdgeInsets) -> Self {
-        Self::from(UiPaddingProps { padding })
+        Self::from(PaddingProps { padding })
     }
 }

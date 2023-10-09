@@ -2,14 +2,14 @@ use bevy::prelude::*;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiHorizontalDivider;
+pub struct HorizontalDividerWidget;
 
 #[derive(Copy, Clone, Debug)]
-pub struct UiHorizontalDividerProps {
+pub struct HorizontalDividerProps {
     pub width: Val,
 }
 
-impl Default for UiHorizontalDividerProps {
+impl Default for HorizontalDividerProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -19,24 +19,24 @@ impl Default for UiHorizontalDividerProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiHorizontalDividerBundle {
+pub struct HorizontalDividerBundle {
     child: WidgetBundle,
     background_color: BackgroundColor,
-    widget: UiHorizontalDivider,
+    widget: HorizontalDividerWidget,
 }
 
-impl Default for UiHorizontalDividerBundle {
+impl Default for HorizontalDividerBundle {
     #[inline]
     fn default() -> Self {
-        UiHorizontalDividerBundle::from(UiHorizontalDividerProps {
+        HorizontalDividerBundle::from(HorizontalDividerProps {
             width: Val::Px(3.),
         })
     }
 }
 
-impl UiHorizontalDividerBundle {
+impl HorizontalDividerBundle {
     #[inline]
-    pub fn from(props: UiHorizontalDividerProps) -> Self {
+    pub fn from(props: HorizontalDividerProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -47,7 +47,7 @@ impl UiHorizontalDividerBundle {
                 ..default()
             },
             background_color: BackgroundColor::from(Color::BLACK),
-            widget: UiHorizontalDivider::default(),
+            widget: HorizontalDividerWidget::default(),
         }
     }
 
@@ -69,14 +69,14 @@ impl UiHorizontalDividerBundle {
 }
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiVerticalDivider;
+pub struct VerticalDividerWidget;
 
 #[derive(Copy, Clone, Debug)]
-pub struct UiVerticalDividerProps {
+pub struct VerticalDividerProps {
     pub height: Val,
 }
 
-impl Default for UiVerticalDividerProps {
+impl Default for VerticalDividerProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -86,24 +86,24 @@ impl Default for UiVerticalDividerProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiVerticalDividerBundle {
+pub struct VerticalDividerBundle {
     child: WidgetBundle,
     background_color: BackgroundColor,
-    widget: UiVerticalDivider,
+    widget: VerticalDividerWidget,
 }
 
-impl Default for UiVerticalDividerBundle {
+impl Default for VerticalDividerBundle {
     #[inline]
     fn default() -> Self {
-        UiVerticalDividerBundle::from(UiVerticalDividerProps {
+        VerticalDividerBundle::from(VerticalDividerProps {
             height: Val::Px(3.),
         })
     }
 }
 
-impl UiVerticalDividerBundle {
+impl VerticalDividerBundle {
     #[inline]
-    pub fn from(props: UiVerticalDividerProps) -> Self {
+    pub fn from(props: VerticalDividerProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -114,7 +114,7 @@ impl UiVerticalDividerBundle {
                 ..default()
             },
             background_color: BackgroundColor::from(Color::BLACK),
-            widget: UiVerticalDivider::default(),
+            widget: VerticalDividerWidget::default(),
         }
     }
 

@@ -5,17 +5,17 @@ use bevy::ui::widget::TextFlags;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiText;
+pub struct ParagraphWidget;
 
 #[derive(Clone, Debug)]
-pub struct UiTextProps {
+pub struct ParagraphProps {
     pub text: String,
     pub font: Handle<Font>,
     pub font_size: f32,
     pub color: Color,
 }
 
-impl Default for UiTextProps {
+impl Default for ParagraphProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -28,24 +28,24 @@ impl Default for UiTextProps {
 }
 
 #[derive(Bundle, Debug)]
-pub struct UiTextBundle {
+pub struct ParagraphBundle {
     child: WidgetBundle,
     text: Text,
     text_layout_info: TextLayoutInfo,
     text_flags: TextFlags,
     calculated_size: ContentSize,
-    widget: UiText,
+    widget: ParagraphWidget,
 }
 
-impl Default for UiTextBundle {
+impl Default for ParagraphBundle {
     fn default() -> Self {
-        UiTextBundle::from(UiTextProps::default())
+        ParagraphBundle::from(ParagraphProps::default())
     }
 }
 
-impl UiTextBundle {
+impl ParagraphBundle {
     #[inline]
-    pub fn from(props: UiTextProps) -> Self {
+    pub fn from(props: ParagraphProps) -> Self {
         Self {
             child: WidgetBundle::default(),
             text: Text {
@@ -62,13 +62,13 @@ impl UiTextBundle {
             text_layout_info: TextLayoutInfo::default(),
             text_flags: TextFlags::default(),
             calculated_size: ContentSize::default(),
-            widget: UiText::default(),
+            widget: ParagraphWidget::default(),
         }
     }
 
     #[inline]
     pub fn from_text(text: String) -> Self {
-        Self::from(UiTextProps {
+        Self::from(ParagraphProps {
             text,
             ..default()
         })
@@ -76,7 +76,7 @@ impl UiTextBundle {
 
     #[inline]
     pub fn from_text_color(text: String, color: Color) -> Self {
-        Self::from(UiTextProps {
+        Self::from(ParagraphProps {
             text,
             color,
             ..default()

@@ -27,7 +27,7 @@ pub(crate) fn widget_tree(input: TokenStream) -> TokenStream {
 fn generate_widget(node: UiWidgetNode, spawn_name: &str) -> TokenStream {
     let spawn_fn = format_ident!("{}", spawn_name);
     let UiWidgetNode { widget_type, tags, props, children } = node;
-    let full_widget_type = format_ident!("Ui{}Bundle", widget_type.clone().unwrap());
+    let full_widget_type = format_ident!("{}Bundle", widget_type.clone().unwrap());
     let mut ctor_codegen = quote! { #full_widget_type::default() };
     let mut children_codegen = quote! {};
     let mut tags_codegen = quote! {};
@@ -44,7 +44,7 @@ fn generate_widget(node: UiWidgetNode, spawn_name: &str) -> TokenStream {
             props_codegen.extend(quote! { #prop, });
         }
 
-        let props_type = format_ident!("Ui{}Props", widget_type.clone().unwrap());
+        let props_type = format_ident!("{}Props", widget_type.clone().unwrap());
 
         ctor_codegen = quote! {
             #full_widget_type::from(#props_type { #props_codegen ..default() })

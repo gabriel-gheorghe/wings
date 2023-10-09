@@ -5,10 +5,10 @@ use crate::prelude::EdgeInsets;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiContainer;
+pub struct ContainerWidget;
 
 #[derive(Clone, Debug)]
-pub struct UiContainerProps {
+pub struct ContainerProps {
     pub width: Val,
     pub height: Val,
     pub color: Option<Color>,
@@ -17,7 +17,7 @@ pub struct UiContainerProps {
     pub padding: EdgeInsets,
 }
 
-impl Default for UiContainerProps {
+impl Default for ContainerProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -32,24 +32,24 @@ impl Default for UiContainerProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiContainerBundle {
+pub struct ContainerBundle {
     child: WidgetBundle,
     background_color: BackgroundColor,
     border_color: BorderColor,
     image: UiImage,
-    widget: UiContainer,
+    widget: ContainerWidget,
 }
 
-impl Default for UiContainerBundle {
+impl Default for ContainerBundle {
     #[inline]
     fn default() -> Self {
-        UiContainerBundle::from(UiContainerProps::default())
+        ContainerBundle::from(ContainerProps::default())
     }
 }
 
-impl UiContainerBundle {
+impl ContainerBundle {
     #[inline]
-    pub fn from(props: UiContainerProps) -> Self {
+    pub fn from(props: ContainerProps) -> Self {
         assert!(props.color.is_none() || props.decoration.is_none(),
             "Cannot provide both a color and a decoration.
             To provide both, use the color from the decoration."
@@ -85,13 +85,13 @@ impl UiContainerBundle {
                 BorderColor::from(get_transparent_color())
             },
             image: Default::default(),
-            widget: UiContainer::default(),
+            widget: ContainerWidget::default(),
         }
     }
 
     #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             width,
             height,
             ..default()
@@ -100,7 +100,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_size_splat(size: Val) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             width: size,
             height: size,
             ..default()
@@ -109,7 +109,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_relative_size() -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             width: Val::Percent(100.),
             height: Val::Percent(100.),
             ..default()
@@ -118,7 +118,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_width(width: Val) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             width,
             ..default()
         })
@@ -126,7 +126,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_height(height: Val) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             height,
             ..default()
         })
@@ -134,7 +134,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_color(color: Color) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             color: Some(color),
             ..default()
         })
@@ -142,7 +142,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_color_sized(color: Color, width: Val, height: Val) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             color: Some(color),
             width,
             height,
@@ -152,7 +152,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_color_squared(color: Color, size: Val) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             color: Some(color),
             width: size,
             height: size,
@@ -162,7 +162,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_color_relative(color: Color) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             color: Some(color),
             width: Val::Percent(100.),
             height: Val::Percent(100.),
@@ -172,7 +172,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_margin(margin: EdgeInsets) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             margin,
             ..default()
         })
@@ -180,7 +180,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_padding(padding: EdgeInsets) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             padding,
             ..default()
         })
@@ -188,7 +188,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_margin_padding(margin: EdgeInsets, padding: EdgeInsets) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             margin,
             padding,
             ..default()
@@ -197,7 +197,7 @@ impl UiContainerBundle {
 
     #[inline]
     pub fn from_decoration(decoration: BoxDecoration) -> Self {
-        Self::from(UiContainerProps {
+        Self::from(ContainerProps {
             decoration: Some(decoration),
             ..default()
         })

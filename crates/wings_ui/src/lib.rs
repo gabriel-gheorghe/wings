@@ -37,25 +37,27 @@ pub mod prelude {
 
     pub use crate::widgets::WidgetBundle;
 
-    pub use crate::widgets::alignment::{UiAlign, UiAlignBundle, UiAlignProps, UiCenterBundle};
+    pub use crate::widgets::alignment::{
+        AlignBundle, AlignProps, AlignWidget, CenterBundle, CenterWidget,
+    };
     pub use crate::widgets::button::{FlatButtonBundle, FlatButtonProps, FlatButtonWidget};
     pub use crate::widgets::constrained::{
-        UiConstrainedHeight, UiConstrainedHeightBundle,
-        UiConstrainedWidth, UiConstrainedWidthBundle,
+        ConstrainedHeightBundle, ConstrainedHeightWidget,
+        ConstrainedWidthBundle, ConstrainedWidthWidget,
     };
-    pub use crate::widgets::container::{UiContainer, UiContainerBundle, UiContainerProps};
+    pub use crate::widgets::container::{ContainerBundle, ContainerProps, ContainerWidget};
     pub use crate::widgets::direction::{
-        UiColumn, UiColumnBundle, UiColumnProps, UiRow, UiRowBundle, UiRowProps,
+        ColumnBundle, ColumnProps, ColumnWidget, RowBundle, RowProps, RowWidget,
     };
     pub use crate::widgets::divider::{
-        UiHorizontalDivider, UiHorizontalDividerBundle, UiHorizontalDividerProps,
-        UiVerticalDivider, UiVerticalDividerBundle, UiVerticalDividerProps,
+        HorizontalDividerBundle, HorizontalDividerProps, HorizontalDividerWidget,
+        VerticalDividerBundle, VerticalDividerProps, VerticalDividerWidget,
     };
-    pub use crate::widgets::padding::{UiPadding, UiPaddingBundle, UiPaddingProps};
-    pub use crate::widgets::scaffold::{UiScaffold, UiScaffoldBundle, UiScaffoldProps};
-    pub use crate::widgets::sized_box::{UiSizedBoxBundle, UiSizedBoxProps};
-    pub use crate::widgets::text::{UiText, UiTextBundle, UiTextProps};
+    pub use crate::widgets::padding::{PaddingBundle, PaddingProps, PaddingWidget};
+    pub use crate::widgets::paragraph::{ParagraphBundle, ParagraphProps, ParagraphWidget};
+    pub use crate::widgets::scaffold::{ScaffoldBundle, ScaffoldProps, ScaffoldWidget};
+    pub use crate::widgets::sized_box::{SizedBoxBundle, SizedBoxProps, SizedBoxWidget};
     pub use crate::widgets::visibility::{
-        UiLayoutVisibility, UiLayoutVisibilityBundle, UiVisibility, UiVisibilityBundle,
+        LayoutVisibilityBundle, LayoutVisibilityWidget, VisibleBundle, VisibleWidget,
     };
 }

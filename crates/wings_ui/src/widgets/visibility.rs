@@ -2,22 +2,22 @@ use bevy::prelude::*;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiVisibility(pub bool);
+pub struct VisibleWidget(pub bool);
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiVisibilityBundle {
+pub struct VisibleBundle {
     child: WidgetBundle,
-    widget: UiVisibility,
+    widget: VisibleWidget,
 }
 
-impl Default for UiVisibilityBundle {
+impl Default for VisibleBundle {
     #[inline]
     fn default() -> Self {
-        UiVisibilityBundle::from(true)
+        VisibleBundle::from(true)
     }
 }
 
-impl UiVisibilityBundle {
+impl VisibleBundle {
     #[inline]
     pub fn from(visible: bool) -> Self {
         Self {
@@ -28,13 +28,13 @@ impl UiVisibilityBundle {
                 },
                 ..default()
             },
-            widget: UiVisibility(visible),
+            widget: VisibleWidget(visible),
         }
     }
 }
 
 #[derive(Component, Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
-pub enum UiLayoutVisibility {
+pub enum LayoutVisibilityWidget {
     #[default]
     Inherited,
     Visible,
@@ -43,21 +43,21 @@ pub enum UiLayoutVisibility {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiLayoutVisibilityBundle {
+pub struct LayoutVisibilityBundle {
     pub child: WidgetBundle,
-    pub visibility: UiLayoutVisibility,
+    pub visibility: LayoutVisibilityWidget,
 }
 
-impl Default for UiLayoutVisibilityBundle {
+impl Default for LayoutVisibilityBundle {
     #[inline]
     fn default() -> Self {
-        UiLayoutVisibilityBundle::from(UiLayoutVisibility::Inherited)
+        LayoutVisibilityBundle::from(LayoutVisibilityWidget::Inherited)
     }
 }
 
-impl UiLayoutVisibilityBundle {
+impl LayoutVisibilityBundle {
     #[inline]
-    pub fn from(visibility: UiLayoutVisibility) -> Self {
+    pub fn from(visibility: LayoutVisibilityWidget) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -73,18 +73,18 @@ impl UiLayoutVisibilityBundle {
 }
 
 #[inline]
-pub(crate) fn get_computed_display(visibility: &UiLayoutVisibility) -> Display {
+pub(crate) fn get_computed_display(visibility: &LayoutVisibilityWidget) -> Display {
     match visibility {
-        UiLayoutVisibility::Collapsed => Display::None,
+        LayoutVisibilityWidget::Collapsed => Display::None,
         _ => Display::Flex,
     }
 }
 
 #[inline]
-pub(crate) fn get_computed_visibility(visibility: &UiLayoutVisibility) -> Visibility {
+pub(crate) fn get_computed_visibility(visibility: &LayoutVisibilityWidget) -> Visibility {
     match visibility {
-        UiLayoutVisibility::Visible => Visibility::Visible,
-        UiLayoutVisibility::Hidden => Visibility::Hidden,
+        LayoutVisibilityWidget::Visible => Visibility::Visible,
+        LayoutVisibilityWidget::Hidden => Visibility::Hidden,
         _ => Visibility::Inherited,
     }
 }

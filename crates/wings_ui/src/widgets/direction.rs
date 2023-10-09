@@ -3,31 +3,31 @@ use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiColumn;
+pub struct ColumnWidget;
 
 #[derive(Copy, Clone, Debug, Default)]
-pub struct UiColumnProps {
+pub struct ColumnProps {
     pub main_axis_size: MainAxisSize,
     pub main_axis_alignment: MainAxisAlignment,
     pub cross_axis_alignment: CrossAxisAlignment,
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiColumnBundle {
+pub struct ColumnBundle {
     child: WidgetBundle,
-    widget: UiColumn,
+    widget: ColumnWidget,
 }
 
-impl Default for UiColumnBundle {
+impl Default for ColumnBundle {
     #[inline]
     fn default() -> Self {
-        UiColumnBundle::from(UiColumnProps::default())
+        ColumnBundle::from(ColumnProps::default())
     }
 }
 
-impl UiColumnBundle {
+impl ColumnBundle {
     #[inline]
-    pub fn from(props: UiColumnProps) -> Self {
+    pub fn from(props: ColumnProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -39,7 +39,7 @@ impl UiColumnBundle {
                 },
                 ..default()
             },
-            widget: UiColumn::default(),
+            widget: ColumnWidget::default(),
         }
     }
 
@@ -48,41 +48,41 @@ impl UiColumnBundle {
         main_axis_size: MainAxisSize,
         main_axis_alignment: MainAxisAlignment,
     ) -> Self {
-        Self::from(UiColumnProps { main_axis_size, main_axis_alignment, ..default() })
+        Self::from(ColumnProps { main_axis_size, main_axis_alignment, ..default() })
     }
 
     #[inline]
     pub fn from_cross_axis(cross_axis_alignment: CrossAxisAlignment) -> Self {
-        Self::from(UiColumnProps { cross_axis_alignment, ..default() })
+        Self::from(ColumnProps { cross_axis_alignment, ..default() })
     }
 }
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiRow;
+pub struct RowWidget;
 
 #[derive(Copy, Clone, Debug, Default)]
-pub struct UiRowProps {
+pub struct RowProps {
     pub main_axis_size: MainAxisSize,
     pub main_axis_alignment: MainAxisAlignment,
     pub cross_axis_alignment: CrossAxisAlignment,
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiRowBundle {
+pub struct RowBundle {
     child: WidgetBundle,
-    widget: UiRow,
+    widget: RowWidget,
 }
 
-impl Default for UiRowBundle {
+impl Default for RowBundle {
     #[inline]
     fn default() -> Self {
-        UiRowBundle::from(UiRowProps::default())
+        RowBundle::from(RowProps::default())
     }
 }
 
-impl UiRowBundle {
+impl RowBundle {
     #[inline]
-    pub fn from(props: UiRowProps) -> Self {
+    pub fn from(props: RowProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -94,7 +94,7 @@ impl UiRowBundle {
                 },
                 ..default()
             },
-            widget: UiRow::default(),
+            widget: RowWidget::default(),
         }
     }
 
@@ -103,12 +103,12 @@ impl UiRowBundle {
         main_axis_size: MainAxisSize,
         main_axis_alignment: MainAxisAlignment,
     ) -> Self {
-        Self::from(UiRowProps { main_axis_size, main_axis_alignment, ..default() })
+        Self::from(RowProps { main_axis_size, main_axis_alignment, ..default() })
     }
 
     #[inline]
     pub fn from_cross_axis(cross_axis_alignment: CrossAxisAlignment) -> Self {
-        Self::from(UiRowProps { cross_axis_alignment, ..default() })
+        Self::from(RowProps { cross_axis_alignment, ..default() })
     }
 }
 

@@ -9,21 +9,21 @@ macro_rules! define_ui_types {
         use bevy::ui::Val::Px;
 
         // WIDGETS
-        type Scaffold = UiScaffoldBundle;
-        type Container = UiContainerBundle;
-        type SizedBox = UiSizedBoxBundle;
-        type Align = UiAlignBundle;
-        type Center = UiCenterBundle;
+        type Scaffold = ScaffoldBundle;
+        type Container = ContainerBundle;
+        type SizedBox = SizedBoxBundle;
+        type Align = AlignBundle;
+        type Center = CenterBundle;
         type FlatButton = FlatButtonBundle;
-        type Column = UiColumnBundle;
-        type Row = UiRowBundle;
-        type ConstrainedWidth = UiConstrainedWidthBundle;
-        type ConstrainedHeight = UiConstrainedHeightBundle;
-        type HorizontalDivider = UiHorizontalDividerBundle;
-        type VerticalDivider = UiVerticalDividerBundle;
-        type Visibility = UiVisibilityBundle;
-        type LayoutVisibility = UiLayoutVisibilityBundle;
-        type Padding = UiPaddingBundle;
-        type Text = UiTextBundle;
+        type Column = ColumnBundle;
+        type Row = RowBundle;
+        type ConstrainedWidth = ConstrainedWidthBundle;
+        type ConstrainedHeight = ConstrainedHeightBundle;
+        type HorizontalDivider = HorizontalDividerBundle;
+        type VerticalDivider = VerticalDividerBundle;
+        type Visible = VisibleBundle;
+        type LayoutVisibility = LayoutVisibilityBundle;
+        type Padding = PaddingBundle;
+        type Paragraph = ParagraphBundle;
     }
 }

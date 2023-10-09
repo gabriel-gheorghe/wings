@@ -2,11 +2,11 @@ use bevy::prelude::*;
 use crate::events::{
     ApplyConstraintHeight, ApplyConstraintWidth, PointerClick, PointerEnter, PointerExit,
 };
-use crate::prelude::{FlatButtonWidget, UiConstrainedHeight, UiConstrainedWidth};
+use crate::prelude::{FlatButtonWidget, ConstrainedHeightWidget, ConstrainedWidthWidget};
 
 pub(crate) fn compute_constraint_heights(
     mut event: EventWriter<ApplyConstraintHeight>,
-    mut constrained_height_q: Query<(Entity, With<UiConstrainedHeight>)>,
+    mut constrained_height_q: Query<(Entity, With<ConstrainedHeightWidget>)>,
     style_q: Query<&Style>,
     children_q: Query<&Children>,
 ) {
@@ -42,7 +42,7 @@ pub(crate) fn apply_constraint_height(
 
 pub(crate) fn compute_constraint_widths(
     mut event: EventWriter<ApplyConstraintWidth>,
-    mut constrained_width_q: Query<(Entity, With<UiConstrainedWidth>)>,
+    mut constrained_width_q: Query<(Entity, With<ConstrainedWidthWidget>)>,
     style_q: Query<&Style>,
     children_q: Query<&Children>,
 ) {

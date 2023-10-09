@@ -3,16 +3,16 @@ use wings_utils::color::get_transparent_color;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiScaffold;
+pub struct ScaffoldWidget;
 
 #[derive(Copy, Clone, Debug)]
-pub struct UiScaffoldProps {
+pub struct ScaffoldProps {
     pub width: Val,
     pub height: Val,
     pub color: Color,
 }
 
-impl Default for UiScaffoldProps {
+impl Default for ScaffoldProps {
     #[inline]
     fn default() -> Self {
         Self {
@@ -24,22 +24,22 @@ impl Default for UiScaffoldProps {
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiScaffoldBundle {
+pub struct ScaffoldBundle {
     child: WidgetBundle,
     background_color: BackgroundColor,
-    widget: UiScaffold,
+    widget: ScaffoldWidget,
 }
 
-impl Default for UiScaffoldBundle {
+impl Default for ScaffoldBundle {
     #[inline]
     fn default() -> Self {
-        Self::from(UiScaffoldProps::default())
+        Self::from(ScaffoldProps::default())
     }
 }
 
-impl UiScaffoldBundle {
+impl ScaffoldBundle {
     #[inline]
-    pub fn from(props: UiScaffoldProps) -> Self {
+    pub fn from(props: ScaffoldProps) -> Self {
         Self {
             child: WidgetBundle {
                 style: Style {
@@ -50,13 +50,13 @@ impl UiScaffoldBundle {
                 ..default()
             },
             background_color: BackgroundColor::from(props.color),
-            widget: UiScaffold::default(),
+            widget: ScaffoldWidget::default(),
         }
     }
 
     #[inline]
     pub fn from_size(width: Val, height: Val) -> Self {
-        Self::from(UiScaffoldProps {
+        Self::from(ScaffoldProps {
             width,
             height,
             ..default()
@@ -65,7 +65,7 @@ impl UiScaffoldBundle {
 
     #[inline]
     pub fn from_size_splat(val: Val) -> Self {
-        Self::from(UiScaffoldProps {
+        Self::from(ScaffoldProps {
             width: val,
             height: val,
             ..default()
@@ -74,7 +74,7 @@ impl UiScaffoldBundle {
 
     #[inline]
     pub fn from_width(width: Val) -> Self {
-        Self::from(UiScaffoldProps {
+        Self::from(ScaffoldProps {
             width,
             ..default()
         })
@@ -82,7 +82,7 @@ impl UiScaffoldBundle {
 
     #[inline]
     pub fn from_height(height: Val) -> Self {
-        Self::from(UiScaffoldProps {
+        Self::from(ScaffoldProps {
             height,
             ..default()
         })
@@ -90,7 +90,7 @@ impl UiScaffoldBundle {
 
     #[inline]
     pub fn from_color(color: Color) -> Self {
-        Self::from(UiScaffoldProps {
+        Self::from(ScaffoldProps {
             color,
             ..default()
         })

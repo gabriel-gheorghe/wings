@@ -3,16 +3,16 @@ use wings_utils::color::get_transparent_color;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiConstrainedHeight;
+pub struct ConstrainedHeightWidget;
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiConstrainedHeightBundle {
+pub struct ConstrainedHeightBundle {
     child: WidgetBundle,
     debug_color: BackgroundColor,
-    widget: UiConstrainedHeight,
+    widget: ConstrainedHeightWidget,
 }
 
-impl Default for UiConstrainedHeightBundle {
+impl Default for ConstrainedHeightBundle {
     #[inline]
     fn default() -> Self {
         Self {
@@ -24,12 +24,12 @@ impl Default for UiConstrainedHeightBundle {
                 ..default()
             },
             debug_color: BackgroundColor::from(get_transparent_color()),
-            widget: UiConstrainedHeight::default(),
+            widget: ConstrainedHeightWidget::default(),
         }
     }
 }
 
-impl UiConstrainedHeightBundle {
+impl ConstrainedHeightBundle {
     #[inline]
     pub fn with_debug_color(color: Color) -> Self {
         let mut res = Self::default();
@@ -39,16 +39,16 @@ impl UiConstrainedHeightBundle {
 }
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiConstrainedWidth;
+pub struct ConstrainedWidthWidget;
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiConstrainedWidthBundle {
+pub struct ConstrainedWidthBundle {
     child: WidgetBundle,
     debug_color: BackgroundColor,
-    widget: UiConstrainedWidth,
+    widget: ConstrainedWidthWidget,
 }
 
-impl Default for UiConstrainedWidthBundle {
+impl Default for ConstrainedWidthBundle {
     #[inline]
     fn default() -> Self {
         Self {
@@ -60,12 +60,12 @@ impl Default for UiConstrainedWidthBundle {
                 ..default()
             },
             debug_color: BackgroundColor::from(get_transparent_color()),
-            widget: UiConstrainedWidth::default(),
+            widget: ConstrainedWidthWidget::default(),
         }
     }
 }
 
-impl UiConstrainedWidthBundle {
+impl ConstrainedWidthBundle {
     #[inline]
     pub fn with_debug_color(color: Color) -> Self {
         let mut res = Self::default();

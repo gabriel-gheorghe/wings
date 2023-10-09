@@ -3,29 +3,29 @@ use crate::classes::alignment::Alignment;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiAlign(Alignment);
+pub struct AlignWidget(Alignment);
 
 #[derive(Copy, Clone, Debug, Default)]
-pub struct UiAlignProps {
+pub struct AlignProps {
     pub alignment: Alignment,
 }
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiAlignBundle {
+pub struct AlignBundle {
     child: WidgetBundle,
-    widget: UiAlign,
+    widget: AlignWidget,
 }
 
-impl Default for UiAlignBundle {
+impl Default for AlignBundle {
     #[inline]
     fn default() -> Self {
-        UiAlignBundle::from(UiAlignProps::default())
+        AlignBundle::from(AlignProps::default())
     }
 }
 
-impl UiAlignBundle {
+impl AlignBundle {
     #[inline]
-    pub fn from(props: UiAlignProps) -> Self {
+    pub fn from(props: AlignProps) -> Self {
         let justify_content = if props.alignment.x < 0. {
             JustifyContent::Start
         } else if props.alignment.x == 0. {
@@ -68,27 +68,27 @@ impl UiAlignBundle {
                 },
                 ..default()
             },
-            widget: UiAlign(props.alignment),
+            widget: AlignWidget(props.alignment),
         }
     }
 
     #[inline]
     pub fn from_alignment(alignment: Alignment) -> Self {
-        Self::from(UiAlignProps { alignment })
+        Self::from(AlignProps { alignment })
     }
 }
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiCenter;
+pub struct CenterWidget;
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiCenterBundle {
+pub struct CenterBundle {
     child: WidgetBundle,
-    widget_0: UiAlign,
-    widget_1: UiCenter,
+    widget_0: AlignWidget,
+    widget_1: CenterWidget,
 }
 
-impl Default for UiCenterBundle {
+impl Default for CenterBundle {
     #[inline]
     fn default() -> Self {
         Self {
@@ -102,8 +102,8 @@ impl Default for UiCenterBundle {
                 },
                 ..default()
             },
-            widget_0: UiAlign::default(),
-            widget_1: UiCenter::default(),
+            widget_0: AlignWidget::default(),
+            widget_1: CenterWidget::default(),
         }
     }
 }
