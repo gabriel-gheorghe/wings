@@ -21,11 +21,65 @@ impl <'w, 's, T: Component> UiTextQuery<'w, 's, T> {
     pub fn get_mut(&mut self) -> &mut UiTextQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
-    pub fn get_color(&mut self, target: Entity) -> Color {
-        let mut res = Color::WHITE;
+    pub fn get_text(&mut self, target: Entity) -> String {
+        let mut res = "".to_string();
+        self.0.for_each_mut(|(entity, c_text)| {
+            if entity == target {
+                res = c_text.sections.first().unwrap().value.clone();
+            }
+        });
+        res
+    }
+
+    #[inline]
+    pub fn set_text(&mut self, text: String) {
+        self.0.for_each_mut(|(_, mut c_text)| {
+            c_text.sections.first_mut().unwrap().value = text.clone();
+        });
+    }
+
+    #[inline]
+    pub fn set_text_single(&mut self, text: String, target: Entity) {
         self.0.for_each_mut(|(entity, mut c_text)| {
             if entity == target {
-                res = c_text.sections.first_mut().unwrap().style.color;
+                c_text.sections.first_mut().unwrap().value = text.clone();
+            }
+        });
+    }
+
+    #[inline]
+    pub fn get_font_size(&mut self, target: Entity) -> f32 {
+        let mut res = 0.;
+        self.0.for_each_mut(|(entity, c_text)| {
+            if entity == target {
+                res = c_text.sections.first().unwrap().style.font_size;
+            }
+        });
+        res
+    }
+
+    #[inline]
+    pub fn set_font_size(&mut self, font_size: f32) {
+        self.0.for_each_mut(|(_, mut c_text)| {
+            c_text.sections.first_mut().unwrap().style.font_size = font_size;
+        });
+    }
+
+    #[inline]
+    pub fn set_font_size_single(&mut self, font_size: f32, target: Entity) {
+        self.0.for_each_mut(|(entity, mut c_text)| {
+            if entity == target {
+                c_text.sections.first_mut().unwrap().style.font_size = font_size;
+            }
+        });
+    }
+
+    #[inline]
+    pub fn get_color(&mut self, target: Entity) -> Color {
+        let mut res = Color::WHITE;
+        self.0.for_each_mut(|(entity, c_text)| {
+            if entity == target {
+                res = c_text.sections.first().unwrap().style.color;
             }
         });
         res
@@ -85,33 +139,6 @@ impl <'w, 's, T: Component> UiTextQuery<'w, 's, T> {
         self.0.for_each_mut(|(entity, mut c_text)| {
             if entity == target {
                 c_text.sections.first_mut().unwrap().style.color = get_random_color_with_alpha();
-            }
-        });
-    }
-
-    #[inline]
-    pub fn get_font_size(&mut self, target: Entity) -> f32 {
-        let mut res = 0.;
-        self.0.for_each_mut(|(entity, mut c_text)| {
-            if entity == target {
-                res = c_text.sections.first_mut().unwrap().style.font_size;
-            }
-        });
-        res
-    }
-
-    #[inline]
-    pub fn set_font_size(&mut self, font_size: f32) {
-        self.0.for_each_mut(|(_, mut c_text)| {
-            c_text.sections.first_mut().unwrap().style.font_size = font_size;
-        });
-    }
-
-    #[inline]
-    pub fn set_font_size_single(&mut self, font_size: f32, target: Entity) {
-        self.0.for_each_mut(|(entity, mut c_text)| {
-            if entity == target {
-                c_text.sections.first_mut().unwrap().style.font_size = font_size;
             }
         });
     }
