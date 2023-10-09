@@ -1,10 +1,11 @@
 use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
+use crate::enums::LayoutVisibility;
 use crate::widgets::visibility::{
     get_computed_display, get_computed_visibility, LayoutVisibilityWidget, VisibleWidget,
 };
 
-type VisibilityQueryType<'w, 's, T> = Query<'w, 's,
+type VisibleQueryType<'w, 's, T> = Query<'w, 's,
     (
         Entity,
         &'static mut Style,
@@ -14,14 +15,14 @@ type VisibilityQueryType<'w, 's, T> = Query<'w, 's,
 >;
 
 #[derive(SystemParam)]
-pub struct VisibilityQuery<'w, 's, T: Component>(VisibilityQueryType<'w, 's, T>);
+pub struct VisibleQuery<'w, 's, T: Component>(VisibleQueryType<'w, 's, T>);
 
-impl <'w, 's, T: Component> VisibilityQuery<'w, 's, T> {
+impl <'w, 's, T: Component> VisibleQuery<'w, 's, T> {
     #[inline]
-    pub fn get(&self) -> &VisibilityQueryType<'w, 's, T> { &self.0 }
+    pub fn get(&self) -> &VisibleQueryType<'w, 's, T> { &self.0 }
 
     #[inline]
-    pub fn get_mut(&mut self) -> &mut VisibilityQueryType<'w, 's, T> { &mut self.0 }
+    pub fn get_mut(&mut self) -> &mut VisibleQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
     pub fn get_visible(&mut self, target: Entity) -> bool {
@@ -85,21 +86,21 @@ impl <'w, 's, T: Component> LayoutVisibilityQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_visibility(&mut self, visibility: LayoutVisibilityWidget) {
+    pub fn set_visibility(&mut self, visibility: LayoutVisibility) {
         self.0.for_each_mut(|(_, mut c_style, mut c_visibility, mut ui_visibility)| {
             c_style.display = get_computed_display(&visibility);
             *c_visibility = get_computed_visibility(&visibility);
-            *ui_visibility = visibility;
+            ui_visibility.0 = visibility;
         });
     }
 
     #[inline]
-    pub fn set_visibility_single(&mut self, target: Entity, visibility: LayoutVisibilityWidget) {
+    pub fn set_visibility_single(&mut self, target: Entity, visibility: LayoutVisibility) {
         self.0.for_each_mut(|(entity, mut c_style, mut c_visibility, mut ui_visibility)| {
             if entity == target {
                 c_style.display = get_computed_display(&visibility);
                 *c_visibility = get_computed_visibility(&visibility);
-                *ui_visibility = visibility;
+                ui_visibility.0 = visibility;
             }
         });
     }

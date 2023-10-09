@@ -21,7 +21,7 @@ pub mod prelude {
 
     pub use crate::common_tags::Collapsible;
 
-    pub use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
+    pub use crate::enums::{CrossAxisAlignment, LayoutVisibility, MainAxisAlignment, MainAxisSize};
 
     pub use crate::events::{
         PointerClick, PointerDoubleClick, PointerEnter, PointerExit,
@@ -33,7 +33,7 @@ pub mod prelude {
     pub use crate::queries::color::ColorQuery;
     pub use crate::queries::size::SizeQuery;
     pub use crate::queries::text::TextQuery;
-    pub use crate::queries::visibility::{LayoutVisibilityQuery, VisibilityQuery};
+    pub use crate::queries::visibility::{LayoutVisibilityQuery, VisibleQuery};
 
     pub use crate::widgets::WidgetBundle;
 
@@ -58,6 +58,7 @@ pub mod prelude {
     pub use crate::widgets::scaffold::{ScaffoldBundle, ScaffoldProps, ScaffoldWidget};
     pub use crate::widgets::sized_box::{SizedBoxBundle, SizedBoxProps, SizedBoxWidget};
     pub use crate::widgets::visibility::{
-        LayoutVisibilityBundle, LayoutVisibilityWidget, VisibleBundle, VisibleWidget,
+        LayoutVisibilityBundle, LayoutVisibilityProps, LayoutVisibilityWidget,
+        VisibleBundle, VisibleProps, VisibleWidget,
     };
 }

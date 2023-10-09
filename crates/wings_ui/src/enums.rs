@@ -1,4 +1,13 @@
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
+pub enum LayoutVisibility {
+    #[default]
+    Inherited,
+    Visible,
+    Hidden,
+    Collapsed,
+}
+
+#[derive(Copy, Clone, Eq, PartialEq, Debug, Hash, Default)]
 pub enum MainAxisSize {
     #[default]
     Min,

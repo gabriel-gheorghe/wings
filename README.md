@@ -15,16 +15,16 @@ This design is inspired from Flutter.
 10. ConstrainedHeight
 11. HorizontalDivider
 12. VerticalDivider
-13. Visibility
+13. Visible
 14. LayoutVisibility
 15. Padding
-16. Text
+16. Paragraph
 
 ### Built-in Queries
 
 1. Color <i>(background_color)</i>
 2. Size <i>(width + height)</i>
-3. Visibility
+3. Visible
 4. LayoutVisibility
 5. Text <i>(text, font_size, color)</i>
 
@@ -174,7 +174,7 @@ fn startup(mut commands: Commands) {
                         children: [
                             Container { color: Some(Color::RED) }
                             SizedBox { height: val![10. px] }
-                            Visibility {
+                            Visible {
                                 tags: [Collapsible]
                                 child: Column {
                                     children: [
@@ -198,7 +198,7 @@ fn startup(mut commands: Commands) {
 fn change_color(
     keyboard_input: Res<Input<KeyCode>>,
     mut color_query: ColorQuery<ColorTag>,
-    mut visibility_query: VisibilityQuery<Collapsible>,
+    mut visibility_query: VisibleQuery<Collapsible>,
 ) {
     if keyboard_input.just_pressed(KeyCode::Space) {
         color_query.set_random_color();
