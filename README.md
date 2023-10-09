@@ -212,28 +212,28 @@ fn change_color(
 }
 ```
 
-### Some queries tips:
+### Some queries tips for applying a theme:
 
 ! When working with WingsUI, Do not access BevyUI components directly because of unexpected behaviour !
 Instead use built-in Queries !
 
 ```rust
 // This is bad use
-fn update_color_bad(mut query: Query<(&mut BackgroundColor, With<UiContainer>)>) {
+fn apply_theme_bad(mut query: Query<(&mut BackgroundColor, With<UiContainer>)>) {
     for (mut bg_color, _) in query.iter_mut() {
         bg_color.0 = get_random_color_with_alpha();
     }
 }
 
 // You can do this if you want more control over entities, but still not recommended
-fn update_color_also_bad(mut query: ColorQuery<UiContainer>) {
+fn apply_theme_also_bad(mut query: ColorQuery<UiContainer>) {
     query.get_mut().for_each_mut(|(_, mut c_color, _)| {
         c_color.0 = get_random_color_with_alpha();
     });
 }
 
 // This is the most ergonomic way
-fn update_color_good(mut query: ColorQuery<UiContainer>) {
+fn apply_theme_good(mut query: ColorQuery<UiContainer>) {
     query.set_random_color_with_alpha();
 }
 ```
