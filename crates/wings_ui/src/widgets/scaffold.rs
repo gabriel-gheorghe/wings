@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiScaffold;
@@ -25,7 +25,7 @@ impl Default for UiScaffoldProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiScaffoldBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub background_color: BackgroundColor,
     internal_tag: UiScaffold,
 }
@@ -41,7 +41,7 @@ impl UiScaffoldBundle {
     #[inline]
     pub fn from(props: UiScaffoldProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: props.width,
                     height: props.height,

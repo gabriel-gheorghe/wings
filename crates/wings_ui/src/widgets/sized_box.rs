@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiSizedBox;
@@ -22,7 +22,7 @@ impl Default for UiSizedBoxProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiSizedBoxBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     internal_tag: UiSizedBox,
 }
 
@@ -37,7 +37,7 @@ impl UiSizedBoxBundle {
     #[inline]
     pub fn from(props: UiSizedBoxProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: props.width,
                     height: props.height,

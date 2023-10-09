@@ -13,7 +13,7 @@ pub mod text;
 pub mod visibility;
 
 #[derive(Bundle, Clone, Debug)]
-pub struct UiWidgetBundle {
+pub struct WidgetBundle {
     pub node: Node,
     pub style: Style,
     pub transform: Transform,
@@ -22,10 +22,10 @@ pub struct UiWidgetBundle {
     pub computed_visibility: ComputedVisibility,
 }
 
-impl Default for UiWidgetBundle {
+impl Default for WidgetBundle {
     #[inline]
     fn default() -> Self {
-        UiWidgetBundle {
+        WidgetBundle {
             node: Default::default(),
             style: Default::default(),
             transform: Default::default(),

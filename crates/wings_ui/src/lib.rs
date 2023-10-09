@@ -35,7 +35,7 @@ pub mod prelude {
     pub use crate::queries::text::TextQuery;
     pub use crate::queries::visibility::{LayoutVisibilityQuery, VisibilityQuery};
 
-    pub use crate::widgets::UiWidgetBundle;
+    pub use crate::widgets::WidgetBundle;
 
     pub use crate::widgets::alignment::{UiAlign, UiAlignBundle, UiAlignProps, UiCenterBundle};
     pub use crate::widgets::button::{UiButton, UiButtonBundle, UiButtonProps};

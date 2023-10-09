@@ -1,13 +1,13 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiConstrainedHeight;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedHeightBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub debug_color: BackgroundColor,
     internal_tag: UiConstrainedHeight,
 }
@@ -16,7 +16,7 @@ impl Default for UiConstrainedHeightBundle {
     #[inline]
     fn default() -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     ..default()
@@ -43,7 +43,7 @@ pub struct UiConstrainedWidth;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedWidthBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub debug_color: BackgroundColor,
     internal_tag: UiConstrainedWidth,
 }
@@ -52,7 +52,7 @@ impl Default for UiConstrainedWidthBundle {
     #[inline]
     fn default() -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     height: Val::Percent(100.),
                     ..default()

@@ -2,7 +2,7 @@ use bevy::prelude::*;
 use bevy::text::{DEFAULT_FONT_HANDLE, TextLayoutInfo};
 use bevy::ui::ContentSize;
 use bevy::ui::widget::TextFlags;
-use crate::prelude::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiText;
@@ -29,7 +29,7 @@ impl Default for UiTextProps {
 
 #[derive(Bundle, Debug)]
 pub struct UiTextBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub text: Text,
     pub text_layout_info: TextLayoutInfo,
     pub text_flags: TextFlags,
@@ -47,7 +47,7 @@ impl UiTextBundle {
     #[inline]
     pub fn from(props: UiTextProps) -> Self {
         Self {
-            child: UiWidgetBundle::default(),
+            child: WidgetBundle::default(),
             text: Text {
                 sections: vec![TextSection {
                     value: props.text.to_string(),

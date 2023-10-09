@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiButton;
@@ -28,7 +28,7 @@ impl Default for UiButtonProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiButtonBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub button: Button,
     pub interaction: Interaction,
     pub background_color: BackgroundColor,
@@ -48,7 +48,7 @@ impl UiButtonBundle {
     #[inline]
     pub fn from(props: UiButtonProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: props.width,
                     height: props.height,

@@ -2,7 +2,7 @@ use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
 use crate::classes::decoration::BoxDecoration;
 use crate::prelude::EdgeInsets;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiContainer;
@@ -33,7 +33,7 @@ impl Default for UiContainerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiContainerBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub background_color: BackgroundColor,
     pub border_color: BorderColor,
     pub image: UiImage,
@@ -56,7 +56,7 @@ impl UiContainerBundle {
         );
 
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: props.width,
                     height: props.height,

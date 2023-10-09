@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiHorizontalDivider;
@@ -20,7 +20,7 @@ impl Default for UiHorizontalDividerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiHorizontalDividerBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub background_color: BackgroundColor,
     internal_tag: UiHorizontalDivider,
 }
@@ -38,7 +38,7 @@ impl UiHorizontalDividerBundle {
     #[inline]
     pub fn from(props: UiHorizontalDividerProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: props.width,
                     height: Val::Percent(100.),
@@ -54,7 +54,7 @@ impl UiHorizontalDividerBundle {
     #[inline]
     pub fn from_width(width: Val) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width,
                     height: Val::Percent(100.),
@@ -87,7 +87,7 @@ impl Default for UiVerticalDividerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiVerticalDividerBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub background_color: BackgroundColor,
     internal_tag: UiVerticalDivider,
 }
@@ -105,7 +105,7 @@ impl UiVerticalDividerBundle {
     #[inline]
     pub fn from(props: UiVerticalDividerProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height: props.height,
@@ -121,7 +121,7 @@ impl UiVerticalDividerBundle {
     #[inline]
     pub fn from_height(height: Val) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height,

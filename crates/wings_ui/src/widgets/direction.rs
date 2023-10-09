@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiColumn;
@@ -14,7 +14,7 @@ pub struct UiColumnProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiColumnBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     internal_tag: UiColumn,
 }
 
@@ -29,7 +29,7 @@ impl UiColumnBundle {
     #[inline]
     pub fn from(props: UiColumnProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     height: to_main_size(props.main_axis_size),
                     flex_direction: FlexDirection::Column,
@@ -69,7 +69,7 @@ pub struct UiRowProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiRowBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     internal_tag: UiRow,
 }
 
@@ -84,7 +84,7 @@ impl UiRowBundle {
     #[inline]
     pub fn from(props: UiRowProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: to_main_size(props.main_axis_size),
                     flex_direction: FlexDirection::Row,

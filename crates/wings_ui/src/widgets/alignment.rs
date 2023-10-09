@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use crate::classes::alignment::Alignment;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiAlign(Alignment);
@@ -12,7 +12,7 @@ pub struct UiAlignProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiAlignBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub align: UiAlign,
 }
 
@@ -57,7 +57,7 @@ impl UiAlignBundle {
         };*/
 
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height: Val::Percent(100.),
@@ -83,7 +83,7 @@ pub struct UiCenter;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiCenterBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     internal_tag_0: UiAlign,
     internal_tag_1: UiCenter,
 }
@@ -92,7 +92,7 @@ impl Default for UiCenterBundle {
     #[inline]
     fn default() -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height: Val::Percent(100.),

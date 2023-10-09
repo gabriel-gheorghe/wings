@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use crate::classes::edge_insets::EdgeInsets;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiPadding(pub EdgeInsets);
@@ -12,7 +12,7 @@ pub struct UiPaddingProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiPaddingBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub padding: UiPadding,
 }
 
@@ -27,7 +27,7 @@ impl UiPaddingBundle {
     #[inline]
     pub fn from(props: UiPaddingProps) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     width: Val::Percent(100.),
                     height: Val::Percent(100.),

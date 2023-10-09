@@ -1,12 +1,12 @@
 use bevy::prelude::*;
-use crate::widgets::UiWidgetBundle;
+use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
 pub struct UiVisibility(pub bool);
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiVisibilityBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub visibility: UiVisibility,
 }
 
@@ -21,7 +21,7 @@ impl UiVisibilityBundle {
     #[inline]
     pub fn from(visible: bool) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     display: if visible { Display::Flex } else { Display::None },
                     ..default()
@@ -44,7 +44,7 @@ pub enum UiLayoutVisibility {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiLayoutVisibilityBundle {
-    pub child: UiWidgetBundle,
+    pub child: WidgetBundle,
     pub visibility: UiLayoutVisibility,
 }
 
@@ -59,7 +59,7 @@ impl UiLayoutVisibilityBundle {
     #[inline]
     pub fn from(visibility: UiLayoutVisibility) -> Self {
         Self {
-            child: UiWidgetBundle {
+            child: WidgetBundle {
                 style: Style {
                     display: get_computed_display(&visibility),
                     ..default()
