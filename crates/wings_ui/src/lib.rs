@@ -13,7 +13,7 @@ pub mod platform {
 }
 
 pub mod prelude {
-    pub use crate::{edge_insets_only, edge_insets_symmetric, define_ui_types, val};
+    pub use crate::{edge_insets_only, edge_insets_symmetric, define_ui_types, val, str};
 
     pub use crate::classes::alignment::UiAlignment;
     pub use crate::classes::edge_insets::UiEdgeInsets;
@@ -52,6 +52,7 @@ pub mod prelude {
     pub use crate::widgets::padding::{UiPadding, UiPaddingBundle, UiPaddingProps};
     pub use crate::widgets::scaffold::{UiScaffold, UiScaffoldBundle, UiScaffoldProps};
     pub use crate::widgets::sized_box::{UiSizedBoxBundle, UiSizedBoxProps};
+    pub use crate::widgets::text::{UiText, UiTextBundle, UiTextProps};
     pub use crate::widgets::visibility::{
         UiLayoutVisibility, UiLayoutVisibilityBundle, UiVisibility, UiVisibilityBundle,
     };

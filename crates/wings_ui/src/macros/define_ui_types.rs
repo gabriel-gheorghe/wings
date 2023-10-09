@@ -24,6 +24,7 @@ macro_rules! define_ui_types {
         type Visibility = UiVisibilityBundle;
         type LayoutVisibility = UiLayoutVisibilityBundle;
         type Padding = UiPaddingBundle;
+        type Text = UiTextBundle;
 
         // CLASSES
         type ViewPadding = wings::platform::UiViewPadding;

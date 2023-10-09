@@ -18,6 +18,7 @@ This design is inspired from Flutter.
 13. Visibility
 14. LayoutVisibility
 15. Padding
+16. Text
 
 ### Built-in Queries
 
