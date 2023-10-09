@@ -9,14 +9,14 @@ impl Plugin for WingsUiPlugin {
     fn build(&self, app: &mut App) {
         app
             .add_plugins((
-                EventListenerPlugin::<UiPointerClick>::default(),
-                EventListenerPlugin::<UiPointerDoubleClick>::default(),
-                EventListenerPlugin::<UiPointerRelease>::default(),
-                EventListenerPlugin::<UiPointerPress>::default(),
-                EventListenerPlugin::<UiPointerMove>::default(),
-                EventListenerPlugin::<UiPointerOver>::default(),
-                EventListenerPlugin::<UiPointerEnter>::default(),
-                EventListenerPlugin::<UiPointerExit>::default(),
+                EventListenerPlugin::<PointerClick>::default(),
+                EventListenerPlugin::<PointerDoubleClick>::default(),
+                EventListenerPlugin::<PointerRelease>::default(),
+                EventListenerPlugin::<PointerPress>::default(),
+                EventListenerPlugin::<PointerMove>::default(),
+                EventListenerPlugin::<PointerOver>::default(),
+                EventListenerPlugin::<PointerEnter>::default(),
+                EventListenerPlugin::<PointerExit>::default(),
             ))
             .add_event::<ApplyConstraintHeight>()
             .add_event::<ApplyConstraintWidth>()

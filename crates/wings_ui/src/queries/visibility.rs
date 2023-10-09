@@ -2,7 +2,7 @@ use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
 use crate::widgets::visibility::{get_computed_display, get_computed_visibility, UiLayoutVisibility, UiVisibility};
 
-type UiVisibilityQueryType<'w, 's, T> = Query<'w, 's,
+type VisibilityQueryType<'w, 's, T> = Query<'w, 's,
     (
         Entity,
         &'static mut Style,
@@ -12,14 +12,14 @@ type UiVisibilityQueryType<'w, 's, T> = Query<'w, 's,
 >;
 
 #[derive(SystemParam)]
-pub struct UiVisibilityQuery<'w, 's, T: Component>(UiVisibilityQueryType<'w, 's, T>);
+pub struct VisibilityQuery<'w, 's, T: Component>(VisibilityQueryType<'w, 's, T>);
 
-impl <'w, 's, T: Component> UiVisibilityQuery<'w, 's, T> {
+impl <'w, 's, T: Component> VisibilityQuery<'w, 's, T> {
     #[inline]
-    pub fn get(&self) -> &UiVisibilityQueryType<'w, 's, T> { &self.0 }
+    pub fn get(&self) -> &VisibilityQueryType<'w, 's, T> { &self.0 }
 
     #[inline]
-    pub fn get_mut(&mut self) -> &mut UiVisibilityQueryType<'w, 's, T> { &mut self.0 }
+    pub fn get_mut(&mut self) -> &mut VisibilityQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
     pub fn get_visible(&mut self, target: Entity) -> bool {
@@ -51,7 +51,7 @@ impl <'w, 's, T: Component> UiVisibilityQuery<'w, 's, T> {
     }
 }
 
-type UiLayoutVisibilityQueryType<'w, 's, T> = Query<'w, 's,
+type LayoutVisibilityQueryType<'w, 's, T> = Query<'w, 's,
     (
         Entity,
         &'static mut Style,
@@ -62,14 +62,14 @@ type UiLayoutVisibilityQueryType<'w, 's, T> = Query<'w, 's,
 >;
 
 #[derive(SystemParam)]
-pub struct UiLayoutVisibilityQuery<'w, 's, T: Component>(UiLayoutVisibilityQueryType<'w, 's, T>);
+pub struct LayoutVisibilityQuery<'w, 's, T: Component>(LayoutVisibilityQueryType<'w, 's, T>);
 
-impl <'w, 's, T: Component> UiLayoutVisibilityQuery<'w, 's, T> {
+impl <'w, 's, T: Component> LayoutVisibilityQuery<'w, 's, T> {
     #[inline]
-    pub fn get(&self) -> &UiLayoutVisibilityQueryType<'w, 's, T> { &self.0 }
+    pub fn get(&self) -> &LayoutVisibilityQueryType<'w, 's, T> { &self.0 }
 
     #[inline]
-    pub fn get_mut(&mut self) -> &mut UiLayoutVisibilityQueryType<'w, 's, T> { &mut self.0 }
+    pub fn get_mut(&mut self) -> &mut LayoutVisibilityQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
     pub fn get_visibility(&mut self, target: Entity) -> UiLayoutVisibility {

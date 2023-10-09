@@ -1,7 +1,7 @@
 use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
 
-type UiSizeQueryType<'w, 's, T> = Query<'w, 's,
+type SizeQueryType<'w, 's, T> = Query<'w, 's,
     (
         Entity,
         &'static mut Style,
@@ -10,14 +10,14 @@ type UiSizeQueryType<'w, 's, T> = Query<'w, 's,
 >;
 
 #[derive(SystemParam)]
-pub struct UiSizeQuery<'w, 's, T: Component>(UiSizeQueryType<'w, 's, T>);
+pub struct SizeQuery<'w, 's, T: Component>(SizeQueryType<'w, 's, T>);
 
-impl <'w, 's, T: Component> UiSizeQuery<'w, 's, T> {
+impl <'w, 's, T: Component> SizeQuery<'w, 's, T> {
     #[inline]
-    pub fn get(&self) -> &UiSizeQueryType<'w, 's, T> { &self.0 }
+    pub fn get(&self) -> &SizeQueryType<'w, 's, T> { &self.0 }
 
     #[inline]
-    pub fn get_mut(&mut self) -> &mut UiSizeQueryType<'w, 's, T> { &mut self.0 }
+    pub fn get_mut(&mut self) -> &mut SizeQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
     pub fn get_size(&mut self, target: Entity) -> (Val, Val) {

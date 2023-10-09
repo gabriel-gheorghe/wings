@@ -1,15 +1,15 @@
 use bevy::prelude::*;
-use crate::classes::platform_classes::UiViewPadding;
+use crate::classes::platform_classes::ViewPadding;
 
 #[derive(Copy, Clone, Debug, Default)]
-pub struct UiEdgeInsets {
+pub struct EdgeInsets {
     pub left: Val,
     pub top: Val,
     pub right: Val,
     pub bottom: Val,
 }
 
-impl UiEdgeInsets {
+impl EdgeInsets {
     #[inline]
     pub fn zero() -> Self {
         Self::default()
@@ -168,7 +168,7 @@ impl UiEdgeInsets {
     }
 
     #[inline]
-    pub fn from_view_padding(padding: UiViewPadding, pixel_ratio: f32) -> Self {
+    pub fn from_view_padding(padding: ViewPadding, pixel_ratio: f32) -> Self {
         Self {
             left: Val::Px(padding.left / pixel_ratio),
             top: Val::Px(padding.top / pixel_ratio),

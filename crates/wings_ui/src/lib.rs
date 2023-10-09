@@ -9,31 +9,31 @@ pub(crate) mod systems;
 pub mod widgets;
 
 pub mod platform {
-    pub use crate::classes::platform_classes::UiViewPadding;
+    pub use crate::classes::platform_classes::ViewPadding;
 }
 
 pub mod prelude {
     pub use crate::{edge_insets_only, edge_insets_symmetric, define_ui_types, val, str};
 
-    pub use crate::classes::alignment::UiAlignment;
+    pub use crate::classes::alignment::Alignment;
     pub use crate::classes::decoration::{BoxDecoration, Border, BorderSide, BorderStyle};
-    pub use crate::classes::edge_insets::UiEdgeInsets;
+    pub use crate::classes::edge_insets::EdgeInsets;
 
     pub use crate::common_tags::Collapsible;
 
-    pub use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
+    pub use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
 
     pub use crate::events::{
-        UiPointerClick, UiPointerDoubleClick, UiPointerEnter, UiPointerExit,
-        UiPointerMove, UiPointerOver, UiPointerPress, UiPointerRelease,
+        PointerClick, PointerDoubleClick, PointerEnter, PointerExit,
+        PointerMove, PointerOver, PointerPress, PointerRelease,
     };
 
     pub use crate::plugin::WingsUiPlugin;
 
-    pub use crate::queries::color::UiColorQuery;
-    pub use crate::queries::size::UiSizeQuery;
-    pub use crate::queries::text::UiTextQuery;
-    pub use crate::queries::visibility::{UiLayoutVisibilityQuery, UiVisibilityQuery};
+    pub use crate::queries::color::ColorQuery;
+    pub use crate::queries::size::SizeQuery;
+    pub use crate::queries::text::TextQuery;
+    pub use crate::queries::visibility::{LayoutVisibilityQuery, VisibilityQuery};
 
     pub use crate::widgets::UiWidgetBundle;
 

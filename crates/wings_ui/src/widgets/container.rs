@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 use wings_utils::color::get_transparent_color;
 use crate::classes::decoration::BoxDecoration;
-use crate::prelude::UiEdgeInsets;
+use crate::prelude::EdgeInsets;
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
@@ -13,8 +13,8 @@ pub struct UiContainerProps {
     pub height: Val,
     pub color: Option<Color>,
     pub decoration: Option<BoxDecoration>,
-    pub margin: UiEdgeInsets,
-    pub padding: UiEdgeInsets,
+    pub margin: EdgeInsets,
+    pub padding: EdgeInsets,
 }
 
 impl Default for UiContainerProps {
@@ -25,8 +25,8 @@ impl Default for UiContainerProps {
             height: Val::Px(100.0),
             color: None,
             decoration: None,
-            margin: UiEdgeInsets::default(),
-            padding: UiEdgeInsets::default(),
+            margin: EdgeInsets::default(),
+            padding: EdgeInsets::default(),
         }
     }
 }
@@ -171,7 +171,7 @@ impl UiContainerBundle {
     }
 
     #[inline]
-    pub fn from_margin(margin: UiEdgeInsets) -> Self {
+    pub fn from_margin(margin: EdgeInsets) -> Self {
         Self::from(UiContainerProps {
             margin,
             ..default()
@@ -179,7 +179,7 @@ impl UiContainerBundle {
     }
 
     #[inline]
-    pub fn from_padding(padding: UiEdgeInsets) -> Self {
+    pub fn from_padding(padding: EdgeInsets) -> Self {
         Self::from(UiContainerProps {
             padding,
             ..default()
@@ -187,7 +187,7 @@ impl UiContainerBundle {
     }
 
     #[inline]
-    pub fn from_margin_padding(margin: UiEdgeInsets, padding: UiEdgeInsets) -> Self {
+    pub fn from_margin_padding(margin: EdgeInsets, padding: EdgeInsets) -> Self {
         Self::from(UiContainerProps {
             margin,
             padding,

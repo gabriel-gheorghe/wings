@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use crate::enums::{UiCrossAxisAlignment, UiMainAxisAlignment, UiMainAxisSize};
+use crate::enums::{CrossAxisAlignment, MainAxisAlignment, MainAxisSize};
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
@@ -7,9 +7,9 @@ pub struct UiColumn;
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiColumnProps {
-    pub main_axis_size: UiMainAxisSize,
-    pub main_axis_alignment: UiMainAxisAlignment,
-    pub cross_axis_alignment: UiCrossAxisAlignment,
+    pub main_axis_size: MainAxisSize,
+    pub main_axis_alignment: MainAxisAlignment,
+    pub cross_axis_alignment: CrossAxisAlignment,
 }
 
 #[derive(Bundle, Clone, Debug)]
@@ -45,14 +45,14 @@ impl UiColumnBundle {
 
     #[inline]
     pub fn from_main_axis(
-        main_axis_size: UiMainAxisSize,
-        main_axis_alignment: UiMainAxisAlignment,
+        main_axis_size: MainAxisSize,
+        main_axis_alignment: MainAxisAlignment,
     ) -> Self {
         Self::from(UiColumnProps { main_axis_size, main_axis_alignment, ..default() })
     }
 
     #[inline]
-    pub fn from_cross_axis(cross_axis_alignment: UiCrossAxisAlignment) -> Self {
+    pub fn from_cross_axis(cross_axis_alignment: CrossAxisAlignment) -> Self {
         Self::from(UiColumnProps { cross_axis_alignment, ..default() })
     }
 }
@@ -62,9 +62,9 @@ pub struct UiRow;
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiRowProps {
-    pub main_axis_size: UiMainAxisSize,
-    pub main_axis_alignment: UiMainAxisAlignment,
-    pub cross_axis_alignment: UiCrossAxisAlignment,
+    pub main_axis_size: MainAxisSize,
+    pub main_axis_alignment: MainAxisAlignment,
+    pub cross_axis_alignment: CrossAxisAlignment,
 }
 
 #[derive(Bundle, Clone, Debug)]
@@ -100,45 +100,45 @@ impl UiRowBundle {
 
     #[inline]
     pub fn from_main_axis(
-        main_axis_size: UiMainAxisSize,
-        main_axis_alignment: UiMainAxisAlignment,
+        main_axis_size: MainAxisSize,
+        main_axis_alignment: MainAxisAlignment,
     ) -> Self {
         Self::from(UiRowProps { main_axis_size, main_axis_alignment, ..default() })
     }
 
     #[inline]
-    pub fn from_cross_axis(cross_axis_alignment: UiCrossAxisAlignment) -> Self {
+    pub fn from_cross_axis(cross_axis_alignment: CrossAxisAlignment) -> Self {
         Self::from(UiRowProps { cross_axis_alignment, ..default() })
     }
 }
 
 #[inline]
-pub(crate) fn to_main_size(value: UiMainAxisSize) -> Val {
+pub(crate) fn to_main_size(value: MainAxisSize) -> Val {
     match value {
-        UiMainAxisSize::Min => Val::Auto,
-        UiMainAxisSize::Max => Val::Percent(100.),
+        MainAxisSize::Min => Val::Auto,
+        MainAxisSize::Max => Val::Percent(100.),
     }
 }
 
 #[inline]
-pub(crate) fn to_justify(value: UiMainAxisAlignment) -> JustifyContent {
+pub(crate) fn to_justify(value: MainAxisAlignment) -> JustifyContent {
     match value {
-        UiMainAxisAlignment::Start => JustifyContent::FlexStart,
-        UiMainAxisAlignment::End => JustifyContent::FlexEnd,
-        UiMainAxisAlignment::Center => JustifyContent::Center,
-        UiMainAxisAlignment::SpaceBetween => JustifyContent::SpaceBetween,
-        UiMainAxisAlignment::SpaceEvenly => JustifyContent::SpaceEvenly,
-        UiMainAxisAlignment::SpaceAround => JustifyContent::SpaceAround,
+        MainAxisAlignment::Start => JustifyContent::FlexStart,
+        MainAxisAlignment::End => JustifyContent::FlexEnd,
+        MainAxisAlignment::Center => JustifyContent::Center,
+        MainAxisAlignment::SpaceBetween => JustifyContent::SpaceBetween,
+        MainAxisAlignment::SpaceEvenly => JustifyContent::SpaceEvenly,
+        MainAxisAlignment::SpaceAround => JustifyContent::SpaceAround,
     }
 }
 
 #[inline]
-pub(crate) fn to_align(value: UiCrossAxisAlignment) -> AlignItems {
+pub(crate) fn to_align(value: CrossAxisAlignment) -> AlignItems {
     match value {
-        UiCrossAxisAlignment::Start => AlignItems::FlexStart,
-        UiCrossAxisAlignment::End => AlignItems::FlexEnd,
-        UiCrossAxisAlignment::Center => AlignItems::Center,
-        UiCrossAxisAlignment::Baseline => AlignItems::Baseline,
-        UiCrossAxisAlignment::Stretch => AlignItems::Stretch,
+        CrossAxisAlignment::Start => AlignItems::FlexStart,
+        CrossAxisAlignment::End => AlignItems::FlexEnd,
+        CrossAxisAlignment::Center => AlignItems::Center,
+        CrossAxisAlignment::Baseline => AlignItems::Baseline,
+        CrossAxisAlignment::Stretch => AlignItems::Stretch,
     }
 }

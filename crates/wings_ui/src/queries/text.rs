@@ -2,7 +2,7 @@ use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
 use wings_utils::color::{get_random_color, get_random_color_with_alpha};
 
-type UiTextQueryType<'w, 's, T> = Query<'w, 's,
+type TextQueryType<'w, 's, T> = Query<'w, 's,
     (
         Entity,
         &'static mut Text,
@@ -11,14 +11,14 @@ type UiTextQueryType<'w, 's, T> = Query<'w, 's,
 >;
 
 #[derive(SystemParam)]
-pub struct UiTextQuery<'w, 's, T: Component>(UiTextQueryType<'w, 's, T>);
+pub struct TextQuery<'w, 's, T: Component>(TextQueryType<'w, 's, T>);
 
-impl <'w, 's, T: Component> UiTextQuery<'w, 's, T> {
+impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
     #[inline]
-    pub fn get(&self) -> &UiTextQueryType<'w, 's, T> { &self.0 }
+    pub fn get(&self) -> &TextQueryType<'w, 's, T> { &self.0 }
 
     #[inline]
-    pub fn get_mut(&mut self) -> &mut UiTextQueryType<'w, 's, T> { &mut self.0 }
+    pub fn get_mut(&mut self) -> &mut TextQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
     pub fn get_text(&mut self, target: Entity) -> String {

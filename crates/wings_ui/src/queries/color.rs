@@ -2,7 +2,7 @@ use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
 use wings_utils::color::{get_random_color, get_random_color_with_alpha};
 
-type UiColorQueryType<'w, 's, T> = Query<'w, 's,
+type ColorQueryType<'w, 's, T> = Query<'w, 's,
     (
         Entity,
         &'static mut BackgroundColor,
@@ -11,14 +11,14 @@ type UiColorQueryType<'w, 's, T> = Query<'w, 's,
 >;
 
 #[derive(SystemParam)]
-pub struct UiColorQuery<'w, 's, T: Component>(UiColorQueryType<'w, 's, T>);
+pub struct ColorQuery<'w, 's, T: Component>(ColorQueryType<'w, 's, T>);
 
-impl <'w, 's, T: Component> UiColorQuery<'w, 's, T> {
+impl <'w, 's, T: Component> ColorQuery<'w, 's, T> {
     #[inline]
-    pub fn get(&self) -> &UiColorQueryType<'w, 's, T> { &self.0 }
+    pub fn get(&self) -> &ColorQueryType<'w, 's, T> { &self.0 }
 
     #[inline]
-    pub fn get_mut(&mut self) -> &mut UiColorQueryType<'w, 's, T> { &mut self.0 }
+    pub fn get_mut(&mut self) -> &mut ColorQueryType<'w, 's, T> { &mut self.0 }
 
     #[inline]
     pub fn get_color(&mut self, target: Entity) -> Color {

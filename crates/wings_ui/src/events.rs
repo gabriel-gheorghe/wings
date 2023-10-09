@@ -5,49 +5,49 @@ use bevy_eventlistener::{
 use bevy_eventlistener_derive::EntityEvent;
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerClick {
+pub struct PointerClick {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerDoubleClick {
+pub struct PointerDoubleClick {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerRelease {
+pub struct PointerRelease {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerPress {
+pub struct PointerPress {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerMove {
+pub struct PointerMove {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerOver {
+pub struct PointerOver {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerEnter {
+pub struct PointerEnter {
     #[target]
     pub target: Entity,
 }
 
 #[derive(Event, EntityEvent, Clone, Debug)]
-pub struct UiPointerExit {
+pub struct PointerExit {
     #[target]
     pub target: Entity,
 }

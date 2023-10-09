@@ -1,13 +1,13 @@
 use bevy::prelude::*;
-use crate::classes::edge_insets::UiEdgeInsets;
+use crate::classes::edge_insets::EdgeInsets;
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiPadding(pub UiEdgeInsets);
+pub struct UiPadding(pub EdgeInsets);
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiPaddingProps {
-    pub padding: UiEdgeInsets,
+    pub padding: EdgeInsets,
 }
 
 #[derive(Bundle, Clone, Debug)]
@@ -41,7 +41,7 @@ impl UiPaddingBundle {
     }
 
     #[inline]
-    pub fn from_edge(padding: UiEdgeInsets) -> Self {
+    pub fn from_edge(padding: EdgeInsets) -> Self {
         Self::from(UiPaddingProps { padding })
     }
 }

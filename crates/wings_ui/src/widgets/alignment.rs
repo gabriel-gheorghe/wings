@@ -1,13 +1,13 @@
 use bevy::prelude::*;
-use crate::classes::alignment::UiAlignment;
+use crate::classes::alignment::Alignment;
 use crate::widgets::UiWidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
-pub struct UiAlign(UiAlignment);
+pub struct UiAlign(Alignment);
 
 #[derive(Copy, Clone, Debug, Default)]
 pub struct UiAlignProps {
-    pub alignment: UiAlignment,
+    pub alignment: Alignment,
 }
 
 #[derive(Bundle, Clone, Debug)]
@@ -73,7 +73,7 @@ impl UiAlignBundle {
     }
 
     #[inline]
-    pub fn from_alignment(alignment: UiAlignment) -> Self {
+    pub fn from_alignment(alignment: Alignment) -> Self {
         Self::from(UiAlignProps { alignment })
     }
 }

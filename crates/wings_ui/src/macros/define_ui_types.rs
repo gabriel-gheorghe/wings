@@ -25,18 +25,5 @@ macro_rules! define_ui_types {
         type LayoutVisibility = UiLayoutVisibilityBundle;
         type Padding = UiPaddingBundle;
         type Text = UiTextBundle;
-
-        // CLASSES
-        type ViewPadding = wings::platform::UiViewPadding;
-        type EdgeInsets = UiEdgeInsets;
-        type Alignment = UiAlignment;
-
-        // ENUMS
-        type MainAxisSize = UiMainAxisSize;
-        type MainAxisAlignment = UiMainAxisAlignment;
-        type CrossAxisAlignment = UiCrossAxisAlignment;
-
-        // EVENTS
-        type PointerClick = UiPointerClick;
     }
 }

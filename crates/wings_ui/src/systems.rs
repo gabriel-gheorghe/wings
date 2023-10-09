@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 use crate::events::{
-    ApplyConstraintHeight, ApplyConstraintWidth, UiPointerClick, UiPointerEnter, UiPointerExit,
+    ApplyConstraintHeight, ApplyConstraintWidth, PointerClick, PointerEnter, PointerExit,
 };
 use crate::prelude::{UiButton, UiConstrainedHeight, UiConstrainedWidth};
 
@@ -78,20 +78,20 @@ pub(crate) fn apply_constraint_width(
 
 pub(crate) fn buttons_interactions(
     mut button_q: Query<(Entity, &Interaction, With<UiButton>)>,
-    mut ev_pointer_click: EventWriter<UiPointerClick>,
-    mut ev_pointer_enter: EventWriter<UiPointerEnter>,
-    mut ev_pointer_exit: EventWriter<UiPointerExit>,
+    mut ev_pointer_click: EventWriter<PointerClick>,
+    mut ev_pointer_enter: EventWriter<PointerEnter>,
+    mut ev_pointer_exit: EventWriter<PointerExit>,
 ) {
     for (target, interaction, _) in &mut button_q {
         match *interaction {
             Interaction::Pressed => {
-                ev_pointer_click.send(UiPointerClick { target });
+                ev_pointer_click.send(PointerClick { target });
             }
             Interaction::Hovered => {
-                ev_pointer_enter.send(UiPointerEnter { target });
+                ev_pointer_enter.send(PointerEnter { target });
             }
             Interaction::None => {
-                ev_pointer_exit.send(UiPointerExit { target });
+                ev_pointer_exit.send(PointerExit { target });
             }
         }
     }

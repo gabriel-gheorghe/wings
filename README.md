@@ -197,8 +197,8 @@ fn startup(mut commands: Commands) {
 
 fn change_color(
     keyboard_input: Res<Input<KeyCode>>,
-    mut color_query: UiColorQuery<ColorTag>,
-    mut visibility_query: UiVisibilityQuery<Collapsible>,
+    mut color_query: ColorQuery<ColorTag>,
+    mut visibility_query: VisibilityQuery<Collapsible>,
 ) {
     if keyboard_input.just_pressed(KeyCode::Space) {
         color_query.set_random_color();
@@ -226,14 +226,14 @@ fn update_color_bad(mut query: Query<(&mut BackgroundColor, With<UiContainer>)>)
 }
 
 // You can do this if you want more control over entities, but still not recommended
-fn update_color_also_bad(mut query: UiColorQuery<UiContainer>) {
+fn update_color_also_bad(mut query: ColorQuery<UiContainer>) {
     query.get_mut().for_each_mut(|(_, mut c_color, _)| {
         c_color.0 = get_random_color_with_alpha();
     });
 }
 
 // This is the most ergonomic way
-fn update_color_good(mut query: UiColorQuery<UiContainer>) {
+fn update_color_good(mut query: ColorQuery<UiContainer>) {
     query.set_random_color_with_alpha();
 }
 ```
