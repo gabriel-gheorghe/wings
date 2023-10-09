@@ -28,13 +28,13 @@ impl Default for FlatButtonProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct FlatButtonBundle {
-    pub child: WidgetBundle,
-    pub button: Button,
-    pub interaction: Interaction,
-    pub background_color: BackgroundColor,
-    pub border_color: BorderColor,
-    pub image: UiImage,
-    internal: FlatButtonWidget,
+    child: WidgetBundle,
+    button: Button,
+    interaction: Interaction,
+    background_color: BackgroundColor,
+    border_color: BorderColor,
+    image: UiImage,
+    widget: FlatButtonWidget,
 }
 
 impl Default for FlatButtonBundle {
@@ -64,7 +64,7 @@ impl FlatButtonBundle {
             background_color: BackgroundColor::from(props.color),
             border_color: BorderColor(props.border_color),
             image: Default::default(),
-            internal: FlatButtonWidget::default(),
+            widget: FlatButtonWidget::default(),
         }
     }
 

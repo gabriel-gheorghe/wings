@@ -6,8 +6,8 @@ pub struct UiVisibility(pub bool);
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiVisibilityBundle {
-    pub child: WidgetBundle,
-    pub visibility: UiVisibility,
+    child: WidgetBundle,
+    widget: UiVisibility,
 }
 
 impl Default for UiVisibilityBundle {
@@ -28,7 +28,7 @@ impl UiVisibilityBundle {
                 },
                 ..default()
             },
-            visibility: UiVisibility(visible),
+            widget: UiVisibility(visible),
         }
     }
 }

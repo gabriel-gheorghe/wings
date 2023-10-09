@@ -14,8 +14,8 @@ pub struct UiColumnProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiColumnBundle {
-    pub child: WidgetBundle,
-    internal_tag: UiColumn,
+    child: WidgetBundle,
+    widget: UiColumn,
 }
 
 impl Default for UiColumnBundle {
@@ -39,7 +39,7 @@ impl UiColumnBundle {
                 },
                 ..default()
             },
-            internal_tag: UiColumn::default(),
+            widget: UiColumn::default(),
         }
     }
 
@@ -69,8 +69,8 @@ pub struct UiRowProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiRowBundle {
-    pub child: WidgetBundle,
-    internal_tag: UiRow,
+    child: WidgetBundle,
+    widget: UiRow,
 }
 
 impl Default for UiRowBundle {
@@ -94,7 +94,7 @@ impl UiRowBundle {
                 },
                 ..default()
             },
-            internal_tag: UiRow::default(),
+            widget: UiRow::default(),
         }
     }
 

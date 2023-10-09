@@ -33,11 +33,11 @@ impl Default for UiContainerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiContainerBundle {
-    pub child: WidgetBundle,
-    pub background_color: BackgroundColor,
-    pub border_color: BorderColor,
-    pub image: UiImage,
-    internal_tag: UiContainer,
+    child: WidgetBundle,
+    background_color: BackgroundColor,
+    border_color: BorderColor,
+    image: UiImage,
+    widget: UiContainer,
 }
 
 impl Default for UiContainerBundle {
@@ -85,7 +85,7 @@ impl UiContainerBundle {
                 BorderColor::from(get_transparent_color())
             },
             image: Default::default(),
-            internal_tag: UiContainer::default(),
+            widget: UiContainer::default(),
         }
     }
 

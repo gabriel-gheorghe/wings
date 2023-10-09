@@ -12,8 +12,8 @@ pub struct UiAlignProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiAlignBundle {
-    pub child: WidgetBundle,
-    pub align: UiAlign,
+    child: WidgetBundle,
+    widget: UiAlign,
 }
 
 impl Default for UiAlignBundle {
@@ -68,7 +68,7 @@ impl UiAlignBundle {
                 },
                 ..default()
             },
-            align: UiAlign(props.alignment),
+            widget: UiAlign(props.alignment),
         }
     }
 
@@ -83,9 +83,9 @@ pub struct UiCenter;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiCenterBundle {
-    pub child: WidgetBundle,
-    internal_tag_0: UiAlign,
-    internal_tag_1: UiCenter,
+    child: WidgetBundle,
+    widget_0: UiAlign,
+    widget_1: UiCenter,
 }
 
 impl Default for UiCenterBundle {
@@ -102,8 +102,8 @@ impl Default for UiCenterBundle {
                 },
                 ..default()
             },
-            internal_tag_0: UiAlign::default(),
-            internal_tag_1: UiCenter::default(),
+            widget_0: UiAlign::default(),
+            widget_1: UiCenter::default(),
         }
     }
 }

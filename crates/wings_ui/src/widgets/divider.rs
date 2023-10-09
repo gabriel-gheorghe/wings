@@ -20,9 +20,9 @@ impl Default for UiHorizontalDividerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiHorizontalDividerBundle {
-    pub child: WidgetBundle,
-    pub background_color: BackgroundColor,
-    internal_tag: UiHorizontalDivider,
+    child: WidgetBundle,
+    background_color: BackgroundColor,
+    widget: UiHorizontalDivider,
 }
 
 impl Default for UiHorizontalDividerBundle {
@@ -47,7 +47,7 @@ impl UiHorizontalDividerBundle {
                 ..default()
             },
             background_color: BackgroundColor::from(Color::BLACK),
-            internal_tag: UiHorizontalDivider::default(),
+            widget: UiHorizontalDivider::default(),
         }
     }
 
@@ -87,9 +87,9 @@ impl Default for UiVerticalDividerProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiVerticalDividerBundle {
-    pub child: WidgetBundle,
-    pub background_color: BackgroundColor,
-    internal_tag: UiVerticalDivider,
+    child: WidgetBundle,
+    background_color: BackgroundColor,
+    widget: UiVerticalDivider,
 }
 
 impl Default for UiVerticalDividerBundle {
@@ -114,7 +114,7 @@ impl UiVerticalDividerBundle {
                 ..default()
             },
             background_color: BackgroundColor::from(Color::BLACK),
-            internal_tag: UiVerticalDivider::default(),
+            widget: UiVerticalDivider::default(),
         }
     }
 

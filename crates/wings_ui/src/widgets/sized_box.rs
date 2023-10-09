@@ -22,8 +22,8 @@ impl Default for UiSizedBoxProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiSizedBoxBundle {
-    pub child: WidgetBundle,
-    internal_tag: UiSizedBox,
+    child: WidgetBundle,
+    widget: UiSizedBox,
 }
 
 impl Default for UiSizedBoxBundle {
@@ -45,7 +45,7 @@ impl UiSizedBoxBundle {
                 },
                 ..default()
             },
-            internal_tag: UiSizedBox::default(),
+            widget: UiSizedBox::default(),
         }
     }
 

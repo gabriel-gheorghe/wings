@@ -12,8 +12,8 @@ pub struct UiPaddingProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiPaddingBundle {
-    pub child: WidgetBundle,
-    pub padding: UiPadding,
+    child: WidgetBundle,
+    widget: UiPadding,
 }
 
 impl Default for UiPaddingBundle {
@@ -36,7 +36,7 @@ impl UiPaddingBundle {
                 },
                 ..default()
             },
-            padding: UiPadding(props.padding),
+            widget: UiPadding(props.padding),
         }
     }
 

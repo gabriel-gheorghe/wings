@@ -25,9 +25,9 @@ impl Default for UiScaffoldProps {
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiScaffoldBundle {
-    pub child: WidgetBundle,
-    pub background_color: BackgroundColor,
-    internal_tag: UiScaffold,
+    child: WidgetBundle,
+    background_color: BackgroundColor,
+    widget: UiScaffold,
 }
 
 impl Default for UiScaffoldBundle {
@@ -50,7 +50,7 @@ impl UiScaffoldBundle {
                 ..default()
             },
             background_color: BackgroundColor::from(props.color),
-            internal_tag: UiScaffold::default(),
+            widget: UiScaffold::default(),
         }
     }
 

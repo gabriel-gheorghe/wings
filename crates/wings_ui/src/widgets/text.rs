@@ -29,12 +29,12 @@ impl Default for UiTextProps {
 
 #[derive(Bundle, Debug)]
 pub struct UiTextBundle {
-    pub child: WidgetBundle,
-    pub text: Text,
-    pub text_layout_info: TextLayoutInfo,
-    pub text_flags: TextFlags,
-    pub calculated_size: ContentSize,
-    internal_tag: UiText,
+    child: WidgetBundle,
+    text: Text,
+    text_layout_info: TextLayoutInfo,
+    text_flags: TextFlags,
+    calculated_size: ContentSize,
+    widget: UiText,
 }
 
 impl Default for UiTextBundle {
@@ -62,7 +62,7 @@ impl UiTextBundle {
             text_layout_info: TextLayoutInfo::default(),
             text_flags: TextFlags::default(),
             calculated_size: ContentSize::default(),
-            internal_tag: UiText::default(),
+            widget: UiText::default(),
         }
     }
 

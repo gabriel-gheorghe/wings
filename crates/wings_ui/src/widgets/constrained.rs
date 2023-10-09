@@ -7,9 +7,9 @@ pub struct UiConstrainedHeight;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedHeightBundle {
-    pub child: WidgetBundle,
-    pub debug_color: BackgroundColor,
-    internal_tag: UiConstrainedHeight,
+    child: WidgetBundle,
+    debug_color: BackgroundColor,
+    widget: UiConstrainedHeight,
 }
 
 impl Default for UiConstrainedHeightBundle {
@@ -24,7 +24,7 @@ impl Default for UiConstrainedHeightBundle {
                 ..default()
             },
             debug_color: BackgroundColor::from(get_transparent_color()),
-            internal_tag: UiConstrainedHeight::default(),
+            widget: UiConstrainedHeight::default(),
         }
     }
 }
@@ -43,9 +43,9 @@ pub struct UiConstrainedWidth;
 
 #[derive(Bundle, Clone, Debug)]
 pub struct UiConstrainedWidthBundle {
-    pub child: WidgetBundle,
-    pub debug_color: BackgroundColor,
-    internal_tag: UiConstrainedWidth,
+    child: WidgetBundle,
+    debug_color: BackgroundColor,
+    widget: UiConstrainedWidth,
 }
 
 impl Default for UiConstrainedWidthBundle {
@@ -60,7 +60,7 @@ impl Default for UiConstrainedWidthBundle {
                 ..default()
             },
             debug_color: BackgroundColor::from(get_transparent_color()),
-            internal_tag: UiConstrainedWidth::default(),
+            widget: UiConstrainedWidth::default(),
         }
     }
 }
