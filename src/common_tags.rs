@@ -37,10 +37,10 @@ use bevy::prelude::*;
 /// ) {
 ///     if keyboard_input.just_pressed(KeyCode::Space) {
 ///         query.set_visibility(|v| {
-///             if v == LayoutVisibility::Visible {
+///             if v == LayoutVisibility::Inherited {
 ///                 LayoutVisibility::Collapsed
 ///             } else {
-///                 LayoutVisibility::Visible
+///                 LayoutVisibility::Inherited
 ///             }
 ///         });
 ///     }
