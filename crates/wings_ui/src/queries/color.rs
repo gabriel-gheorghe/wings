@@ -32,9 +32,13 @@ impl <'w, 's, T: Component> ColorQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_color(&mut self, color: Color) {
+    pub fn set_color<F>(&mut self, f: F)
+    where
+        F: FnOnce(Color) -> Color + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_color)| {
-            c_color.0 = color;
+            let color = &f(c_color.0);
+            c_color.0 = *color;
         });
     }
 
@@ -54,12 +58,12 @@ impl <'w, 's, T: Component> ColorQuery<'w, 's, T> {
 
     #[inline]
     pub fn set_random_color_equally(&mut self) {
-        self.set_color(get_random_color());
+        self.set_color(|_| get_random_color());
     }
 
     #[inline]
     pub fn set_random_color_with_alpha_equally(&mut self) {
-        self.set_color(get_random_color_with_alpha(None));
+        self.set_color(|_| get_random_color_with_alpha(None));
     }
 
     #[inline]

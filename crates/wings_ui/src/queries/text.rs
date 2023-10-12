@@ -32,9 +32,13 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_text(&mut self, text: String) {
+    pub fn set_text<F>(&mut self, f: F)
+    where
+        F: FnOnce(String) -> String + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_text)| {
-            c_text.sections.first_mut().unwrap().value = text.clone();
+            let text = f(c_text.sections.first().cloned().unwrap().value);
+            c_text.sections.first_mut().unwrap().value = text;
         });
     }
 
@@ -59,9 +63,14 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_font_size(&mut self, font_size: f32) {
+    pub fn set_font_size<F>(&mut self, f: F)
+    where
+        F: FnOnce(f32) -> f32 + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_text)| {
-            c_text.sections.first_mut().unwrap().style.font_size = font_size;
+            let font_size
+                = &f(c_text.sections.first().cloned().unwrap().style.font_size);
+            c_text.sections.first_mut().unwrap().style.font_size = *font_size;
         });
     }
 
@@ -86,9 +95,13 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_color(&mut self, color: Color) {
+    pub fn set_color<F>(&mut self, f: F)
+    where
+        F: FnOnce(Color) -> Color + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_text)| {
-            c_text.sections.first_mut().unwrap().style.color = color;
+            let color = &f(c_text.sections.first().unwrap().style.color);
+            c_text.sections.first_mut().unwrap().style.color = *color;
         });
     }
 
@@ -108,12 +121,12 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
 
     #[inline]
     pub fn set_random_color_equally(&mut self) {
-        self.set_color(get_random_color());
+        self.set_color(|_| get_random_color());
     }
 
     #[inline]
     pub fn set_random_color_with_alpha_equally(&mut self) {
-        self.set_color(get_random_color_with_alpha(None));
+        self.set_color(|_| get_random_color_with_alpha(None));
     }
 
     #[inline]

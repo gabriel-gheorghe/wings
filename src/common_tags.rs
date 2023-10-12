@@ -36,7 +36,13 @@ use bevy::prelude::*;
 ///     mut query: LayoutVisibilityQuery<Collapsible>,
 /// ) {
 ///     if keyboard_input.just_pressed(KeyCode::Space) {
-///         query.set_visibility(LayoutVisibility::Collapsed);
+///         query.set_visibility(|v| {
+///             if v == LayoutVisibility::Visible {
+///                 LayoutVisibility::Collapsed
+///             } else {
+///                 LayoutVisibility::Visible
+///             }
+///         });
 ///     }
 /// }
 /// ```

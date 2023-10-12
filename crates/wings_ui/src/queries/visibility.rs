@@ -36,10 +36,14 @@ impl <'w, 's, T: Component> VisibleQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_visible(&mut self, visible: bool) {
+    pub fn set_visible<F>(&mut self, f: F)
+    where
+        F: FnOnce(bool) -> bool + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_style, mut ui_visibility)| {
-            c_style.display = if visible { Display::Flex } else { Display::None };
-            *ui_visibility = VisibleWidget(visible);
+            let visible = &f(ui_visibility.0);
+            c_style.display = if *visible { Display::Flex } else { Display::None };
+            *ui_visibility = VisibleWidget(*visible);
         });
     }
 
@@ -86,11 +90,15 @@ impl <'w, 's, T: Component> LayoutVisibilityQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_visibility(&mut self, visibility: LayoutVisibility) {
+    pub fn set_visibility<F>(&mut self, f: F)
+    where
+        F: FnOnce(LayoutVisibility) -> LayoutVisibility + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_style, mut c_visibility, mut ui_visibility)| {
-            c_style.display = get_computed_display(&visibility);
-            *c_visibility = get_computed_visibility(&visibility);
-            ui_visibility.0 = visibility;
+            let visibility = &f(ui_visibility.0);
+            c_style.display = get_computed_display(visibility);
+            *c_visibility = get_computed_visibility(visibility);
+            ui_visibility.0 = *visibility;
         });
     }
 

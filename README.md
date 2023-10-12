@@ -200,14 +200,12 @@ fn change_color(
     mut color_query: ColorQuery<ColorTag>,
     mut visibility_query: VisibleQuery<Collapsible>,
 ) {
-    if keyboard_input.just_pressed(KeyCode::Space) {
+    if keyboard_input.just_pressed(KeyCode::C) {
         color_query.set_random_color();
     }
 
-    if keyboard_input.just_pressed(KeyCode::Z) {
-        visibility_query.set_visible(false);
-    } else if keyboard_input.just_pressed(KeyCode::X) {
-        visibility_query.set_visible(true);
+    if keyboard_input.just_pressed(KeyCode::V) {
+        visibility_query.set_visible(|v| !v);
     }
 }
 ```
@@ -219,21 +217,21 @@ Instead, use built-in Queries !
 
 ```rust
 // This is bad use
-fn apply_theme_bad(mut query: Query<(&mut BackgroundColor, With<UiContainer>)>) {
+fn apply_theme_bad(mut query: Query<(&mut BackgroundColor, With<ContainerWidget>)>) {
     for (mut bg_color, _) in query.iter_mut() {
-        bg_color.0 = get_random_color_with_alpha();
+        bg_color.0 = get_random_color();
     }
 }
 
 // You can do this if you want more control over entities, but still not recommended
-fn apply_theme_also_bad(mut query: ColorQuery<UiContainer>) {
+fn apply_theme_also_bad(mut query: ColorQuery<ContainerWidget>) {
     query.get_mut().for_each_mut(|(_, mut c_color, _)| {
-        c_color.0 = get_random_color_with_alpha();
+        c_color.0 = get_random_color();
     });
 }
 
 // This is the most ergonomic way
-fn apply_theme_good(mut query: ColorQuery<UiContainer>) {
-    query.set_random_color_with_alpha();
+fn apply_theme_good(mut query: ColorQuery<ContainerWidget>) {
+    query.set_random_color();
 }
 ```

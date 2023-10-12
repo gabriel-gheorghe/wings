@@ -53,24 +53,36 @@ impl <'w, 's, T: Component> SizeQuery<'w, 's, T> {
     }
 
     #[inline]
-    pub fn set_size(&mut self, width: Val, height: Val) {
+    pub fn set_size<F>(&mut self, f: F)
+    where
+        F: FnOnce((Val, Val)) -> (Val, Val) + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_style)| {
-            c_style.width = width;
-            c_style.height = height;
+            let (width, height) = &f((c_style.width, c_style.height));
+            c_style.width = *width;
+            c_style.height = *height;
         });
     }
 
     #[inline]
-    pub fn set_width(&mut self, width: Val) {
+    pub fn set_width<F>(&mut self, f: F)
+    where
+        F: FnOnce(Val) -> Val + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_style)| {
-            c_style.width = width;
+            let width = &f(c_style.width);
+            c_style.width = *width;
         });
     }
 
     #[inline]
-    pub fn set_height(&mut self, height: Val) {
+    pub fn set_height<F>(&mut self, f: F)
+    where
+        F: FnOnce(Val) -> Val + Copy + Clone
+    {
         self.0.for_each_mut(|(_, mut c_style)| {
-            c_style.height = height;
+            let height = &f(c_style.height);
+            c_style.height = *height;
         });
     }
 
