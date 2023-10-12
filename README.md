@@ -19,6 +19,7 @@ This design is inspired from Flutter.
 14. LayoutVisibility
 15. Padding
 16. Paragraph
+17. GestureDetector
 
 ### Built-in Queries
 
@@ -206,6 +207,31 @@ fn change_color(
 
     if keyboard_input.just_pressed(KeyCode::V) {
         visibility_query.set_visible(|v| !v);
+    }
+}
+```
+
+#### <u>Gesture Detector Example</u>
+
+Every time when you click on the first Container, all Containers in the Widget Tree will change their color.
+
+```rust
+widget_tree! {
+    Center {
+        child: GestureDetector {
+            on_tap: on_tap! {
+                |mut color_query: ColorQuery<Container>| {
+                    color_query.set_random_color();
+                }
+            }
+            child: Container {
+                width: val![500. px]
+                child: Align {
+                    alignment: Alignment::CENTER_RIGHT
+                    child: Container {}
+                }
+            }
+        }
     }
 }
 ```

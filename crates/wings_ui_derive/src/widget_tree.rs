@@ -14,7 +14,7 @@ use syn::{parse::{Parse, ParseBuffer, ParseStream}, parse2, punctuated::Punctuat
           WhereClause, token, braced, bracketed, parenthesized};
 
 pub(crate) fn widget_tree(input: TokenStream) -> TokenStream {
-    let mut codegen = quote! { define_ui_types!(); };
+    let mut codegen = quote! { define_ui_types_bundles!(); };
     let widget = parse2::<UiWidgetBuilder>(input).unwrap();
 
     if let Some(node) = widget.node {

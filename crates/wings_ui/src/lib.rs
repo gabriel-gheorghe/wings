@@ -12,18 +12,18 @@ pub mod platform {
 }
 
 pub mod prelude {
-    pub use crate::{define_ui_types, edge_insets_only, edge_insets_symmetric, str, val};
+    pub use crate::{
+        define_common_types, define_ui_types_bundles, define_ui_types_components,
+        edge_insets_only, edge_insets_symmetric,
+        on_tap,
+        str, val,
+    };
 
     pub use crate::classes::alignment::Alignment;
     pub use crate::classes::decoration::{Border, BorderSide, BorderStyle, BoxDecoration};
     pub use crate::classes::edge_insets::EdgeInsets;
 
     pub use crate::enums::{CrossAxisAlignment, LayoutVisibility, MainAxisAlignment, MainAxisSize};
-
-    pub use crate::events::{
-        PointerClick, PointerDoubleClick, PointerEnter, PointerExit,
-        PointerMove, PointerOver, PointerPress, PointerRelease,
-    };
 
     pub use crate::plugin::WingsUiPlugin;
 
@@ -49,6 +49,13 @@ pub mod prelude {
     pub use crate::widgets::divider::{
         HorizontalDividerBundle, HorizontalDividerProps, HorizontalDividerWidget,
         VerticalDividerBundle, VerticalDividerProps, VerticalDividerWidget,
+    };
+    pub use crate::widgets::gesture_detector::{
+        GestureDetectorBundle, GestureDetectorProps, GestureDetectorWidget,
+
+        events::{
+            OnTap, Tap, TapListener,
+        }
     };
     pub use crate::widgets::padding::{PaddingBundle, PaddingProps, PaddingWidget};
     pub use crate::widgets::paragraph::{ParagraphBundle, ParagraphProps, ParagraphWidget};

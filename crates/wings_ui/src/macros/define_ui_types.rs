@@ -1,14 +1,19 @@
 #[allow(unused_macros)]
 
 #[macro_export]
-macro_rules! define_ui_types {
+macro_rules! define_common_types {
     () => {
-        // COMMON
         use bevy::ui::Val::Auto;
         use bevy::ui::Val::Percent;
         use bevy::ui::Val::Px;
+    };
+}
 
-        // WIDGETS
+#[macro_export]
+macro_rules! define_ui_types_bundles {
+    () => {
+        define_common_types!();
+
         type Scaffold = ScaffoldBundle;
         type Container = ContainerBundle;
         type SizedBox = SizedBoxBundle;
@@ -25,5 +30,31 @@ macro_rules! define_ui_types {
         type LayoutVisibility = LayoutVisibilityBundle;
         type Padding = PaddingBundle;
         type Paragraph = ParagraphBundle;
+        type GestureDetector = GestureDetectorBundle;
+    }
+}
+
+#[macro_export]
+macro_rules! define_ui_types_components {
+    () => {
+        define_common_types!();
+
+        type Scaffold = ScaffoldWidget;
+        type Container = ContainerWidget;
+        type SizedBox = SizedBoxWidget;
+        type Align = AlignWidget;
+        type Center = CenterWidget;
+        type FlatButton = FlatButtonWidget;
+        type Column = ColumnWidget;
+        type Row = RowWidget;
+        type ConstrainedWidth = ConstrainedWidthWidget;
+        type ConstrainedHeight = ConstrainedHeightWidget;
+        type HorizontalDivider = HorizontalDividerWidget;
+        type VerticalDivider = VerticalDividerWidget;
+        type Visible = VisibleWidget;
+        type LayoutVisibility = LayoutVisibilityWidget;
+        type Padding = PaddingWidget;
+        type Paragraph = ParagraphWidget;
+        type GestureDetector = GestureDetectorWidget;
     }
 }

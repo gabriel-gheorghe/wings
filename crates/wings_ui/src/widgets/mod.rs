@@ -6,6 +6,7 @@ pub mod constrained;
 pub mod container;
 pub mod direction;
 pub mod divider;
+pub mod gesture_detector;
 pub mod padding;
 pub mod scaffold;
 pub mod sized_box;

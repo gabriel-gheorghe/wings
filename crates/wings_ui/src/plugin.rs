@@ -1,5 +1,6 @@
 use bevy::prelude::*;
-use bevy_eventlistener::prelude::*;
+use bevy_mod_picking::DefaultPickingPlugins;
+use bevy_mod_picking::prelude::*;
 use crate::events::*;
 use crate::systems::*;
 
@@ -11,14 +12,10 @@ impl Plugin for WingsUiPlugin {
     fn build(&self, app: &mut App) {
         app
             .add_plugins((
-                EventListenerPlugin::<PointerClick>::default(),
-                EventListenerPlugin::<PointerDoubleClick>::default(),
-                EventListenerPlugin::<PointerRelease>::default(),
-                EventListenerPlugin::<PointerPress>::default(),
-                EventListenerPlugin::<PointerMove>::default(),
-                EventListenerPlugin::<PointerOver>::default(),
-                EventListenerPlugin::<PointerEnter>::default(),
-                EventListenerPlugin::<PointerExit>::default(),
+                DefaultPickingPlugins
+                    .build()
+                    .disable::<DefaultHighlightingPlugin>()
+                    .disable::<DebugPickingPlugin>(),
             ))
             .add_event::<ApplyConstraintHeight>()
             .add_event::<ApplyConstraintWidth>()
