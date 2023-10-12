@@ -102,7 +102,7 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
     #[inline]
     pub fn set_random_color_with_alpha(&mut self) {
         self.0.for_each_mut(|(_, mut c_text)| {
-            c_text.sections.first_mut().unwrap().style.color = get_random_color_with_alpha();
+            c_text.sections.first_mut().unwrap().style.color = get_random_color_with_alpha(None);
         });
     }
 
@@ -113,7 +113,7 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
 
     #[inline]
     pub fn set_random_color_with_alpha_equally(&mut self) {
-        self.set_color(get_random_color_with_alpha());
+        self.set_color(get_random_color_with_alpha(None));
     }
 
     #[inline]
@@ -138,7 +138,8 @@ impl <'w, 's, T: Component> TextQuery<'w, 's, T> {
     pub fn set_random_color_with_alpha_single(&mut self, target: Entity) {
         self.0.for_each_mut(|(entity, mut c_text)| {
             if entity == target {
-                c_text.sections.first_mut().unwrap().style.color = get_random_color_with_alpha();
+                c_text.sections.first_mut().unwrap().style.color
+                    = get_random_color_with_alpha(None);
             }
         });
     }

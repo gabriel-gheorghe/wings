@@ -3,6 +3,8 @@ use bevy_eventlistener::prelude::*;
 use crate::events::*;
 use crate::systems::*;
 
+/// A [`Plugin`](https://docs.rs/bevy/latest/bevy/app/trait.Plugin.html)
+/// that defines an interface for Wings User Interface.
 pub struct WingsUiPlugin;
 
 impl Plugin for WingsUiPlugin {

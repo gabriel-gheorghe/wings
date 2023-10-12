@@ -12,6 +12,7 @@ pub mod sized_box;
 pub mod paragraph;
 pub mod visibility;
 
+/// This bundle is used to construct other UI bundles that must act like a Widget.
 #[derive(Bundle, Clone, Debug)]
 pub struct WidgetBundle {
     pub node: Node,

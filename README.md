@@ -215,7 +215,7 @@ fn change_color(
 ### Some queries tips for applying a theme:
 
 ! When working with WingsUI, Do not access BevyUI components directly because of unexpected behaviour !
-Instead use built-in Queries !
+Instead, use built-in Queries !
 
 ```rust
 // This is bad use

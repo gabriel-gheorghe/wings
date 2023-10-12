@@ -3,7 +3,7 @@ name = "wings_ui_derive"
 version = "0.1.0-dev"
 edition = "2021"
 description = ""
-repository = "https://github.com/thirdq/wings/"
+repository = "https://github.com/gabriel-gheorghe/wings/"
 license-file = "LICENSE"
 keywords = ["wings"]
 

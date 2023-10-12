@@ -1,5 +1,4 @@
 pub mod classes;
-pub mod common_tags;
 pub mod enums;
 pub mod events;
 pub mod macros;
@@ -13,13 +12,11 @@ pub mod platform {
 }
 
 pub mod prelude {
-    pub use crate::{edge_insets_only, edge_insets_symmetric, define_ui_types, val, str};
+    pub use crate::{define_ui_types, edge_insets_only, edge_insets_symmetric, str, val};
 
     pub use crate::classes::alignment::Alignment;
-    pub use crate::classes::decoration::{BoxDecoration, Border, BorderSide, BorderStyle};
+    pub use crate::classes::decoration::{Border, BorderSide, BorderStyle, BoxDecoration};
     pub use crate::classes::edge_insets::EdgeInsets;
-
-    pub use crate::common_tags::Collapsible;
 
     pub use crate::enums::{CrossAxisAlignment, LayoutVisibility, MainAxisAlignment, MainAxisSize};
 
