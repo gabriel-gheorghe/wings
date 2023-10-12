@@ -1,12 +1,23 @@
 use bevy::prelude::*;
 use crate::classes::platform_classes::ViewPadding;
 
-#[derive(Copy, Clone, Debug, Default)]
+#[derive(Copy, Clone, Debug)]
 pub struct EdgeInsets {
     pub left: Val,
     pub top: Val,
     pub right: Val,
     pub bottom: Val,
+}
+
+impl Default for EdgeInsets {
+    fn default() -> Self {
+        Self {
+            left: Val::Px(0.),
+            top: Val::Px(0.),
+            right: Val::Px(0.),
+            bottom: Val::Px(0.),
+        }
+    }
 }
 
 impl EdgeInsets {
