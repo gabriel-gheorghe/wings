@@ -1,7 +1,14 @@
 # ✈️ Wings UI
 ### A new way to build User Interfaces on top of <u>BevyUI</u>.
 The design is inspired from <u>Flutter</u>.
-This is the most <span style="color:orange">ergonomic</span> <b>ECS</b> Data Driven UI Framework.
+This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
+
+---
+## 🦅‍ Bevy Version Support
+
+| bevy | wings |
+|------|-------|
+| 0.11 | 0.1   |
 
 ---
 ### 🛩 Built-in Widgets
@@ -21,25 +28,25 @@ This is the most <span style="color:orange">ergonomic</span> <b>ECS</b> Data Dri
 14. `LayoutVisibility`
 15. `Padding`
 16. `Paragraph`
-17. `GestureDetector` <span style="color:teal">A widget that detects gestures.</span>
+17. `GestureDetector` A widget that detects gestures.
 
 ---
 ### 🛩 Built-in Queries
 
-1. `ColorQuery` <span style="color:orange">(`background_color`)</span>
-2. `SizeQuery` <span style="color:orange">(`width` & `height`)</span>
+1. `ColorQuery` (`background_color`)
+2. `SizeQuery` (`width` & `height`)
 3. `VisibleQuery`
 4. `LayoutVisibilityQuery`
-5. `TextQuery` <span style="color:orange">(`text` & `font_size` & `color`)</span>
+5. `TextQuery` (`text` & `font_size` & `color`)
 
 ---
 ### 🛩 Gesture Events
-1. `OnTap` | `on_tap!` <span style="color:teal">Fires when a tap with a pointer button has occurred.</span>
-2. `OnTapDown` | `on_tap_down!` <span style="color:teal">Fires when a pointer that might cause a tap with a button has contacted the screen at a particular location.</span>
-3. `OnTapUp` | `on_tap_up!` <span style="color:teal">Fires when a pointer that will trigger a tap with a button has stopped contacting the screen at a particular location.</span>
-4. `OnMove` | `on_move!` <span style="color:teal">Fires when a pointer is moving over the widget.</span>
-5. `OnContact` | `on_contact!` <span style="color:teal">Fires when a pointer crosses into the bounds of the target entity.</span>
-6. `OnLeave` | `on_leave!` <span style="color:teal">Fires when a pointer crosses out of the bounds of the target entity.</span>
+1. `OnTap` | `on_tap!` Fires when a tap with a pointer button has occurred.
+2. `OnTapDown` | `on_tap_down!` Fires when a pointer that might cause a tap with a button has contacted the screen at a particular location.
+3. `OnTapUp` | `on_tap_up!` Fires when a pointer that will trigger a tap with a button has stopped contacting the screen at a particular location.
+4. `OnMove` | `on_move!` Fires when a pointer is moving over the widget.
+5. `OnContact` | `on_contact!` Fires when a pointer crosses into the bounds of the target entity.
+6. `OnLeave` | `on_leave!` Fires when a pointer crosses out of the bounds of the target entity.
 
 ---
 ### 🛩 Known limitations / Work in progress
