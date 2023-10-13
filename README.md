@@ -1,43 +1,56 @@
-# Wings UI
-A new way to build User Interfaces on top of BevyUI.
-This design is inspired from Flutter.
+# ✈️ Wings UI
+### A new way to build User Interfaces on top of <u>BevyUI</u>.
+The design is inspired from <u>Flutter</u>.
+This is the most <span style="color:orange">ergonomic</span> <b>ECS</b> Data Driven UI Framework.
 
-### Built-in Widgets
-1. Scaffold
-2. Container
-3. SizedBox
-4. Align
-5. Center
-6. FlatButton
-7. Column
-8. Row
-9. ConstrainedWidth
-10. ConstrainedHeight
-11. HorizontalDivider
-12. VerticalDivider
-13. Visible
-14. LayoutVisibility
-15. Padding
-16. Paragraph
-17. GestureDetector
+---
+### 🛩 Built-in Widgets
+1. `Scaffold`
+2. `Container`
+3. `SizedBox`
+4. `Align`
+5. `Center`
+6. `FlatButton`
+7. `Column`
+8. `Row`
+9. `ConstrainedWidth`
+10. `ConstrainedHeight`
+11. `HorizontalDivider`
+12. `VerticalDivider`
+13. `Visible`
+14. `LayoutVisibility`
+15. `Padding`
+16. `Paragraph`
+17. `GestureDetector` <span style="color:teal">A widget that detects gestures.</span>
 
-### Built-in Queries
+---
+### 🛩 Built-in Queries
 
-1. Color <i>(background_color)</i>
-2. Size <i>(width + height)</i>
-3. Visible
-4. LayoutVisibility
-5. Text <i>(text, font_size, color)</i>
+1. `ColorQuery` <span style="color:orange">(`background_color`)</span>
+2. `SizeQuery` <span style="color:orange">(`width` & `height`)</span>
+3. `VisibleQuery`
+4. `LayoutVisibilityQuery`
+5. `TextQuery` <span style="color:orange">(`text` & `font_size` & `color`)</span>
 
-### Known limitations / Work in progress
-1. Currently, you cannot create your own widgets
-2. For/If statements inside widget tree are missing
-3. Missing a lot of useful widgets such as ProgressIndicator, CheckBox, RadioButton, ToggleButton, Dropdown, TextEdit, SelectableText, ScrollArea, ListView, AppBar, Icon, Stack, Grid, Wrap and so on..
-4. Animations capability
-5. Alignment values have issues. Consider adding a system to process them
-6. Events are not implemented properly, consider adding GestureDetector and Focus widgets
+---
+### 🛩 Gesture Events
+1. `OnTap` | `on_tap!` <span style="color:teal">Fires when a tap with a pointer button has occurred.</span>
+2. `OnTapDown` | `on_tap_down!` <span style="color:teal">Fires when a pointer that might cause a tap with a button has contacted the screen at a particular location.</span>
+3. `OnTapUp` | `on_tap_up!` <span style="color:teal">Fires when a pointer that will trigger a tap with a button has stopped contacting the screen at a particular location.</span>
+4. `OnMove` | `on_move!` <span style="color:teal">Fires when a pointer is moving over the widget.</span>
+5. `OnContact` | `on_contact!` <span style="color:teal">Fires when a pointer crosses into the bounds of the target entity.</span>
+6. `OnLeave` | `on_leave!` <span style="color:teal">Fires when a pointer crosses out of the bounds of the target entity.</span>
 
-#### <u>Padding Example</u>
+---
+### 🛩 Known limitations / Work in progress
+1. Currently, you cannot create your own widgets. Consider adding `compose_widget!` proc macro.
+2. For/If/Match statements inside `widget_tree!` are missing
+3. Missing a lot of useful widgets such as `ProgressIndicator`, `CheckBox`, `RadioButton`, `ToggleButton`, `Dropdown`, `TextEdit`, `SelectableText`, `ScrollArea`, `ListView`, `AppBar`, `Icon`, `Stack`, `Grid`, `Wrap`, `Drawer`, `ColorPicker`, `FilePicker` and so on..
+4. Animation capability is still in design phase. `Alignment` must be fixed before.
+5. `Alignment` values have issues. Consider adding a system to process them.
+
+---
+## [ ✈️ -1- ] <u>Padding Example</u>
 
 <p>
   <img src="./images/padding_example.png" width="400" title="hover text">
@@ -63,7 +76,8 @@ widget_tree!(
 );
 ```
 
-#### <u>Column Example</u>
+---
+## [ ✈️ -2- ] <u>Column Example</u>
 
 <p>
   <img src="./images/column_example.png" width="400" title="hover text">
@@ -97,7 +111,8 @@ widget_tree!(
 );
 ```
 
-#### <u>Row Example</u>
+---
+## [ ✈️ -3- ] <u>Row Example</u>
 
 <p>
   <img src="./images/row_example.png" width="400" title="hover text">
@@ -131,7 +146,8 @@ widget_tree!(
 );
 ```
 
-#### <u>Queries Example</u>
+---
+## [ ✈️ -4- ] <u>Queries Example</u>
 
 <p>
   <img src="./images/query_example.gif" width="400" title="hover text">
@@ -211,19 +227,23 @@ fn change_color(
 }
 ```
 
-#### <u>Gesture Detector Example</u>
+---
+## [ ✈️ -5- ] <u>Gesture Detector Example</u>
 
-Every time when you click on the first Container, all Containers in the Widget Tree will change their color.
+Every time when you click on the first `Container`, all Containers in the Widget Tree will change their color.
+Mouse enter will trigger `on_contact` and mouse exit will trigger `on_leave`.
 
 ```rust
 widget_tree! {
     Center {
         child: GestureDetector {
             on_tap: on_tap! {
-                |mut color_query: ColorQuery<Container>| {
-                    color_query.set_random_color();
+                |mut query: ColorQuery<Container>| {
+                    query.set_random_color();
                 }
             }
+            on_contact: on_contact! { || println!("Contact") }
+            on_leave: on_leave! { || println!("Leave") }
             child: Container {
                 width: val![500. px]
                 child: Align {
@@ -236,10 +256,11 @@ widget_tree! {
 }
 ```
 
-### Some queries tips for applying a theme:
+---
+### 🛫 Some query tips for applying a theme:
 
-! When working with WingsUI, Do not access BevyUI components directly because of unexpected behaviour !
-Instead, use built-in Queries !
+⚠️ When working with WingsUI, Do not access BevyUI components directly because of unexpected behaviour !
+Instead, use built-in Queries ⚠️
 
 ```rust
 // This is bad use
