@@ -4,7 +4,7 @@ The design is inspired from <u>Flutter</u>.
 This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
 
 ---
-## 🦅‍ Bevy Version Support
+### 🦅‍ Bevy Version Support
 
 | bevy | wings |
 |------|-------|
@@ -51,10 +51,11 @@ This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
 ---
 ### 🛩 Known limitations / Work in progress
 1. Currently, you cannot create your own widgets. Consider adding `compose_widget!` proc macro.
-2. For/If/Match statements inside `widget_tree!` are missing
+2. Expressions such as `for`/`while`/`loop`/`if-else`/`match` inside `widget_tree!` are missing.
 3. Missing a lot of useful widgets such as `ProgressIndicator`, `CheckBox`, `RadioButton`, `ToggleButton`, `Dropdown`, `TextEdit`, `SelectableText`, `ScrollArea`, `ListView`, `AppBar`, `Icon`, `Stack`, `Grid`, `Wrap`, `Drawer`, `ColorPicker`, `FilePicker` and so on..
 4. Animation capability is still in design phase. `Alignment` must be fixed before.
 5. `Alignment` values have issues. Consider adding a system to process them.
+6. All 4 borders inside `BoxDecoration` must have the same color in order to render the border.
 
 ---
 ## [ ✈️ -1- ] <u>Padding Example</u>

@@ -24,7 +24,6 @@ impl Plugin for WingsUiPlugin {
                 (
                     compute_constraint_heights,
                     compute_constraint_widths,
-                    buttons_interactions,
                     apply_constraint_height,
                     apply_constraint_width,
                 ),
