@@ -15,7 +15,7 @@ pub mod prelude {
     pub use crate::{
         define_common_types, define_ui_types_bundles, define_ui_types_components,
         edge_insets_only, edge_insets_symmetric,
-        on_tap,
+        on_contact, on_leave, on_move, on_tap, on_tap_down, on_tap_up,
         str, val,
     };
 
@@ -24,6 +24,15 @@ pub mod prelude {
     pub use crate::classes::edge_insets::EdgeInsets;
 
     pub use crate::enums::{CrossAxisAlignment, LayoutVisibility, MainAxisAlignment, MainAxisSize};
+
+    pub use crate::events::gesture::{
+        OnContact, Contact, ContactListener,
+        OnLeave, Leave, LeaveListener,
+        OnMove, Move, MoveListener,
+        OnTap, Tap, TapListener,
+        OnTapDown, TapDown, TapDownListener,
+        OnTapUp, TapUp, TapUpListener,
+    };
 
     pub use crate::plugin::WingsUiPlugin;
 
@@ -52,10 +61,6 @@ pub mod prelude {
     };
     pub use crate::widgets::gesture_detector::{
         GestureDetectorBundle, GestureDetectorProps, GestureDetectorWidget,
-
-        events::{
-            OnTap, Tap, TapListener,
-        }
     };
     pub use crate::widgets::padding::{PaddingBundle, PaddingProps, PaddingWidget};
     pub use crate::widgets::paragraph::{ParagraphBundle, ParagraphProps, ParagraphWidget};
