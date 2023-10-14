@@ -41,12 +41,35 @@ This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
 
 ---
 ### 🛩 Gesture Events
-1. `OnTap` | `on_tap!` Fires when a tap with a pointer button has occurred.
-2. `OnTapDown` | `on_tap_down!` Fires when a pointer that might cause a tap with a button has contacted the screen at a particular location.
-3. `OnTapUp` | `on_tap_up!` Fires when a pointer that will trigger a tap with a button has stopped contacting the screen at a particular location.
-4. `OnMove` | `on_move!` Fires when a pointer is moving over the widget.
-5. `OnContact` | `on_contact!` Fires when a pointer crosses into the bounds of the target entity.
-6. `OnLeave` | `on_leave!` Fires when a pointer crosses out of the bounds of the target entity.
+1. `OnTap` | `on_tap! { || {} }` Fires when a tap with a pointer button has occurred.
+2. `OnTapDown` | `on_tap_down! { || {} }` Fires when a pointer that might cause a tap with a button has contacted the screen at a particular location.
+3. `OnTapUp` | `on_tap_up! { || {} }` Fires when a pointer that will trigger a tap with a button has stopped contacting the screen at a particular location.
+4. `OnMove` | `on_move! { || {} }` Fires when a pointer is moving over the widget.
+5. `OnContact` | `on_contact! { || {} }` Fires when a pointer crosses into the bounds of the target entity.
+6. `OnLeave` | `on_leave! { || {} }` Fires when a pointer crosses out of the bounds of the target entity.
+
+---
+### 🛩 UI Macros
+1. `str!["Play"]` is equivalent to `"Play".to_string()`
+2. `val![100. px]` is equivalent to `Val::Px(100.)`
+3. `val![100. %]` is equivalent to `Val::Percent(100.)`
+4. `color![TEAL]` is equivalent to `Some(Color::TEAL)`
+5. `color![^TEAL]` is equivalent to `Color::TEAL`
+6. `color![Color::default()]` is equivalent to `Some(Color::default())`
+7. `color![^Color::default()]` is equivalent to `Color::default()`
+8. `color![r: 1., g: 1., b: 1.]` is equivalent to `Some(Color::rgb(1., 1., 1.))`
+9. `color![^r: 1., g: 1., b: 1.]` is equivalent to `Color::rgb(1., 1., 1.)`
+10. `color![r: 1., g: 1., b: 1., a: 1.]` is equivalent to `Some(Color::rgba(1., 1., 1., 1.))`
+11. `color![^r: 1., g: 1., b: 1., a: 1.]` is equivalent to `Color::rgba(1., 1., 1., 1.)`
+12. `color!["#00FF00FF"]` is equivalent to `Some(Color::hex("#00FF00FF").unwrap_or(get_transparent_color()))`
+13. `color![^"#00FF00FF"]` is equivalent to `Color::hex("#00FF00FF").unwrap_or(get_transparent_color())`
+14. `color![hex my_string]` is equivalent to `Some(Color::hex(my_string).unwrap_or(get_transparent_color()))`
+15. `color![^hex my_string]` is equivalent to `Color::hex(my_string).unwrap_or(get_transparent_color())`
+16. `edge_insets_only![left: 10., right: 15., top: 20., bottom: 25.]` is equivalent to `EdgeInsets::from_ltrb(10., 15., 20., 25.)` You can keep only what side(s) you need, everything else will be set to 0.
+17. `edge_insets_symmetric![vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vertical(10.)`
+18. `edge_insets_symmetric![horizontal: 10.]` is equivalent to `EdgeInsets::symmetric_horizontal(10.)`
+19. `edge_insets_symmetric![vertical: 10., horizontal: 15.]` is equivalent to `EdgeInsets::symmetric_vh(10., 15.)`
+20. `edge_insets_symmetric![horizontal: 15., vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vh(10., 15.)`
 
 ---
 ### 🛩 Known limitations / Work in progress
@@ -68,13 +91,13 @@ This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
 widget_tree!(
     Scaffold {
         child: Container {
-            color: Some(Color::BLUE)
+            color: color![BLUE]
             width: val![500. px]
             height: val![500. px]
             child: Padding {
                 padding: EdgeInsets::all(val![80. px])
                 child: Container {
-                    color: Some(Color::YELLOW)
+                    color: color![YELLOW]
                     width: val![100. %]
                     height: val![100. %]
                 }
@@ -101,15 +124,15 @@ widget_tree!(
                 cross_axis_alignment: CrossAxisAlignment::End
                 children: [
                     Container {
-                        color: Some(Color::RED)
+                        color: color![RED]
                         width: val![300. px]
                     }
                     Container {
-                        color: Some(Color::GREEN)
+                        color: color![GREEN]
                         width: val![480. px]
                     }
                     Container {
-                        color: Some(Color::BLUE)
+                        color: color![BLUE]
                         width: val![200. px]
                     }
                 ]
@@ -136,15 +159,15 @@ widget_tree!(
                 cross_axis_alignment: CrossAxisAlignment::End
                 children: [
                     Container {
-                        color: Some(Color::RED)
+                        color: color![RED]
                         height: val![300. px]
                     }
                     Container {
-                        color: Some(Color::GREEN)
+                        color: color![GREEN]
                         height: val![480. px]
                     }
                     Container {
-                        color: Some(Color::BLUE)
+                        color: color![BLUE]
                         height: val![200. px]
                     }
                 ]
@@ -197,7 +220,7 @@ fn startup(mut commands: Commands) {
                 child: Center {
                     child: Column {
                         children: [
-                            Container { color: Some(Color::RED) }
+                            Container { color: color![RED] }
                             SizedBox { height: val![10. px] }
                             Visible {
                                 tags: [Collapsible]
@@ -205,13 +228,13 @@ fn startup(mut commands: Commands) {
                                     children: [
                                         Container {
                                             tags: [ColorTag]
-                                            color: Some(Color::ORANGE)
+                                            color: color![ORANGE]
                                         }
                                         SizedBox { height: val![10. px] }
                                     ]
                                 }
                             }
-                            Container { color: Some(Color::DARK_GREEN) }
+                            Container { color: color![DARK_GREEN] }
                         ]
                     }
                 }
