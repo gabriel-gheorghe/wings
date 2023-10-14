@@ -7,8 +7,7 @@ use crate::widgets::WidgetBundle;
 #[derive(Component, Clone, Debug, Default)]
 pub struct GestureDetectorWidget;
 
-/// Properties for [`GestureDetectorBundle`](GestureDetectorBundle)
-/// which is a bundle for a widget that detects gestures.
+/// Properties for [`GestureDetectorBundle`] which is a bundle for a widget that detects gestures.
 pub struct GestureDetectorProps {
     /// Fires when a tap with a pointer button has occurred.
     pub on_tap: OnTap,
@@ -40,8 +39,7 @@ impl Default for GestureDetectorProps {
     }
 }
 
-/// A bundle for [`GestureDetectorWidget`](GestureDetectorWidget)
-/// which is a widget that detects gestures.
+/// A bundle for [`GestureDetectorWidget`] which is a widget that detects gestures.
 #[derive(Bundle)]
 pub struct GestureDetectorBundle {
     /// The widget below this widget in the tree.
@@ -67,8 +65,7 @@ pub struct GestureDetectorBundle {
 }
 
 impl Default for GestureDetectorBundle {
-    /// Create a [`GestureDetectorBundle`](GestureDetectorBundle)
-    /// using [`GestureDetectorProps`](GestureDetectorProps) defaults.
+    /// Create a [`GestureDetectorBundle`] using [`GestureDetectorProps`] defaults.
     ///
     /// This is called in `widget_tree!` when no properties or only `child`, `children` or `tags`
     /// are defined.
@@ -79,8 +76,7 @@ impl Default for GestureDetectorBundle {
 }
 
 impl GestureDetectorBundle {
-    /// Create a [`GestureDetectorBundle`](GestureDetectorBundle)
-    /// using [`GestureDetectorProps`](GestureDetectorProps).
+    /// Create a [`GestureDetectorBundle`] using [`GestureDetectorProps`].
     #[inline]
     pub fn from(props: GestureDetectorProps) -> Self {
         Self {

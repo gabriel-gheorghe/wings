@@ -57,19 +57,23 @@ This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
 5. `color![^TEAL]` is equivalent to `Color::TEAL`
 6. `color![Color::default()]` is equivalent to `Some(Color::default())`
 7. `color![^Color::default()]` is equivalent to `Color::default()`
-8. `color![r: 1., g: 1., b: 1.]` is equivalent to `Some(Color::rgb(1., 1., 1.))`
-9. `color![^r: 1., g: 1., b: 1.]` is equivalent to `Color::rgb(1., 1., 1.)`
-10. `color![r: 1., g: 1., b: 1., a: 1.]` is equivalent to `Some(Color::rgba(1., 1., 1., 1.))`
-11. `color![^r: 1., g: 1., b: 1., a: 1.]` is equivalent to `Color::rgba(1., 1., 1., 1.)`
-12. `color!["#00FF00FF"]` is equivalent to `Some(Color::hex("#00FF00FF").unwrap_or(get_transparent_color()))`
-13. `color![^"#00FF00FF"]` is equivalent to `Color::hex("#00FF00FF").unwrap_or(get_transparent_color())`
-14. `color![hex my_string]` is equivalent to `Some(Color::hex(my_string).unwrap_or(get_transparent_color()))`
-15. `color![^hex my_string]` is equivalent to `Color::hex(my_string).unwrap_or(get_transparent_color())`
-16. `edge_insets_only![left: 10., right: 15., top: 20., bottom: 25.]` is equivalent to `EdgeInsets::from_ltrb(10., 15., 20., 25.)` You can keep only what side(s) you need, everything else will be set to 0.
-17. `edge_insets_symmetric![vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vertical(10.)`
-18. `edge_insets_symmetric![horizontal: 10.]` is equivalent to `EdgeInsets::symmetric_horizontal(10.)`
-19. `edge_insets_symmetric![vertical: 10., horizontal: 15.]` is equivalent to `EdgeInsets::symmetric_vh(10., 15.)`
-20. `edge_insets_symmetric![horizontal: 15., vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vh(10., 15.)`
+8. `color![r: 0.75, g: 0.5., b: 0.25]` is equivalent to `Some(Color::rgb(0.75, 0.5, 0.25))`
+9. `color![^r: 0.75, g: 0.5, b: 0.25]` is equivalent to `Color::rgb(0.75, 0.5, 0.25)`
+10. `color![r: 0.75, g: 0.5, b: 0.25, a: 1.]` is equivalent to `Some(Color::rgba(0.75, 0.5, 0.25, 1.))`
+11. `color![^r: 0.75, g: 0.5, b: 0.25, a: 1.]` is equivalent to `Color::rgba(0.75, 0.5, 0.25, 1.)`
+12. `color![r8: 117, g8: 63, b8: 223]` is equivalent to `Some(Color::rgb_u8(117, 63, 223))`
+13. `color![^r8: 117, g8: 63, b8: 223]` is equivalent to `Color::rgb_u8(117, 63, 223)`
+14. `color![r8: 117, g8: 63, b8: 223, a8: 255]` is equivalent to `Some(Color::rgba_u8(117, 63, 223, 255))`
+15. `color![^r8: 117, g8: 63, b8: 223, a8: 255]` is equivalent to `Color::rgba_u8(117, 63, 223, 255)`
+16. `color!["#00FF00FF"]` is equivalent to `Some(Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.)))`
+17. `color![^"#00FF00FF"]` is equivalent to `Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.))`
+18. `color![hex my_string]` is equivalent to `Some(Color::hex(my_string).unwrap_or(Color::rgba(0., 0., 0., 0.)))`
+19. `color![^hex my_string]` is equivalent to `Color::hex(my_string).unwrap_or(Color::rgba(0., 0., 0., 0.))`
+20. `edge_insets_only![left: 10., right: 15., top: 20., bottom: 25.]` is equivalent to `EdgeInsets::from_ltrb(10., 15., 20., 25.)` You can keep only what side(s) you need, everything else will be set to 0.
+21. `edge_insets_symmetric![vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vertical(10.)`
+22. `edge_insets_symmetric![horizontal: 10.]` is equivalent to `EdgeInsets::symmetric_horizontal(10.)`
+23. `edge_insets_symmetric![vertical: 10., horizontal: 15.]` is equivalent to `EdgeInsets::symmetric_vh(10., 15.)`
+24. `edge_insets_symmetric![horizontal: 15., vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vh(10., 15.)`
 
 ---
 ### 🛩 Known limitations / Work in progress

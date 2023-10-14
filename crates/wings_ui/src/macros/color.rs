@@ -2,44 +2,116 @@
 
 /// Macro used to define a color inside a `widget_tree`.
 ///
-/// Use cases when you need to get Some(Color):
-/// ```ignore
-/// color: color![TEAL] // as an identifier
-/// color: color![Color::default()] // as an expression
-/// color: color![r: 1., g: 0.5, b: 0.5] // as an array of expressions [rgb]
-/// color: color![r: 1., g: 0.5, b: 0.5., a: 1.] // as an array of expressions [rgba]
-/// color: color!["#00FF00FF"] // as a literal (hex)
-///
-/// let mut hex_color = "#00FF00FF";
-/// color: color![hex hex_color] // as an expression (hex)
+/// Use cases when you need to retrieve Some(Color) or Color:
+/// 1. As an identifier:
 /// ```
+/// use bevy::prelude::*;
+/// use wings_ui::prelude::*;
 ///
-/// Use cases when you need to get simply Color (just add ^):
-/// ```ignore
-/// color: color![^TEAL] // as an identifier
-/// color: color![^Color::default()] // as an expression
-/// color: color![^r: 1., g: 0.5, b: 0.5] // as an array of expressions [rgb]
-/// color: color![^r: 1., g: 0.5, b: 0.5., a: 1.] // as an array of expressions [rgba]
-/// color: color![^"#00FF00FF"] // as a literal (hex)
+/// let some_color = color![TEAL];
+/// assert_eq!(some_color, Some(Color::TEAL));
 ///
-/// let mut hex_color = "#00FF00FF";
-/// color: color![^hex hex_color] // as an expression (hex)
+/// let color = color![^TEAL];
+/// assert_eq!(color, Color::TEAL);
+/// ```
+/// 2. As an expression:
+/// ```
+/// use bevy::prelude::*;
+/// use wings_ui::prelude::*;
+///
+/// fn main() {
+///     let some_color = color![Color::default()];
+///     assert_eq!(some_color, Some(Color::default()));
+///
+///     let color = color![^Color::default()];
+///     assert_eq!(color, Color::default());
+/// }
+/// ```
+/// 3. As an array of expressions (rgb):
+/// ```
+/// use bevy::prelude::*;
+/// use wings_ui::prelude::*;
+///
+/// fn main() {
+///     let some_color = color![r: 0.75, g: 0.5, b: 0.25];
+///     assert_eq!(some_color, Some(Color::rgb(0.75, 0.5, 0.25)));
+///
+///     let color = color![^r: 0.75, g: 0.5, b: 0.25];
+///     assert_eq!(color, Color::rgb(0.75, 0.5, 0.25));
+///
+///     let some_color_u8 = color![r8: 117, g8: 63, b8: 223];
+///     assert_eq!(some_color_u8, Some(Color::rgb_u8(117, 63, 223)));
+///
+///     let color_u8 = color![^r8: 117, g8: 63, b8: 223];
+///     assert_eq!(color_u8, Color::rgb_u8(117, 63, 223));
+/// }
+/// ```
+/// 4. As an array of expressions (rgba):
+/// ```
+/// use bevy::prelude::*;
+/// use wings_ui::prelude::*;
+///
+/// fn main() {
+///     let some_color = color![r: 0.75, g: 0.5, b: 0.25, a: 1.];
+///     assert_eq!(some_color, Some(Color::rgba(0.75, 0.5, 0.25, 1.)));
+///
+///     let color = color![^r: 0.75, g: 0.5, b: 0.25, a: 1.];
+///     assert_eq!(color, Color::rgba(0.75, 0.5, 0.25, 1.));
+///
+///     let some_color_u8 = color![r8: 117, g8: 63, b8: 223, a8: 255];
+///     assert_eq!(some_color_u8, Some(Color::rgba_u8(117, 63, 223, 255)));
+///
+///     let color_u8 = color![^r8: 117, g8: 63, b8: 223, a8: 255];
+///     assert_eq!(color_u8, Color::rgba_u8(117, 63, 223, 255));
+/// }
+/// ```
+/// 5. As a literal (hex):
+/// ```
+/// use bevy::prelude::*;
+/// use wings_ui::prelude::*;
+///
+/// fn main() {
+///     let some_color = color!["#00FF00FF"];
+///     assert_eq!(some_color, Some(Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.))));
+///
+///     let color = color![^"#00FF00FF"];
+///     assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.)));
+/// }
+/// ```
+/// 6. As an expression (hex):
+/// ```
+/// use bevy::prelude::*;
+/// use wings_ui::prelude::*;
+///
+/// fn main() {
+///     let mut hex_color = "#00FF00FF";
+///
+///     let some_color = color![hex hex_color];
+///     assert_eq!(some_color, Some(Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.))));
+///
+///     let color = color![^hex hex_color];
+///     assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.)));
+/// }
 /// ```
 #[macro_export]
 macro_rules! color {
     ($x:literal) => {{
-        use wings::prelude::get_transparent_color;
-        Some(Color::hex($x).unwrap_or(get_transparent_color()))
+        Some(Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.)))
     }};
     (hex $x:expr) => {{
-        use wings::prelude::get_transparent_color;
-        Some(Color::hex($x).unwrap_or(get_transparent_color()))
+        Some(Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.)))
     }};
     (r: $r:expr, g: $g:expr, b: $b:expr) => {
         Some(Color::rgb($r, $g, $b))
     };
+    (r8: $r:expr, g8: $g:expr, b8: $b:expr) => {
+        Some(Color::rgb_u8($r, $g, $b))
+    };
     (r: $r:expr, g: $g:expr, b: $b:expr, a: $a:expr) => {
         Some(Color::rgba($r, $g, $b, $a))
+    };
+    (r8: $r:expr, g8: $g:expr, b8: $b:expr, a8: $a:expr) => {
+        Some(Color::rgba_u8($r, $g, $b, $a))
     };
     ($x:ident) => {
         Some(Color::$x)
@@ -49,18 +121,22 @@ macro_rules! color {
     };
 
     (^$x:literal) => {{
-        use wings::prelude::get_transparent_color;
-        Color::hex($x).unwrap_or(get_transparent_color())
+        Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.))
     }};
     (^hex $x:expr) => {{
-        use wings::prelude::get_transparent_color;
-        Color::hex($x).unwrap_or(get_transparent_color())
+        Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.))
     }};
     (^r: $r:expr, g: $g:expr, b: $b:expr) => {
         Color::rgb($r, $g, $b)
     };
+    (^r8: $r:expr, g8: $g:expr, b8: $b:expr) => {
+        Color::rgb_u8($r, $g, $b)
+    };
     (^r: $r:expr, g: $g:expr, b: $b:expr, a: $a:expr) => {
         Color::rgba($r, $g, $b, $a)
+    };
+    (^r8: $r:expr, g8: $g:expr, b8: $b:expr, a8: $a:expr) => {
+        Color::rgba_u8($r, $g, $b, $a)
     };
     (^$x:ident) => {
         Color::$x
