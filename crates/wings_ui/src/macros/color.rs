@@ -3,6 +3,7 @@
 /// Macro used to provide a value to a `Color` inside a `widget_tree`.
 ///
 /// Use cases when you need to retrieve Some(Color) or Color:
+///
 /// 1. As an identifier:
 /// ```
 /// use bevy::prelude::*;
@@ -14,6 +15,7 @@
 /// let color = color![^TEAL];
 /// assert_eq!(color, Color::TEAL);
 /// ```
+///
 /// 2. As an expression:
 /// ```
 /// use bevy::prelude::*;
@@ -25,6 +27,7 @@
 /// let color = color![^Color::default()];
 /// assert_eq!(color, Color::default());
 /// ```
+///
 /// 3. As an array of expressions (rgb):
 /// ```
 /// use bevy::prelude::*;
@@ -42,6 +45,7 @@
 /// let color_u8 = color![^r8: 117, g8: 63, b8: 223];
 /// assert_eq!(color_u8, Color::rgb_u8(117, 63, 223));
 /// ```
+///
 /// 4. As an array of expressions (rgba):
 /// ```
 /// use bevy::prelude::*;
@@ -59,6 +63,7 @@
 /// let color_u8 = color![^r8: 117, g8: 63, b8: 223, a8: 255];
 /// assert_eq!(color_u8, Color::rgba_u8(117, 63, 223, 255));
 /// ```
+///
 /// 5. As a literal (hex):
 /// ```
 /// use bevy::prelude::*;
@@ -70,6 +75,7 @@
 /// let color = color![^"#00FF00FF"];
 /// assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::NONE));
 /// ```
+///
 /// 6. As an expression (hex):
 /// ```
 /// use bevy::prelude::*;
