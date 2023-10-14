@@ -65,10 +65,10 @@ This is the most ergonomic <b>ECS</b> Data Driven UI Framework.
 13. `color![^r8: 117, g8: 63, b8: 223]` is equivalent to `Color::rgb_u8(117, 63, 223)`
 14. `color![r8: 117, g8: 63, b8: 223, a8: 255]` is equivalent to `Some(Color::rgba_u8(117, 63, 223, 255))`
 15. `color![^r8: 117, g8: 63, b8: 223, a8: 255]` is equivalent to `Color::rgba_u8(117, 63, 223, 255)`
-16. `color!["#00FF00FF"]` is equivalent to `Some(Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.)))`
-17. `color![^"#00FF00FF"]` is equivalent to `Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.))`
-18. `color![hex my_string]` is equivalent to `Some(Color::hex(my_string).unwrap_or(Color::rgba(0., 0., 0., 0.)))`
-19. `color![^hex my_string]` is equivalent to `Color::hex(my_string).unwrap_or(Color::rgba(0., 0., 0., 0.))`
+16. `color!["#00FF00FF"]` is equivalent to `Some(Color::hex("#00FF00FF").unwrap_or(Color::NONE))`
+17. `color![^"#00FF00FF"]` is equivalent to `Color::hex("#00FF00FF").unwrap_or(Color::NONE)`
+18. `color![hex my_string]` is equivalent to `Some(Color::hex(my_string).unwrap_or(Color::NONE))`
+19. `color![^hex my_string]` is equivalent to `Color::hex(my_string).unwrap_or(Color::NONE)`
 20. `edge_insets_only![left: 10., right: 15., top: 20., bottom: 25.]` is equivalent to `EdgeInsets::from_ltrb(10., 15., 20., 25.)` You can keep only what side(s) you need, everything else will be set to 0.
 21. `edge_insets_symmetric![vertical: 10.]` is equivalent to `EdgeInsets::symmetric_vertical(10.)`
 22. `edge_insets_symmetric![horizontal: 10.]` is equivalent to `EdgeInsets::symmetric_horizontal(10.)`
