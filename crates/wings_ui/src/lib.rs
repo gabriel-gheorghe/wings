@@ -13,6 +13,7 @@ pub mod platform {
 
 pub mod prelude {
     pub use crate::{
+        color,
         define_common_types, define_ui_types_bundles, define_ui_types_components,
         edge_insets_only, edge_insets_symmetric,
         on_contact, on_leave, on_move, on_tap, on_tap_down, on_tap_up,
