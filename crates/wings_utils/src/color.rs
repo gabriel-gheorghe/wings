@@ -1,12 +1,12 @@
 use bevy::prelude::*;
 
-/// Returns a new randomly chosen [`Color`](Color) with red, green and blue channels.
+/// Returns a new randomly chosen [`Color`] with red, green and blue channels.
 #[inline]
 pub fn get_random_color() -> Color {
     Color::rgb(rand::random(), rand::random(), rand::random())
 }
 
-/// Returns a new randomly chosen [`Color`](Color) with red, green, blue and alpha channels.
+/// Returns a new randomly chosen [`Color`] with red, green, blue and alpha channels.
 ///
 /// The `a` parameter represents the alpha channel value.
 /// In order to be valid it must fall within the range of 0 to 1.
@@ -28,10 +28,4 @@ pub fn get_random_color_with_alpha(a: Option<f32>) -> Color {
         Some(a) => Color::rgba(rand::random(), rand::random(), rand::random(), a),
         None => Color::rgba(rand::random(), rand::random(), rand::random(), rand::random()),
     }
-}
-
-/// Returns a transparent [`Color`](Color). All color channels ar set to `0.`;
-#[inline]
-pub const fn get_transparent_color() -> Color {
-    Color::rgba(0., 0., 0., 0.)
 }

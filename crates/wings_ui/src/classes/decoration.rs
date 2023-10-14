@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use wings_utils::color::get_transparent_color;
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Hash)]
 pub enum BorderStyle {
@@ -18,7 +17,7 @@ impl Default for BorderSide {
     #[inline]
     fn default() -> Self {
         Self {
-            color: get_transparent_color(),
+            color: Color::NONE,
             width: Val::Px(1.),
             style: BorderStyle::Solid,
         }
@@ -27,7 +26,7 @@ impl Default for BorderSide {
 
 impl BorderSide {
     pub const NONE: BorderSide = BorderSide {
-        color: get_transparent_color(),
+        color: Color::NONE,
         width: Val::Px(0.),
         style: BorderStyle::None,
     };

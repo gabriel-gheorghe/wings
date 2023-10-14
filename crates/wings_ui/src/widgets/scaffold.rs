@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use wings_utils::color::get_transparent_color;
 use crate::widgets::WidgetBundle;
 
 #[derive(Component, Clone, Debug, Default)]
@@ -18,7 +17,7 @@ impl Default for ScaffoldProps {
         Self {
             width: Val::Percent(100.0),
             height: Val::Auto,
-            color: get_transparent_color(),
+            color: Color::NONE,
         }
     }
 }

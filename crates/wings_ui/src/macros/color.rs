@@ -72,10 +72,10 @@
 ///
 /// fn main() {
 ///     let some_color = color!["#00FF00FF"];
-///     assert_eq!(some_color, Some(Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.))));
+///     assert_eq!(some_color, Some(Color::hex("#00FF00FF").unwrap_or(Color::NONE)));
 ///
 ///     let color = color![^"#00FF00FF"];
-///     assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.)));
+///     assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::NONE));
 /// }
 /// ```
 /// 6. As an expression (hex):
@@ -87,19 +87,19 @@
 ///     let mut hex_color = "#00FF00FF";
 ///
 ///     let some_color = color![hex hex_color];
-///     assert_eq!(some_color, Some(Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.))));
+///     assert_eq!(some_color, Some(Color::hex("#00FF00FF").unwrap_or(Color::NONE)));
 ///
 ///     let color = color![^hex hex_color];
-///     assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::rgba(0., 0., 0., 0.)));
+///     assert_eq!(color, Color::hex("#00FF00FF").unwrap_or(Color::NONE));
 /// }
 /// ```
 #[macro_export]
 macro_rules! color {
     ($x:literal) => {{
-        Some(Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.)))
+        Some(Color::hex($x).unwrap_or(Color::NONE))
     }};
     (hex $x:expr) => {{
-        Some(Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.)))
+        Some(Color::hex($x).unwrap_or(Color::NONE))
     }};
     (r: $r:expr, g: $g:expr, b: $b:expr) => {
         Some(Color::rgb($r, $g, $b))
@@ -121,10 +121,10 @@ macro_rules! color {
     };
 
     (^$x:literal) => {{
-        Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.))
+        Color::hex($x).unwrap_or(Color::NONE)
     }};
     (^hex $x:expr) => {{
-        Color::hex($x).unwrap_or(Color::rgba(0., 0., 0., 0.))
+        Color::hex($x).unwrap_or(Color::NONE)
     }};
     (^r: $r:expr, g: $g:expr, b: $b:expr) => {
         Color::rgb($r, $g, $b)

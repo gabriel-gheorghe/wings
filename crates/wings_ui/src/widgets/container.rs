@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use wings_utils::color::get_transparent_color;
 use crate::classes::decoration::BoxDecoration;
 use crate::prelude::EdgeInsets;
 use crate::widgets::WidgetBundle;
@@ -82,7 +81,7 @@ impl ContainerBundle {
             border_color: if props.decoration.is_some() {
                 BorderColor::from(props.decoration.unwrap().border.bottom.color) // todo. all border colors
             } else {
-                BorderColor::from(get_transparent_color())
+                BorderColor::from(Color::NONE)
             },
             image: Default::default(),
             widget: ContainerWidget::default(),
