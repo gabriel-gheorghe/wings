@@ -78,8 +78,16 @@ impl ContainerBundle {
                     None => Color::BISQUE,
                 }
             }),
-            border_color: if props.decoration.is_some() {
-                BorderColor::from(props.decoration.unwrap().border.bottom.color) // todo. all border colors
+            border_color: if let Some(decoration) = props.decoration {
+                {  // todo. all border colors (current limitation)
+                    if decoration.border.bottom.color != decoration.border.top.color
+                        && decoration.border.bottom.color != decoration.border.left.color
+                        && decoration.border.bottom.color != decoration.border.right.color {
+                        BorderColor::from(Color::NONE)
+                    } else {
+                        BorderColor::from(decoration.border.bottom.color)
+                    }
+                }
             } else {
                 BorderColor::from(Color::NONE)
             },
